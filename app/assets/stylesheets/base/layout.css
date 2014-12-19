@@ -1,9 +1,33 @@
-body {
-  background: url("../../images/px_by_Gre3g.png") repeat;
+.bg-tile {
+  background-image: url('../../texture.png');
+  background-repeat: repeat;
+}
+
+.center-70 {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#above_chart {
+  position: relative;
+  height: 50px;
+  margin: 15px auto;
+}
+
+.button-area {
+  position: absolute;
+  right: 0;
 }
 
 #chart {
-  width: 70%;
-  height: 400px;
+  height: 500px;
   margin: 50px auto 0;
 }
+
