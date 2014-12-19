@@ -1,0 +1,9 @@
+body {
+  background: url("../../images/px_by_Gre3g.png") repeat;
+}
+
+#chart {
+  width: 70%;
+  height: 400px;
+  margin: 50px auto 0;
+}
