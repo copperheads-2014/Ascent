@@ -8,12 +8,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <%= content_for(:header) %>
+    <link href='http://fonts.googleapis.com/css?family=Ceviche+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
   </head>
   <body>
+    <header class="bg-tile ceviche">ascent</header>
 
-    <div class="container">
+    <div class="container bg-tile">
       <%= yield %>
     </div>
+
+    <footer class="bg-tile"></footer>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
