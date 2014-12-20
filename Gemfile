@@ -15,3 +15,8 @@ gem 'spring',        group: :development
 gem 'highcharts-rails'
 
 gem 'json'
+
+# scrapey scrapey
+
+gem 'crack'
+gem 'rest-client'

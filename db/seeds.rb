@@ -2,6 +2,8 @@ require 'json'
 
 files_habhub = ['UKRHAB-2.json', 'MOD1.json']
 
+urls = ['http://habitat.habhub.org/habitat/_design/ept/_list/json/payload_telemetry/flight_payload_time?include_docs=true&startkey=[%221bcd4ef3e5f5c6bd62c79fe3ce3b928d%22,%223b9b869809e429c37a96d2520d459a2f%22]&endkey=[%221bcd4ef3e5f5c6bd62c79fe3ce3b928d%22,%223b9b869809e429c37a96d2520d459a2f%22,[]]&fields=_sentence,_receivers,sentence_id,time,latitude,longitude,altitude,satellites,battery,pll_loop_volts,xtal_trim,gps_low_power']
+
 SEA_LEVEL_PRESSURE = 1013.25 #mbars
 
 def parse_habhub(json)
@@ -58,4 +60,15 @@ def update_flight(flight)
   flight.update(max_altitude: max_altitude, duration: "#{time}")
 end
 
-import_habhub(files_habhub)
+def import_habhub_from_urls(urls)
+  urls.each do |url|
+    json_flight_data = Crack::JSON.parse(RestClient.get(url))
+    sentence = json_flight_data.first["_sentence"]
+    flight = Flight.create!(callsign: callsign(sentence))
+    create_data(json_flight_data, flight)
+    update_flight(flight)
+  end
+end
+
+
+import_habhub_from_urls(urls)
