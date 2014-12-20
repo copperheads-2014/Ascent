@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Ascent</title>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
@@ -10,15 +11,16 @@
     <%= content_for(:header) %>
     <link href='http://fonts.googleapis.com/css?family=Ceviche+One' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
   </head>
-  <body>
-    <header class="bg-tile ceviche">ascent</header>
+  <body class="bg-tile">
+    <header><h1 class="ceviche text-center">ascent</h1></header>
 
-    <div class="container bg-tile">
+    <div class="container">
       <%= yield %>
     </div>
 
-    <footer class="bg-tile"></footer>
+    <footer></footer>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
