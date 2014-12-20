@@ -28,7 +28,7 @@ end
 
 def create_data(json_flight_data, flight)
   json_flight_data.each do |point|
-    DataPoint.create!(flight_id: flight.id, data: parse_habhub(point))
+    DataPoint.create!(flight_id: flight.id, data: parse_habhub(point)) #unless point['time'] = "00:00:00"
   end
 end
 
@@ -38,14 +38,24 @@ def import_habhub(files)
     sentence = json_flight_data.first["_sentence"]
     flight = Flight.create!(callsign: callsign(sentence))
     create_data(json_flight_data, flight)
+    update_flight(flight)
   end
 end
 
-# new_hash = {
-#   altitude: ,
-#   latitude: ,
-#   longitude: ,
-#   temperature: ,
-#   pressure: ,
-# }
+def update_flight(flight)
+  max_flight = flight.data_points.max_by { |p| p.data["altitude"] }
+  max_altitude = max_flight.data["altitude"]
+
+  start_time = Time.parse(flight.data_points.first.data['time'])
+  end_time = Time.parse(flight.data_points.last.data['time'])
+  total_seconds = end_time - start_time
+  seconds = total_seconds % 60
+  minutes = (total_seconds / 60) % 60
+  hours = total_seconds / (60 * 60)
+
+  time = format("%02d:%02d:%02d", hours, minutes, seconds)
+
+  flight.update(max_altitude: max_altitude, duration: "#{time}")
+end
+
 import_habhub(files_habhub)
