@@ -1,0 +1,5 @@
+%h1 Flights
+
+%h3
+	-@flights.each do |flight|
+		=link_to "#{flight.callsign}", flight_path(flight)
