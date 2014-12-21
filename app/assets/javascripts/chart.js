@@ -1,8 +1,11 @@
 var ready;
 var chart;
 var display;
+var $display;
 
 ready = function(){
+
+  $display = $('#display')
   display = $('#display p');
 
   chart = new Highcharts.Chart({
@@ -89,6 +92,9 @@ ready = function(){
     });
   });
 
+  $("#button-play").click(function(){
+    $display.show('slide', {direction: 'left'}, 1200);
+  });
 };
 
 $(document).ready(ready);
