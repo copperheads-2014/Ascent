@@ -1,8 +1,7 @@
 App = Ember.Application.create();
 
 App.Router.map(function() {
-  // put your routes here
-  this.route("")
+  this.route('charts')
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -10,3 +9,9 @@ App.IndexRoute = Ember.Route.extend({
     return ['red', 'yellow', 'blue'];
   }
 });
+
+App.ChartsRoute = Ember.Route.extend({
+  model: function() {
+    return ["orange", "purple", "green"]
+  }
+})
