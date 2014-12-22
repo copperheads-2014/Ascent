@@ -1,0 +1,13 @@
+%h1 
+	="#{@flight.callsign}"
+
+%h3
+	="Max Altitude: #{@flight.max_altitude}"
+	%br
+	="Flight Duration: #{@flight.duration}"
+	%br
+	-@data_points.each_with_index do |point, index|
+		=index + 1
+		=point[:data]
+		%br
+		
