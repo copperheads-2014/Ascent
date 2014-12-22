@@ -1,0 +1,41 @@
+.text-center {
+  text-align: center;
+}
+#logo:hover {
+  color: black;
+}
+h1 {
+  font-size: 100px;
+  color: white;
+  margin: 0;
+}
+.ceviche {
+  font-family: 'Ceviche One', cursive;
+}
+.audiowide {
+  font-family: 'Audiowide', cursive;
+}
+.perm-marker {
+  font-family: 'Permanent Marker', cursive;
+}
+h4 {
+  font-size: 20px;
+  margin: 5% auto;
+}
+p {
+  margin: auto 5%;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+h2 {
+  font-size: 30px;
+  color: #FCFCFC;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 50px;
+  }
+}

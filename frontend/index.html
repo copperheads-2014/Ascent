@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ascent</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <!-- CSS - Base Folder -->
+  <link rel="stylesheet" href="css/base/layout.css">
+  <link rel="stylesheet" href="css/base/normalize.css">
+  <link rel="stylesheet" href="css/base/typography.css">
+
+  <!-- CSS - Components Folder -->
+  <link rel="stylesheet" href="css/components/buttons.css">
+
+  <!-- CSS - Modules Folder -->
+  <link rel="stylesheet" href="css/modules/footer.css">
+  <link rel="stylesheet" href="css/modules/header.css">
+
+  <!-- CSS - Font Related -->
+  <link href='http://fonts.googleapis.com/css?family=Ceviche+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-tile">
+  <script type="text/x-handlebars">
+    <header>
+      <h1 class="ceviche text-center">
+        {{#link-to "index" id="logo"}}ascent{{/link-to}}
+      </h1>
+    </header>
+    <div class="container">{{outlet}}</div>
+    <footer></footer>
+  </script>
+
+  <script type="text/x-handlebars" id="index">
+    <div><h2 class="audiowide text-center">Welcome to Ascent.</h2></div>
+    <div id="index-image"><img id="earth" src="images/earth.jpg"></div>
+    <div id="main-buttons">
+      {{#link-to "upload"}}<button id="button-upload" class="audiowide">UPLOAD</button>{{/link-to}}
+      {{#link-to "flights"}}<button id="button-flights" class="audiowide">VIEW</button>{{/link-to}}
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" id="flights">
+    <div><h2 class="audiowide text-center">Choose a flight.</h2></div>
+    <ul>
+      {{#each flight in flightArray}}
+        <li>{{#link-to "interactive"}}{{callsign}}{{/link-to}}</li>
+      {{/each}}
+    </ul>
+    <div>{{outlet}}</div>
+  </script>
+
+  <script type="text/x-handlebars" id="flight">
+
+  </script>
+
+  <script type="text/x-handlebars" id="interactive">
+    <div id="above_chart" class="center-60">
+      <div class="button-area1">
+        <button id="button1" class="audiowide">CHART</button>
+        <button id="button2" class="audiowide">MAP</button>
+      </div>
+    </div>
+    <div id="main">
+      <div id="chart"></div>
+      <div id="display">
+        <h4 class="perm-marker text-center">Data Point:</h4>
+        <p id="time" class="perm-marker"></p>
+        <p id="altitude" class="perm-marker"></p>
+        <p id="temp" class="perm-marker"></p>
+      </div>
+    </div>
+    <div id="below_chart" class="center-60">
+      <div class="center-60">
+        <button id="button-step-back">
+          <i class="fa fa-step-backward"></i>
+        </button>
+        <button id="button-play">
+          <i class="fa fa-play"></i>
+        </button>
+        <button id="button-step-forw">
+          <i class="fa fa-step-forward"></i>
+        </button>
+      </div>
+    </div>
+    <div id="gauges" class="center-60">
+      <div id="gauge1"></div>
+      <div id="gauge2"></div>
+      <div id="gauge3"></div>
+    </div>
+  </script>
+
+
+  <script type="text/x-handlebars" id="upload"></script>
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-v2.0.0.js"></script>
+  <script src="js/libs/ember-1.9.0.js"></script>
+  <script src="js/app.js"></script>
+  <!-- to activate the test runner, add the "?test" query string parameter -->
+  <script src="tests/runner.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/chart.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/gauge1.js"></script>
+  <script src="js/gauge2.js"></script>
+  <script src="js/gauge3.js"></script>
+
+  <!-- Highcharts -->
+  <script src="js/highcharts/highcharts.js"></script>
+  <script src="js/highcharts/modules/exporting.js"></script>
+</body>
+</html>
