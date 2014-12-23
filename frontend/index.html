@@ -45,19 +45,32 @@
 
   <script type="text/x-handlebars" id="flights">
     <div><h2 class="audiowide text-center">Choose a flight.</h2></div>
-    <ul>
-      {{#each flight in flightArray}}
-        <li>{{#link-to "interactive"}}{{callsign}}{{/link-to}}</li>
-      {{/each}}
-    </ul>
-    <div>{{outlet}}</div>
+    <div id="table-container" class="center-60">
+      <table>
+        <tr>
+          <th>Callsign</th>
+          <th>Duration</th>
+          <th>Maximum Altitude</th>
+          <th>Launch Site</th>
+          <th>Elevation</th>
+          <th></th>
+        </tr>
+        {{#each}}
+        <tr>
+          <td>{{callsign}}</td>
+          <td>{{duration}}</td>
+          <td>{{maxAltitude}}</td>
+          <td>{{launchSite}}</td>
+          <td>{{elevation}}</td>
+          <td>{{#link-to "flight" this}}View{{/link-to}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
+    <div id="chart-map">{{outlet}}</div>
   </script>
 
   <script type="text/x-handlebars" id="flight">
-
-  </script>
-
-  <script type="text/x-handlebars" id="interactive">
     <div id="above_chart" class="center-60">
       <div class="button-area1">
         <button id="button1" class="audiowide">CHART</button>
@@ -71,6 +84,8 @@
         <p id="time" class="perm-marker"></p>
         <p id="altitude" class="perm-marker"></p>
         <p id="temp" class="perm-marker"></p>
+        <p id="longitude" class="perm-marker"></p>
+        <p id="latitude" class="perm-marker"></p>
       </div>
     </div>
     <div id="below_chart" class="center-60">
@@ -92,7 +107,6 @@
       <div id="gauge3"></div>
     </div>
   </script>
-
 
   <script type="text/x-handlebars" id="upload"></script>
 
