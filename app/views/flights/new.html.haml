@@ -1,0 +1,6 @@
+%h1
+  Ascent
+
+=form_for :flight, method: 'POST', url: {action: 'create'} do |f|
+  =f.text_field :new_flight, name: "new_flight[address]", placeholder: "Enter URL"
+  =f.submit 'Create Flight' , class: 'button'

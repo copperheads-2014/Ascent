@@ -6,8 +6,10 @@
 	%br
 	="Flight Duration: #{@flight.duration}"
 	%br
+	="Total Distance Traveled: #{@flight.distance_traveled}"
+	%br
 	-@data_points.each_with_index do |point, index|
-		=index + 1
-		=point[:data]
 		%br
-		
+		=index + 1
+		-point[:data].each do |key, value|
+			="#{key}: #{value}" if value

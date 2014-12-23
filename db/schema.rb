@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20141218220908) do
     t.string   "callsign"
     t.string   "duration"
     t.integer  "max_altitude"
+    t.float    "distance_traveled"
     t.integer  "launch_site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
