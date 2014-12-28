@@ -1,3 +1,7 @@
+* {
+  border: 1px dotted black;
+}
+
 .bg-tile {
   background: url(px_by_Gre3g.png) repeat;
 }
@@ -13,9 +17,8 @@
 }
 
 .container {
-  position: absolute;
-  width: 100%;
   height: 100%;
+  margin: 0, auto;
 }
 
 #above_chart {
@@ -48,7 +51,7 @@
 }
 
 #display {
-  background: url("https://scontent-a.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/10868275_10102358445727858_3790846352791825128_n.jpg?oh=6cab23181057a03a48b667b5c031dc90&oe=55059F7C");
+  background: black;
   border: 5px solid #D1DBDD;
   border-radius: 15px;
   position: absolute;

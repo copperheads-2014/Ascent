@@ -1,6 +1,9 @@
 var ready;
 var chart;
 var $display;
+var index_of_digit
+var flight_id
+var flight_data
 
 ready = function(){
 
@@ -10,25 +13,39 @@ ready = function(){
 
   }
 
+  index_of_digit = (document.URL.search(/\/\d/)) + 1
+  flight_id = (document.URL[index_of_digit])
+
+  $.ajax({
+    url: "/charts/" + flight_id + ".json",
+    method: "get",
+    success: function(response){
+      console.log(response);
+      flight_data = response
+    }
+  })
+
+  console.log(flight_data)
+
   chart = new Highcharts.Chart({
     chart: {
-      backgroundColor: '#D1DBDD',
+      backgroundColor: '#000',
       borderColor: "#FFFFFF",
       borderWidth: 5,
       borderRadius: 15,
       zoomType: 'x',
       renderTo: 'chart',
       style: {
-        fontFamily: 'Audiowide',
+        fontFamily: 'Arial',
         fontSize: '12px'
       }
     },
     title: {
-      text: 'Space Trip',
-      style: { "color": 'black'}
+      text: 'The Journey',
+      style: { "color": 'gray'}
     },
     subtitle: {
-      text: 'Pinch the chart to zoom in'
+      text: 'Drag over chart to zoom in'
     },
     xAxis: {
       type: 'datetime',
@@ -44,22 +61,16 @@ ready = function(){
           point: {
             events: {
               select: function() {
-                $('#time').html("Time: " + Highcharts.dateFormat('%H:%M:%S', this.x) + " (H:M:S)");
-                $('#altitude').html("Altitude: " + this.y + " ft.");
-                $('#temp').html("Temperature: " + this.temp + " °F");
+                $('#time').html("Time: " + Highcharts.dateFormat('%H:%M:%S', flight_data.x - flight_data[0].x) + " (H:M:S)");
+                $('#altitude').html("Altitude: " + flight_data.y + " m");
+                $('#temp').html("Temperature: " + flight_data.temp + " °C");
               }
             }
           },
         animation: {duration: 3000}
       },
       area: {
-        fillColor: {
-          linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
-          stops: [
-            [0, Highcharts.getOptions().colors[5]],
-            [1, Highcharts.Color(Highcharts.getOptions().colors[8]).setOpacity(0).get('rgba')]
-          ]
-        },
+        fillColor: 'purple',
         marker: {
           radius: 2
         },
@@ -87,13 +98,15 @@ ready = function(){
       name: 'Altitude',
       pointStart: 0,
       color: '#E6E6FA',
-      data: [
-        {x: 0, y: 0, temp: 10},
-        {x: 160000, y: 70000, temp: 5},
-        {x: 240000, y: 77000, temp: -1},
-        {x: 302000, y: 80000, temp: -11},
-        {x: 320000, y: 99000, temp: -33}
-      ]
+      // data: [
+      //   {x: flight_data[0].x, y: flight_data[0].y, temp: null},
+      //   {x: flight_data[100].x, y: flight_data[100].y, temp: null},
+      //   {x: flight_data[200].x, y: flight_data[200].y, temp: null},
+      //   {x: flight_data[300].x, y: flight_data[300].y, temp: null},
+      //   {x: flight_data[400].x, y: flight_data[400].y, temp: null}
+      // ]
+      data: flight_data
+
     });
   });
 

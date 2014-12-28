@@ -20,3 +20,5 @@ gem 'json'
 
 gem 'crack'
 gem 'rest-client'
+
+gem 'turbolinks'
