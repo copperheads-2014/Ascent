@@ -7,13 +7,17 @@ h1 {
   margin: 0;
 }
 .ceviche {
-  font-family: 'Ceviche One', cursive;
+  /*font-family: 'Ceviche One', cursive;*/
 }
 .audiowide {
-  font-family: 'Audiowide', cursive;
+  /*font-family: 'Audiowide', cursive;*/
 }
 .perm-marker {
-  font-family: 'Permanent Marker', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
+}
+
+h2 {
+  color: #dddddd;
 }
 h4 {
   font-size: 20px;

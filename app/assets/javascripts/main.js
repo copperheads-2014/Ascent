@@ -1,3 +1,4 @@
+
 function Flight() {
   this.flight = []
 }
@@ -20,13 +21,7 @@ function prepHighchartsSeries(flight) {
     name: 'Altitude',
     pointStart: 0,
     color: '#E6E6FA',
-    data: [
-      {x: 0, y: 0, temp: 10},
-      {x: 160000, y: 70000, temp: 5},
-      {x: 240000, y: 77000, temp: -1},
-      {x: 302000, y: 80000, temp: -11},
-      {x: 320000, y: 99000, temp: -33}
-    ]
+    data: flight_data
   }
 
   chart.addSeries(seriesInfo);

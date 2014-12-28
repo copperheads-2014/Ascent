@@ -3,21 +3,21 @@ class Flight < ActiveRecord::Base
 
   SEA_LEVEL_PRESSURE = 1013.25 #mbars
 
-  def self.travel_distance(a, b)
+  def self.travel_distance(starting_point, ending_point)
     rad_per_deg = Math::PI/180.0  # PI / 180
     rkm = 6371.0                  # Earth radius in kilometers
     rm = rkm * 1000.0             # Radius in meters
 
-    dlon_rad = (b[1] - a[1]) * rad_per_deg  # Delta, converted to rad
-    dlat_rad = (b[0] - a[0]) * rad_per_deg
+    dlon_rad = (ending_point[1] - starting_point[1]) * rad_per_deg  # Delta, converted to rad
+    dlat_rad = (ending_point[0] - starting_point[0]) * rad_per_deg
 
-    lat1_rad, lon1_rad = a.map! {|i| i * rad_per_deg }
-    lat2_rad, lon2_rad = b.map! {|i| i * rad_per_deg }
+    lat1_rad, lon1_rad = starting_point.map! {|i| i * rad_per_deg }
+    lat2_rad, lon2_rad = ending_point.map! {|i| i * rad_per_deg }
 
-    a = Math.sin(dlat_rad/2.0)**2.0 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2.0)**2.0
-    c = 2.0 * Math::atan2(Math::sqrt(a), Math::sqrt(1.0-a))
+    starting_point = Math.sin(dlat_rad/2.0)**2.0 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2.0)**2.0
+    c = 2.0 * Math::atan2(Math::sqrt(starting_point), Math::sqrt(1.0-starting_point))
 
-    rm * c # Delta in meters
+    rm * c / 1000 # Delta in km
   end
 
   def self.parse_habhub(json)

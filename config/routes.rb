@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :data_points
   end
 
-  resources :charts, only: [:index]
+  resources :charts, only: [:index, :show]
 
   root 'welcome#index'
 
