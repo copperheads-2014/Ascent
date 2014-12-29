@@ -14,3 +14,26 @@ h3 {
 .flight_chart {
 	display: none
 }
+
+body { margin:0; padding:0; text-align:center;}
+#map {position:absolute; visibility:hidden; top:0; bottom:0; width:100%;}
+.leaflet-control-attribution, .leaflet-control-zoom {
+  display: none;
+}
+
+ul {
+  list-style-type: none;
+  text-align: left;
+}
+
+li {
+}
+
+.leaflet-popup-content {
+  padding: 0;
+  margin-right: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}

@@ -1,4 +1,4 @@
-%h1 
+%h1
 	="#{@flight.callsign}"
 
 %h3
@@ -10,11 +10,13 @@
 	%br
 	%button.show_all_data{id: 'button1'} View Data
 	%button.show_flight_chart{id: 'button2'} View Chart/Map
-	%div.flight_chart
-		= render :partial => 'charts/index'
-	%div.all_data
-		-@data_points.each_with_index do |point, index|
-			%br
-			=index + 1
-			-point[:data].each do |key, value|
-				="#{key}: #{value}" if value
+%div.flight_chart
+	= render :partial => 'charts/index'
+%div.all_data
+	-@data_points.each_with_index do |point, index|
+		%br
+		=index + 1
+		-point[:data].each do |key, value|
+			="#{key}: #{value}" if value
+#main
+	#map
