@@ -16,7 +16,36 @@ class Flight < ActiveRecord::Base
     Flight.travel_distance(starting_point, ending_point)
   end
 
+  def start_time
+    self.data_points.first.data['time']
+  end
+
+  def end_time
+    self.data_points.last.data['time']
+  end
+
+  def duration
+    Flight.travel_time(self.start_time, self.end_time)
+  end
+
+  def max_altitude_data_point
+    self.data_points.max_by { |point| point.data["altitude"] }
+  end
+
+  def max_altitude
+    max_altitude_data_point.data["altitude"]
+  end
+
 # CLASS METHODS
+  def self.travel_time(start_time, end_time)
+    total_seconds = Time.parse(end_time) - Time.parse(start_time)
+    seconds = total_seconds % 60
+    minutes = (total_seconds / 60) % 60
+    hours = total_seconds / (60 * 60)
+
+    format("%02d:%02d:%02d", hours, minutes, seconds)
+  end
+
   def self.travel_distance(starting_point, ending_point)
     rad_per_deg = Math::PI/180.0  # PI / 180
     rkm = 6371.0                  # Earth radius in kilometers
