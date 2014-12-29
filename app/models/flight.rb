@@ -76,11 +76,6 @@ class Flight < ActiveRecord::Base
     end_lat = flight.data_points.last.data['latitude']
     end_long = flight.data_points.last.data['longitude']
 
-    puts start_lat
-    puts start_long
-    puts end_lat
-    puts end_long
-
     distance = travel_distance([start_lat.to_f, start_long.to_f], [end_lat.to_f, end_long.to_f])
 
     flight.update(max_altitude: max_altitude, duration: "#{time}", distance_traveled: distance)
