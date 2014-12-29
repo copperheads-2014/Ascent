@@ -22,11 +22,8 @@ ready = function(){
   })
 
   request.done(function(response){
-    console.log(response);
     flight_data = response;
   });
-
-  console.log(flight_data)
 
   chart = new Highcharts.Chart({
     chart: {
@@ -68,7 +65,7 @@ ready = function(){
               }
             }
           },
-        animation: {duration: 3000}
+        animation: {duration: 10000}
       },
       area: {
         fillColor: 'purple',
@@ -94,6 +91,8 @@ ready = function(){
   });
 
   $("#button-play").click(function(){
+    $("#map").css('visibility', 'initial');
+    slowAdd(0);
     chart.addSeries({
 
       type: 'area',
@@ -107,11 +106,56 @@ ready = function(){
       data: flight_data
 
     });
+    console.log(flight_data)
+
   });
 
   $("#button-play").click(function(){
     $display.show('slide', {direction: 'left'}, 1200);
   });
+
+  L.mapbox.accessToken = 'pk.eyJ1Ijoiam9zaGFkaWszMDciLCJhIjoiSzFib1hNbyJ9.9EvDIk_-qWq5TIf0t4YG7Q';
+  var map = L.mapbox.map('map', 'joshadik307.kh70onpa').setView([40, -74.50], 6);
+
+  var polyline = L.polyline([]).addTo(map);
+
+  function slowAdd(pointIndex){
+    console.log(flight_data)
+    addPoint(flight_data[pointIndex]);
+    if(pointIndex < flight_data.length-1){
+      setTimeout(slowAdd, 20, pointIndex+1);
+    }
+  }
+
+  function renderPoint(point) {
+    return "<dl><dt>latitude:</dt><dd>"+point.latitude+"</dd>"+
+      "<dt>longitude:</dt><dd>"+point.longitude+"</dd>"+
+      "<dt>altitude:</dt><dd>"+point.altitude+"</dd>"+
+      "<dt>time:</dt><dd>"+point.time+"</dd>"+
+      "<dt>temperature:</dt><dd>"+point.temperature+"</dd></dl>"
+  }
+
+  function addPoint(point) {
+         polyline.addLatLng(
+           L.latLng(
+           point.latitude,
+           point.longitude));
+    map.setView([point.latitude, point.longitude]);
+    L.mapbox.featureLayer({
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [
+              point.longitude, point.latitude
+            ]
+          },
+        "properties": {
+             description: renderPoint(point),
+             'marker-size': "small",
+             'marker-color': '#44036F',
+         }
+      }).addTo(map)
+  }
 };
 
 $(document).ready(ready);
