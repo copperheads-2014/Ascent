@@ -97,31 +97,8 @@ class Flight < ActiveRecord::Base
       sentence = json_flight_data.first["_sentence"]
       flight = Flight.create!(callsign: callsign(sentence))
       create_data(json_flight_data, flight)
-      update_flight(flight)
+      # update_flight(flight)
     end
-  end
-
-  def self.update_flight(flight)
-    max_flight = flight.data_points.max_by { |p| p.data["altitude"] }
-    max_altitude = max_flight.data["altitude"]
-
-    start_time = Time.parse(flight.data_points.first.data['time'])
-    end_time = Time.parse(flight.data_points.last.data['time'])
-    total_seconds = end_time - start_time
-    seconds = total_seconds % 60
-    minutes = (total_seconds / 60) % 60
-    hours = total_seconds / (60 * 60)
-
-    time = format("%02d:%02d:%02d", hours, minutes, seconds)
-
-    start_lat = flight.data_points.first.data['latitude']
-    start_long = flight.data_points.first.data['longitude']
-    end_lat = flight.data_points.last.data['latitude']
-    end_long = flight.data_points.last.data['longitude']
-
-    distance = travel_distance([start_lat.to_f, start_long.to_f], [end_lat.to_f, end_long.to_f])
-
-    flight.update(max_altitude: max_altitude, duration: "#{time}", distance_traveled: distance)
   end
 
   def self.import_habhub_from_url(url)
@@ -129,7 +106,7 @@ class Flight < ActiveRecord::Base
 	  sentence = json_flight_data.first["_sentence"]
 	  flight = Flight.create!(callsign: callsign(sentence))
 	  create_data(json_flight_data, flight)
-	  update_flight(flight)
+	  # update_flight(flight)
   end
 
 
