@@ -13,17 +13,18 @@ ready = function(){
 
   }
 
-  index_of_digit = (document.URL.search(/\/\d/)) + 1
-  flight_id = (document.URL[index_of_digit])
+  index_of_digit = (document.URL.search(/\/\d/)) + 1;
+  flight_id = window.location.pathname.split('/')[2];
 
-  $.ajax({
+  var request = $.ajax({
     url: "/charts/" + flight_id + ".json",
-    method: "get",
-    success: function(response){
-      console.log(response);
-      flight_data = response
-    }
+    method: "get"
   })
+
+  request.done(function(response){
+    console.log(response);
+    flight_data = response;
+  });
 
   console.log(flight_data)
 
@@ -61,9 +62,9 @@ ready = function(){
           point: {
             events: {
               select: function() {
-                $('#time').html("Time: " + Highcharts.dateFormat('%H:%M:%S', flight_data.x - flight_data[0].x) + " (H:M:S)");
-                $('#altitude').html("Altitude: " + flight_data.y + " m");
-                $('#temp').html("Temperature: " + flight_data.temp + " °C");
+                $('#time').html("Time: " + Highcharts.dateFormat('%H:%M:%S', this.x) + " (H:M:S)");
+                $('#altitude').html("Altitude: " + this.y + " m");
+                $('#temp').html("Temperature: " + this.temp + " °C");
               }
             }
           },
@@ -94,16 +95,14 @@ ready = function(){
 
   $("#button-play").click(function(){
     chart.addSeries({
+
       type: 'area',
       name: 'Altitude',
       pointStart: 0,
       color: '#E6E6FA',
       // data: [
-      //   {x: flight_data[0].x, y: flight_data[0].y, temp: null},
-      //   {x: flight_data[100].x, y: flight_data[100].y, temp: null},
-      //   {x: flight_data[200].x, y: flight_data[200].y, temp: null},
-      //   {x: flight_data[300].x, y: flight_data[300].y, temp: null},
-      //   {x: flight_data[400].x, y: flight_data[400].y, temp: null}
+      //   {x: 23232, y: 2000, temp: 232},
+      //   {x: 1222, y: 2333, temp: 244}
       // ]
       data: flight_data
 
