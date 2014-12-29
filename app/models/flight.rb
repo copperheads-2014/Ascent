@@ -3,6 +3,20 @@ class Flight < ActiveRecord::Base
 
   SEA_LEVEL_PRESSURE = 1013.25 #mbars
 
+# INSTANCE METHODS
+  def starting_point
+    [self.data_points.first.data["latitude"], self.data_points.first.data["longitude"]]
+  end
+
+  def ending_point
+    [self.data_points.last.data["latitude"], self.data_points.last.data["longitude"]]
+  end
+
+  def distance_traveled
+    Flight.travel_distance(starting_point, ending_point)
+  end
+
+# CLASS METHODS
   def self.travel_distance(starting_point, ending_point)
     rad_per_deg = Math::PI/180.0  # PI / 180
     rkm = 6371.0                  # Earth radius in kilometers
