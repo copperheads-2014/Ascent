@@ -6,8 +6,9 @@ class ChartsController < ApplicationController
   	@flight = Flight.find(params[:id])
   	@points = []
   	data_points = @flight.data_points
-  	data_points.each do |p| 
-  		@points << { x: p[:data]['time'],
+  	data_points.each do |p|
+  		# @points << { x: (p[:data]['time'].to_datetime.strftime('%Q').to_i - data_points[0].data['time'].to_datetime.strftime('%Q').to_i),
+      @points << { x: (time_from_first_point(p, data_points[0])),
   					 y: p[:data]['altitude'],
   					 temp: p[:data]['temperature']}
   	end
@@ -16,4 +17,13 @@ class ChartsController < ApplicationController
   	  format.json { render json: @points, status: :ok}
   	end
   end
+
+  def format_time(point)
+    point.data['time'].to_datetime.strftime('%Q').to_i
+  end
+
+  def time_from_first_point(point1, point2)
+    format_time(point1) - format_time(point2)
+  end
+
 end
