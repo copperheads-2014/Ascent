@@ -101,25 +101,5 @@ class Flight < ActiveRecord::Base
    flight = Flight.create!(callsign: callsign(sentence))
    create_data(csv_flight_data, flight)
    update_flight(flight)
-    end
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+end
