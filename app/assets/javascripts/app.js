@@ -1,4 +1,4 @@
-$(document).ready(function(){
+var ready = function(){
   var index_of_digit
   $('.show_all_data').click(function(e){
     e.preventDefault();
@@ -9,4 +9,7 @@ $(document).ready(function(){
     e.preventDefault();
     $('.flight_chart').fadeIn(800);
   });
-})
+}
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
