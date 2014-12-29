@@ -29,7 +29,7 @@ class Flight < ActiveRecord::Base
     new_hash[:battery] = json["battery"]
     new_hash[:time] = json["time"]
     new_hash[:humidity] = json["humidity"]
-    json['pressure'] ? new_hash[:pressure] = json['pressure'] : new_hash[:pressure] = calculate_pressure(json)
+    # json['pressure'] ? new_hash[:pressure] = json['pressure'] : new_hash[:pressure] = calculate_pressure(json)
     new_hash.to_json
   end
 
@@ -76,11 +76,6 @@ class Flight < ActiveRecord::Base
     end_lat = flight.data_points.last.data['latitude']
     end_long = flight.data_points.last.data['longitude']
 
-    puts start_lat
-    puts start_long
-    puts end_lat
-    puts end_long
-
     distance = travel_distance([start_lat.to_f, start_long.to_f], [end_lat.to_f, end_long.to_f])
 
     flight.update(max_altitude: max_altitude, duration: "#{time}", distance_traveled: distance)
@@ -92,5 +87,14 @@ class Flight < ActiveRecord::Base
 	  flight = Flight.create!(callsign: callsign(sentence))
 	  create_data(json_flight_data, flight)
 	  update_flight(flight)
+  end
+
+
+  def self.import(file)
+   csv_flight_data = CSV.read(file.path, headers: true)
+   sentence = csv_flight_data.first["_sentence"]
+   flight = Flight.create!(callsign: callsign(sentence))
+   create_data(csv_flight_data, flight)
+   update_flight(flight)
   end
 end
