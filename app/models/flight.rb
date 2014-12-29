@@ -29,7 +29,7 @@ class Flight < ActiveRecord::Base
     new_hash[:battery] = json["battery"]
     new_hash[:time] = json["time"]
     new_hash[:humidity] = json["humidity"]
-    json['pressure'] ? new_hash[:pressure] = json['pressure'] : new_hash[:pressure] = calculate_pressure(json)
+    # json['pressure'] ? new_hash[:pressure] = json['pressure'] : new_hash[:pressure] = calculate_pressure(json)
     new_hash.to_json
   end
 
@@ -93,4 +93,33 @@ class Flight < ActiveRecord::Base
 	  create_data(json_flight_data, flight)
 	  update_flight(flight)
   end
-end
+
+
+  def self.import(file)
+   csv_flight_data = CSV.read(file.path, headers: true)
+   sentence = csv_flight_data.first["_sentence"]
+   flight = Flight.create!(callsign: callsign(sentence))
+   create_data(csv_flight_data, flight)
+   update_flight(flight)
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

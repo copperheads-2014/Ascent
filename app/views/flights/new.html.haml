@@ -4,3 +4,12 @@
 =form_for :flight, method: 'POST', url: {action: 'create'} do |f|
   =f.text_field :new_flight, name: "new_flight[address]", placeholder: "Enter URL"
   =f.submit 'Create Flight' , class: 'button'
+
+=form_tag import_flights_path, multipart: true do 
+  =file_field_tag :file
+  =submit_tag "Upload"
+
+
+/ =form_for :flight, method: "POST", url: {action: 'create'} do |f|
+/   =f.file_field :new_flight
+/   =f.submit 'Create Flight', class: 'button'

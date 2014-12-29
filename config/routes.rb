@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   resources :flights do
+    collection { post :import}
     resources :data_points
   end
 

@@ -9,9 +9,14 @@ class FlightsController < ApplicationController
   end
 
   def create
-    p flight_params
-    Flight::import_habhub_from_url(flight_params[:address])
-    redirect_to flights_path
+      p flight_params
+      Flight::import_habhub_from_url(flight_params[:address])
+      redirect_to flights_path
+  end
+
+  def import
+    Flight.import(params[:file])
+    redirect_to root_url, notice: "Your flight has been imported."
   end
 
   private
