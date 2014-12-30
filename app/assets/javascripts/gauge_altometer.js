@@ -1,5 +1,8 @@
-var display_gauge1 = function(){
-  var gauge_1 = new Highcharts.Chart({
+var altometer;
+
+var loadAltometer = function(){
+
+  altometer = new Highcharts.Chart({
     chart: {
       type: 'gauge',
       plotBackgroundColor: null,
@@ -51,7 +54,7 @@ var display_gauge1 = function(){
 
     series: [{
       name: 'Altitude',
-      data: flight_data,
+      data: [0],
       dataLabels: {
         formatter: function () {
           var meters = this.y,
@@ -75,60 +78,18 @@ var display_gauge1 = function(){
       tooltip: {
         valueSuffix: ' m'
       }
-    }],
-    plotOptions: {
-      gauge: {
-        animation:  true
-      }
-    }
+    }]
+    });
 
-    } //,
-    // Add some life
-    // function(gauge_1) {
-    //     setInterval(function() {
-    //         var point = chart.series[0].points[0],
-    //             newVal, inc = Math.round((Math.random() - 0.5) * 20);
-
-    //         newVal = point.y + inc;
-    //         if (newVal < 0 || newVal > 200) {
-    //             newVal = point.y - inc;
-    //         }
-
-    //         point.update(newVal);
-
-    //     }, 3000);
-
-    );
-
-  // $("#button-play").click(function(){
-  //   gauge_1.addSeries({
-  //     name: 'Altitude',
-  //     data: flight_data,
-  //     dataLabels: {
-  //       formatter: function () {
-  //       },
-  //       backgroundColor: {
-  //         linearGradient: {
-  //           x1: 0,
-  //           y1: 0,
-  //           x2: 0,
-  //           y2: 1
-  //         },
-  //         stops: [
-  //         [0, '#DDD'],
-  //         [1, '#FFF']
-  //         ]
-  //       }
-  //     },
-  //     tooltip: {
-  //       valueSuffix: ' m'
-  //     }
-  //   });
-  //   gauge_1.redraw();
-  // });
 };
 
-
-$(document).ready(display_gauge1);
-$(document).on('page:load', display_gauge1);
-
+var playAltometer = function(interval_time) {
+  var seriesIndex = 0;
+  setInterval(function() {
+    var point = altometer.series[0].points[0];
+    seriesIndex++;
+    if (seriesIndex < flight_data.length) {
+      point.update(flight_data[seriesIndex].y);
+    }
+  }, interval_time);
+};
