@@ -4,8 +4,13 @@ var $display;
 var index_of_digit
 var flight_id
 var flight_data
+var chartPace
+var mapPace
+
 
 ready = function(){
+
+  chartPace = 10000
 
   $display = $('#display')
 
@@ -23,6 +28,7 @@ ready = function(){
 
   request.done(function(response){
     flight_data = response;
+    mapPace = chartPace / flight_data.length
   });
 
   chart = new Highcharts.Chart({
@@ -65,7 +71,7 @@ ready = function(){
               }
             }
           },
-        animation: {duration: 10000}
+        animation: {duration: chartPace}
       },
       area: {
         fillColor: 'purple',
@@ -106,8 +112,6 @@ ready = function(){
       data: flight_data
 
     });
-    console.log(flight_data)
-
   });
 
   $("#button-play").click(function(){
@@ -120,27 +124,27 @@ ready = function(){
   var polyline = L.polyline([]).addTo(map);
 
   function slowAdd(pointIndex){
-    console.log(flight_data)
     addPoint(flight_data[pointIndex]);
     if(pointIndex < flight_data.length-1){
-      setTimeout(slowAdd, 20, pointIndex+1);
+      setTimeout(slowAdd, mapPace, pointIndex+1);
     }
   }
 
   function renderPoint(point) {
     return "<dl><dt>latitude:</dt><dd>"+point.latitude+"</dd>"+
       "<dt>longitude:</dt><dd>"+point.longitude+"</dd>"+
-      "<dt>altitude:</dt><dd>"+point.altitude+"</dd>"+
-      "<dt>time:</dt><dd>"+point.time+"</dd>"+
+      "<dt>altitude:</dt><dd>"+point.y+"</dd>"+
+      "<dt>time:</dt><dd>"+point.x+"</dd>"+
       "<dt>temperature:</dt><dd>"+point.temperature+"</dd></dl>"
   }
-
+  var setView = 0
   function addPoint(point) {
          polyline.addLatLng(
            L.latLng(
            point.latitude,
            point.longitude));
-    map.setView([point.latitude, point.longitude]);
+    if (setView === 0) {map.setView([point.latitude, point.longitude])}
+    setView++
     L.mapbox.featureLayer({
         type: 'Feature',
         geometry: {

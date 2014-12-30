@@ -5,11 +5,11 @@ class Flight < ActiveRecord::Base
 
 # INSTANCE METHODS
   def starting_point
-    [self.data_points.first.data["latitude"], self.data_points.first.data["longitude"]]
+    [self.data_points.first.data["latitude"].to_f, self.data_points.first.data["longitude"].to_f]
   end
 
   def ending_point
-    [self.data_points.last.data["latitude"], self.data_points.last.data["longitude"]]
+    [self.data_points.last.data["latitude"].to_f, self.data_points.last.data["longitude"].to_f]
   end
 
   def distance_traveled
@@ -50,6 +50,8 @@ class Flight < ActiveRecord::Base
     rad_per_deg = Math::PI/180.0  # PI / 180
     rkm = 6371.0                  # Earth radius in kilometers
     rm = rkm * 1000.0             # Radius in meters
+
+
 
     dlon_rad = (ending_point[1] - starting_point[1]) * rad_per_deg  # Delta, converted to rad
     dlat_rad = (ending_point[0] - starting_point[0]) * rad_per_deg
@@ -111,10 +113,10 @@ class Flight < ActiveRecord::Base
 
 
   def self.import(file)
-   csv_flight_data = CSV.read(file.path, headers: true)
+   csv_flight_data = CSV.read(file.path, headers: true, converters: :all)
    sentence = csv_flight_data.first["_sentence"]
    flight = Flight.create!(callsign: callsign(sentence))
    create_data(csv_flight_data, flight)
-   update_flight(flight)
+   # update_flight(flight)
   end
 end
