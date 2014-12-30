@@ -10,7 +10,7 @@ var mapPace
 
 ready = function(){
 
-  chartPace = 10000
+  chartPace = 10000.0
 
   $display = $('#display')
 
@@ -26,10 +26,13 @@ ready = function(){
     method: "get"
   })
 
+  function toInt(n){ return Math.round(Number(n)); };
+
   request.done(function(response){
     flight_data = response;
-    mapPace = chartPace / flight_data.length
+    mapPace = toInt(chartPace / flight_data.length);
   });
+
 
   chart = new Highcharts.Chart({
     chart: {
@@ -115,7 +118,7 @@ ready = function(){
   });
 
   $("#button-play").click(function(){
-    $display.show('slide', {direction: 'left'}, 1200);
+    $display.show('slide', {direction: 'left'}, 400);
   });
 
   L.mapbox.accessToken = 'pk.eyJ1Ijoiam9zaGFkaWszMDciLCJhIjoiSzFib1hNbyJ9.9EvDIk_-qWq5TIf0t4YG7Q';
@@ -127,6 +130,7 @@ ready = function(){
     addPoint(flight_data[pointIndex]);
     if(pointIndex < flight_data.length-1){
       setTimeout(slowAdd, mapPace, pointIndex+1);
+      debugger;
     }
   }
 
