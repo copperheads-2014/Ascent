@@ -20,7 +20,7 @@ var loadAltometer = function(){
     },
     yAxis: [{
       min: 0,
-      max: 3200,
+      max: 5000,
       lineColor: '#339',
       tickColor: '#339',
       minorTickColor: '#339',
@@ -35,7 +35,7 @@ var loadAltometer = function(){
       endOnTick: false
     }, {
       min: 0,
-      max: 100000,
+      max: 5000 * 3.28084,
       tickPosition: 'outside',
       lineColor: '#933',
       lineWidth: 2,

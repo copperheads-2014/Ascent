@@ -32,7 +32,7 @@ var loadChart = function(duration) {
     series: [{
       name: "Altitude",
       // type: "area",
-      data: [0],
+      data: [0, 0],
       color: '#E6E6FA'
     }],
     plotOptions: {
@@ -80,7 +80,7 @@ var playChart = function(interval_time) {
     series = chart.series[0];
     seriesIndex++;
     if (seriesIndex < flight_data.length) {
-      series.addPoint(flight_data[seriesIndex].y);
+      series.addPoint(flight_data[seriesIndex]);
     }
   }, interval_time);
 }
