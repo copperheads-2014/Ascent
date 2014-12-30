@@ -1,4 +1,4 @@
-var ready = function(){
+var ready = function() {
   var index_of_digit
   $('.show_all_data').click(function(e){
     e.preventDefault();

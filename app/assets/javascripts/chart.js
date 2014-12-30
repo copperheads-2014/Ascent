@@ -3,15 +3,11 @@ var chart;
 var $display;
 var index_of_digit
 var flight_id
-var flight_data
+var flight_data;
 
 ready = function(){
 
   $display = $('#display')
-
-  function setProperTime(integer) {
-
-  }
 
   index_of_digit = (document.URL.search(/\/\d/)) + 1;
   flight_id = window.location.pathname.split('/')[2];
@@ -65,7 +61,7 @@ ready = function(){
               }
             }
           },
-        animation: {duration: 10000}
+        animation: {duration: 2000}
       },
       area: {
         fillColor: 'purple',
@@ -94,20 +90,12 @@ ready = function(){
     $("#map").css('visibility', 'initial');
     slowAdd(0);
     chart.addSeries({
-
       type: 'area',
       name: 'Altitude',
       pointStart: 0,
       color: '#E6E6FA',
-      // data: [
-      //   {x: 23232, y: 2000, temp: 232},
-      //   {x: 1222, y: 2333, temp: 244}
-      // ]
       data: flight_data
-
     });
-    console.log(flight_data)
-
   });
 
   $("#button-play").click(function(){
