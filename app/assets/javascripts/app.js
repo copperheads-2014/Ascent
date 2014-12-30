@@ -27,14 +27,15 @@ var ready = function() {
 
   request.done(function(response){
     flight_data = response;
-    var duration = 100 * flight_data.length;
-    loadChart(duration);
+    // var duration = 100 * flight_data.length;
+    loadChart(flight_data);
     loadAltometer();
     loadMap();
   });
 
   $("#button-play").click(function(){
     $display.show('slide', {direction: 'left'}, 1200);
+    loadChart([0,0])
     playChart(100);
     playMap();
     playAltometer(100);
