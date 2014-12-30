@@ -27,8 +27,8 @@ var ready = function() {
 
   request.done(function(response){
     flight_data = response;
-    var duration = 100 * flight_data.length;
-    loadChart(duration);
+    // var duration = 100 * flight_data.length;
+    loadChart(flight_data);
     loadAltometer();
     loadThermometer();
     // loadBarometer();
@@ -37,6 +37,7 @@ var ready = function() {
 
   $("#button-play").click(function(){
     $display.show('slide', {direction: 'left'}, 1200);
+    loadChart([0,0])
     playChart(100);
     playAltometer(100);
     playThermometer(100);

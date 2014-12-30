@@ -1,11 +1,13 @@
 var chart;
 
-var loadChart = function(duration) {
+var loadChart = function(seriesData) {
+  if (typeof seriesData === 'undefined') { seriesData = [0,0]; }
+  console.log(flight_data)
   chart = new Highcharts.Chart({
     chart: {
       backgroundColor: '#000',
-      borderColor: "#FFFFFF",
-      borderWidth: 5,
+      borderColor: "#000",
+      borderWidth: 10,
       borderRadius: 15,
       zoomType: 'x',
       renderTo: 'chart',
@@ -31,13 +33,13 @@ var loadChart = function(duration) {
     },
     series: [{
       name: "Altitude",
-      // type: "area",
-      data: [0, 0],
-      color: '#E6E6FA'
-    }],
-    plotOptions: {
-      series: {
-        allowPointSelect: true,
+        type: "area",
+        data: seriesData,
+        color: '#E6E6FA'
+      }],
+      plotOptions: {
+        series: {
+          allowPointSelect: true,
           point: {
             events: {
               select: function() {
@@ -47,30 +49,30 @@ var loadChart = function(duration) {
               }
             }
           },
-        // animation: {duration: duration}
+          // animation: {duration: duration}
+        },
+        area: {
+          fillColor: 'purple',
+          marker: {
+            radius: 2
+          },
+          lineWidth: 1,
+          states: {
+            hover: {
+              lineWidth: 1
+            }
+          },
+          threshold: null
+        }
       },
-      area: {
-        fillColor: 'purple',
-        marker: {
-          radius: 2
-        },
-        lineWidth: 1,
-        states: {
-          hover: {
-            lineWidth: 1
-          }
-        },
-        threshold: null
+      legend: {
+        enabled: false,
+        backgroundColor: '#E6E6FA'
+      },
+      tooltip: {
+        dateTimeLabelFormats: {second: '%H:%M:%S'}
       }
-    },
-    legend: {
-      enabled: false,
-      backgroundColor: '#E6E6FA'
-    },
-    tooltip: {
-      dateTimeLabelFormats: {second: '%H:%M:%S'}
-    }
-  });
+    });
 
 };
 
