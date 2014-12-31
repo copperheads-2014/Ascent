@@ -5,14 +5,14 @@ var loadAltometer = function(){
   altometer = new Highcharts.Chart({
     chart: {
       type: 'gauge',
-      plotBackgroundColor: null,
+      plotBackgroundColor: '#292929',
       plotBackgroundImage: null,
       plotBorderWidth: 0,
       plotShadow: false,
       renderTo: 'gauge_1'
     },
     title: {
-      text: 'Altometer'
+      text: 'Altimeter'
     },
     pane: {
       startAngle: -150,
