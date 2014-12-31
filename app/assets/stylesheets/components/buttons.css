@@ -2,6 +2,7 @@ button {
   height: 50px;
   border: 5px solid #FCFCFC;
   color: black;
+  background-color: purple;
 }
 button:hover {
   background-color: #FF4500;
@@ -13,11 +14,13 @@ button:focus {
   border-radius: 15px 0 0 15px;
   color: #FCFCFC;
   width: 45%;
+
 }
 #button2 {
   border-radius: 0 15px 15px 0;
   color: #FCFCFC;
   width: 45%;
+
 }
 #button-play {
   position: absolute;
@@ -26,6 +29,7 @@ button:focus {
   margin: 0 0 0 -5%;
   left: 50%;
   width: 10%;
+
 }
 #button-play:hover {
   background-color: #FF202D;

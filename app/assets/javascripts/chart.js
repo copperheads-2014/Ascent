@@ -5,8 +5,8 @@ var loadChart = function(seriesData) {
   console.log(flight_data)
   chart = new Highcharts.Chart({
     chart: {
-      backgroundColor: '#000',
-      borderColor: "#000",
+      backgroundColor: '#292929',
+      borderColor: "gray",
       borderWidth: 10,
       borderRadius: 15,
       zoomType: 'x',
@@ -24,12 +24,16 @@ var loadChart = function(seriesData) {
       text: 'Drag over chart to zoom in'
     },
     xAxis: {
+      min: 0,
+      max: flight_data[flight_data.length -1].x,
       type: 'datetime',
       title: {text: 'Time'},
       dateTimeLabelFormats: {second: '%H:%M:%S'}
     },
     yAxis: {
       title: {text: 'Altitude'}
+      min: -500,
+      max: 40000,
     },
     series: [{
       name: "Altitude",
@@ -52,7 +56,7 @@ var loadChart = function(seriesData) {
           // animation: {duration: duration}
         },
         area: {
-          fillColor: 'purple',
+          fillColor: null,
           marker: {
             radius: 2
           },
