@@ -1,5 +1,12 @@
-* {
-  border: 1px dotted black;
+// * {
+//   border: 1px dotted black;
+// }
+
+html,body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .bg-tile {
@@ -74,9 +81,20 @@
 #below_chart {
   position: relative;
   margin: 15px auto;
+  height: 8%;
 }
 
+#gauges {
+  display: flex;
+  flex-flow: row wrap;
+  height: 40%;
+  justify-content: flex-start;
 
+}
+
+#gauges_1, #gauge_2, #gauge_3 {
+  flex: 1;
+}
 
 @media (max-width: 1300px) {
   #above_chart {
