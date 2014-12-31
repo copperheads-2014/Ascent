@@ -27,7 +27,7 @@ var loadChart = function(duration) {
       dateTimeLabelFormats: {second: '%H:%M:%S'}
     },
     yAxis: {
-      title: {text: 'Altitute'}
+      title: {text: 'Altitude'}
     },
     series: [{
       name: "Altitude",

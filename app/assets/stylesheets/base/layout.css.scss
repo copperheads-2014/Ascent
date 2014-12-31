@@ -86,10 +86,8 @@ html,body {
 
 #gauges {
   display: flex;
-  flex-flow: row wrap;
   height: 40%;
   justify-content: flex-start;
-
 }
 
 #gauges_1, #gauge_2, #gauge_3 {

@@ -1,6 +1,6 @@
 var $display;
-var index_of_digit
-var flight_id
+var index_of_digit;
+var flight_id;
 var flight_data;
 
 var ready = function() {
@@ -30,14 +30,18 @@ var ready = function() {
     var duration = 100 * flight_data.length;
     loadChart(duration);
     loadAltometer();
-    loadMap();
+    loadThermometer();
+    // loadBarometer();
+    // loadMap();
   });
 
   $("#button-play").click(function(){
     $display.show('slide', {direction: 'left'}, 1200);
     playChart(100);
-    playMap();
     playAltometer(100);
+    playThermometer(100);
+    // playBarometer(100)
+    // playMap();
   });
 }
 
