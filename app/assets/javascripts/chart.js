@@ -32,7 +32,7 @@ var loadChart = function(seriesData) {
     },
     yAxis: {
       title: {text: 'Altitude'}
-      min: -500,
+      min: 0,
       max: 40000,
     },
     series: [{

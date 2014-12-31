@@ -29,20 +29,21 @@ var ready = function() {
     flight_data = response;
     // var duration = 100 * flight_data.length;
     loadChart(flight_data);
-    loadAltometer();
     loadThermometer();
     // loadBarometer();
-    // loadMap();
+    loadMap();
+    loadAltimeter();
+    loadMap();
   });
 
   $("#button-play").click(function(){
-    $display.show('slide', {direction: 'left'}, 1200);
+    $display.show('slide', {direction: 'left'}, 400);
     loadChart([0,0])
-    playChart(100);
-    playAltometer(100);
-    playThermometer(100);
+    playChart(1);
+    playAltimeter(1);
+    playThermometer(1);
     // playBarometer(100)
-    // playMap();
+    playMap();
   });
 }
 
