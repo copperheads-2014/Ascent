@@ -29,16 +29,16 @@ var ready = function() {
     flight_data = response;
     // var duration = 100 * flight_data.length;
     loadChart(flight_data);
-    loadAltometer();
+    loadAltimeter();
     loadMap();
   });
 
   $("#button-play").click(function(){
-    $display.show('slide', {direction: 'left'}, 1200);
+    $display.show('slide', {direction: 'left'}, 400);
     loadChart([0,0])
-    playChart(100);
+    playChart(1);
     playMap();
-    playAltometer(100);
+    playAltimeter(1);
   });
 }
 

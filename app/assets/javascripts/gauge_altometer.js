@@ -1,8 +1,8 @@
-var altometer;
+var altimeter;
 
-var loadAltometer = function(){
+var loadAltimeter = function(){
 
-  altometer = new Highcharts.Chart({
+  altimeter = new Highcharts.Chart({
     chart: {
       type: 'gauge',
       plotBackgroundColor: '#292929',
@@ -83,10 +83,10 @@ var loadAltometer = function(){
 
 };
 
-var playAltometer = function(interval_time) {
+var playAltimeter = function(interval_time) {
   var seriesIndex = 0;
   setInterval(function() {
-    var point = altometer.series[0].points[0];
+    var point = altimeter.series[0].points[0];
     seriesIndex++;
     if (seriesIndex < flight_data.length) {
       point.update(flight_data[seriesIndex].y);
