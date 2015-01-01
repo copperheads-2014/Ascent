@@ -29,7 +29,7 @@ var ready = function() {
     flight_data = response;
     // var duration = 100 * flight_data.length;
     loadChart(flight_data);
-    loadAltimeter();
+    loadAltimeter(flight_data[0]);
     loadMap();
   });
 

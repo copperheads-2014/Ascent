@@ -37,22 +37,23 @@ var loadChart = function(seriesData) {
     },
     series: [{
       name: "Altitude",
-        type: "area",
-        data: seriesData,
-        color: '#E6E6FA'
-      }],
-      plotOptions: {
-        series: {
-          allowPointSelect: true,
-          point: {
-            events: {
-              select: function() {
-                $('#time').html("Time: " + Highcharts.dateFormat('%H:%M:%S', this.x) + " (H:M:S)");
-                $('#altitude').html("Altitude: " + this.y + " m");
-                $('#temp').html("Temperature: " + this.temp + " °C");
-              }
+      type: "area",
+      data: seriesData,
+      color: '#E6E6FA'
+    }],
+    plotOptions: {
+      series: {
+        allowPointSelect: true,
+        point: {
+          events: {
+            select: function() {
+              $('#time').html("Time: " + Highcharts.dateFormat('%H:%M:%S', this.x) + " (H:M:S)");
+              $('#altitude').html("Altitude: " + this.y + " m");
+              $('#temp').html("Temperature: " + this.temp + " °C");
+              loadAltimeter(this.y)
             }
-          },
+          }
+        },
           // animation: {duration: duration}
         },
         area: {
