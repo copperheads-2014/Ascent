@@ -1,0 +1,8 @@
+%h1
+  ="#{@user.username}"
+
+%h3
+  ="My flights:"
+  %br
+  -@user.flights.each do |flight|
+    =link_to "#{flight.callsign}", flight_path(flight)
