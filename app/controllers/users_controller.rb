@@ -12,6 +12,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    if current_user.id == @user.id
+      user_path(@user)
+    else
+      redirect_to user_path(current_user)
+    end
+  end
+
   private
     def user_params
       params.require(:user).permit(:username, :password)
