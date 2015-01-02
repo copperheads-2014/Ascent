@@ -81,7 +81,6 @@ var ready = function() {
     $("#map").hide();
     $("#chart").show();
   })
-}
 
   $("#button-pause").click(function() {
     pause();
