@@ -2,6 +2,13 @@ var $display;
 var index_of_digit;
 var flight_id;
 var flight_data;
+var seriesIndex = 0;
+
+
+var togglePlayPause = function() {
+  $("#button-play").toggle();
+  $("#button-pause").toggle();
+}
 
 var ready = function() {
 
@@ -18,7 +25,6 @@ var ready = function() {
 
   $display = $('#display')
 
-  index_of_digit = (document.URL.search(/\/\d/)) + 1;
   flight_id = window.location.pathname.split('/')[2];
 
   var request = $.ajax({
@@ -28,15 +34,30 @@ var ready = function() {
 
   request.done(function(response){
     flight_data = response;
-    // var duration = 100 * flight_data.length;
     loadChart(flight_data);
     loadAltimeter(flight_data[0]);
-    loadThermometer(flight_data[1]);
+    loadThermometer(flight_data[0]);
     // loadMap();
-    loadBarometer();
+    // loadBarometer();
   });
 
+  var play = function(interval) {
+    indexInterval = setInterval(function() {
+      seriesIndex++;
+      playChart();
+      playAltimeter();
+      playThermometer();
+      // playBarometer();
+      // playMap();
+    }, interval);
+  }
+
+  var pause = function() {
+    clearInterval(indexInterval);
+  }
+
   $("#button-play").click(function(){
+    togglePlayPause();
     $display.show('slide', {direction: 'left'}, 400);
     loadChart([0,0])
     playAltimeter(1);
@@ -58,7 +79,11 @@ var ready = function() {
   })
 }
 
-
+  $("#button-pause").click(function() {
+    pause();
+    togglePlayPause();
+  })
+}
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
