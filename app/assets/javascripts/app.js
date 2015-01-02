@@ -46,9 +46,8 @@ var ready = function() {
     loadChart(flight_data);
     loadAltimeter(flight_data[0].y);
     loadThermometer(flight_data[0].temp);
-    loadBarometer(flight_data[0].pressure);
-
     loadThermometer2(flight_data[0].temp);
+    loadBarometer(flight_data[0].pressure);
     // loadMap();
   });
 
@@ -60,7 +59,7 @@ var ready = function() {
       playThermometer();
       playThermometer2();
       playBarometer();
-      // playMap();
+      playMap();
     }, interval);
   }
 
