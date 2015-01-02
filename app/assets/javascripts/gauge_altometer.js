@@ -1,8 +1,7 @@
-var altometer;
+var altimeter;
 
-var loadAltometer = function(){
-
-  altometer = new Highcharts.Chart({
+var loadAltimeter = function(seriesData){
+  altimeter = new Highcharts.Chart({
     chart: {
       type: 'gauge',
       plotBackgroundColor: null,
@@ -12,11 +11,11 @@ var loadAltometer = function(){
       renderTo: 'gauge_1'
     },
     title: {
-      text: 'Altometer'
+      text: 'Altimeter'
     },
     pane: {
-      startAngle: -150,
-      endAngle: 150
+      startAngle: -180,
+      endAngle: 180
     },
     yAxis: [{
       min: 0,
@@ -54,8 +53,11 @@ var loadAltometer = function(){
 
     series: [{
       name: 'Altitude',
-      data: [0],
+      data: [seriesData],
       dataLabels: {
+        style: {
+            fontSize: '18px'
+        },
         formatter: function () {
           var meters = this.y,
           feet = Math.round(meters * 3.28084);
@@ -79,17 +81,26 @@ var loadAltometer = function(){
         valueSuffix: ' m'
       }
     }]
-    });
+  });
+};  
+    // can add second dial with second series...
 
-};
+    // {
+    //   data: ([seriesData] * 100),
+    //   dial: {
+    //     radius: "90%",
+    //     rearLength: "-70%"
+    //   }
 
-var playAltometer = function(interval_time) {
+
+var playAltimeter = function(interval_time) {
   var seriesIndex = 0;
   setInterval(function() {
-    var point = altometer.series[0].points[0];
+    var point = altimeter.series[0].points[0];
     seriesIndex++;
     if (seriesIndex < flight_data.length) {
       point.update(flight_data[seriesIndex].y);
     }
   }, interval_time);
 };
+

@@ -2,22 +2,30 @@ button {
   height: 50px;
   border: 5px solid #FCFCFC;
   color: black;
+  background-color: purple;
 }
 button:hover {
-  background-color: #FF4500;
+  background-color: #CC00CC;
 }
 button:focus {
   outline: 0;
 }
+
+button:active {
+  background-color: #400040;
+}
+
 #button1 {
   border-radius: 15px 0 0 15px;
   color: #FCFCFC;
   width: 45%;
+
 }
 #button2 {
   border-radius: 0 15px 15px 0;
   color: #FCFCFC;
   width: 45%;
+
 }
 #button-play {
   position: absolute;
@@ -26,10 +34,9 @@ button:focus {
   margin: 0 0 0 -5%;
   left: 50%;
   width: 10%;
+
 }
-#button-play:hover {
-  background-color: #FF202D;
-}
+
 #button-step-back {
   height: 40px;
   width: 8%;
@@ -41,7 +48,7 @@ button:focus {
   top: 5px;
 }
 #button-step-back:hover {
-  background-color: #79e6e5;
+  background-color: #CC00CC;
 }
 #button-step-forw {
   height: 40px;
@@ -54,7 +61,7 @@ button:focus {
   top: 5px;
 }
 #button-step-forw:hover {
-  background-color: #79e6e5;
+  background-color: #CC00CC;
 }
 
 @media (max-width: 600px) {
