@@ -62,7 +62,7 @@ var loadThermometer2 = function(seriesData){
         data: [seriesData],
         dataLabels: {
           format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + Math.round(this.y) + '</span><br/>' +
                    '<span style="font-size:14px;color:silver">°C</span></div>'
         }
       }]
@@ -70,5 +70,5 @@ var loadThermometer2 = function(seriesData){
 };
 
 var playThermometer2 = function() {
-  var point = thermometer2.series[0].points[0].update(flight_data[seriesIndex].temp);
+  thermometer2.series[0].points[0].update(flight_data[seriesIndex].temp);
 };
