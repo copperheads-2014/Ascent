@@ -3,6 +3,16 @@ var index_of_digit;
 var flight_id;
 var flight_data;
 var seriesIndex = 0;
+var pause;
+
+var advanceIndex = function() {
+  if(seriesIndex < flight_data.length) {
+    seriesIndex++;
+  }
+  else {
+    pause();
+  }
+}
 
 
 var togglePlayPause = function() {
@@ -42,7 +52,7 @@ var ready = function() {
 
   var play = function(interval) {
     indexInterval = setInterval(function() {
-      seriesIndex++;
+      advanceIndex();
       playChart();
       playAltimeter();
       playThermometer();
@@ -51,7 +61,7 @@ var ready = function() {
     }, interval);
   }
 
-  var pause = function() {
+  pause = function() {
     clearInterval(indexInterval);
   }
 
