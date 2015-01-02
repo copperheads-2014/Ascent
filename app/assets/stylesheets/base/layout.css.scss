@@ -90,7 +90,9 @@ html,body {
   justify-content: flex-start;
 }
 
-#gauges_1, #gauge_2, #gauge_3 {
+#gauge_1, #gauge_2, #gauge_3 {
+  min-width: 400px;
+  min-height: 400px;
   flex: 1;
 }
 

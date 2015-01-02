@@ -1,10 +1,10 @@
 var thermometer;
 
-var loadThermometer = function(){
+var loadThermometer = function(seriesData){
   thermometer = new Highcharts.Chart({
     chart: {
       type: 'gauge',
-      plotBackgroundColor: null,
+      plotBackgroundColor: '#292929',
       plotBackgroundImage: null,
       plotBorderWidth: 0,
       plotShadow: false,
@@ -14,17 +14,8 @@ var loadThermometer = function(){
       text: 'Thermometer'
     },
     pane: {
-      startAngle: -75,
-      endAngle: 75,
-      background: [{
-        backgroundColor: {
-          linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-          stops: [
-            [0, '#FFF'],
-            [1, '#333']
-          ]
-        }
-      }]
+      startAngle: -125,
+      endAngle: 125,
     },
     yAxis: [{
       min: -60,
@@ -62,7 +53,7 @@ var loadThermometer = function(){
 
     series: [{
       name: 'Thermometer',
-      data: [0],
+      data: [seriesData],
       dataLabels: {
         formatter: function () {
           var celcius = this.y,
@@ -78,8 +69,8 @@ var loadThermometer = function(){
             y2: 1
           },
           stops: [
-            [0, '#DDD'],
-            [1, '#FFF']
+          [0, '#DDD'],
+          [1, '#FFF']
           ]
         }
       },
@@ -87,7 +78,7 @@ var loadThermometer = function(){
         valueSuffix: ' °C'
       }
     }]
-    });
+  });
 
 };
 

@@ -31,9 +31,9 @@ var loadChart = function(seriesData) {
       dateTimeLabelFormats: {second: '%H:%M:%S'}
     },
     yAxis: {
-      title: {text: 'Altitude'}
       min: 0,
       max: 40000,
+      title: {text: 'Altitude'}
     },
     series: [{
       name: "Altitude",
@@ -50,7 +50,9 @@ var loadChart = function(seriesData) {
               $('#time').html("Time: " + Highcharts.dateFormat('%H:%M:%S', this.x) + " (H:M:S)");
               $('#altitude').html("Altitude: " + this.y + " m");
               $('#temp').html("Temperature: " + this.temp + " °C");
-              loadAltimeter(this.y)
+              loadAltimeter(this.y);
+              loadThermometer(this.temp);
+
             }
           }
         },

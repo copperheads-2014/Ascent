@@ -1,7 +1,6 @@
 var altimeter;
 
 var loadAltimeter = function(seriesData){
-
   altimeter = new Highcharts.Chart({
     chart: {
       type: 'gauge',
@@ -15,8 +14,8 @@ var loadAltimeter = function(seriesData){
       text: 'Altimeter'
     },
     pane: {
-      startAngle: -180,
-      endAngle: 180
+      startAngle: -179,
+      endAngle: 179
     },
     yAxis: [{
       min: 0,
@@ -93,5 +92,3 @@ var playAltimeter = function(interval_time) {
     }
   }, interval_time);
 };
-
-
