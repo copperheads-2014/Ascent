@@ -9,18 +9,22 @@ class FlightsController < ApplicationController
   end
 
   def create
-      p flight_params
-      Flight::import_habhub_from_url(flight_params[:address])
-      redirect_to flights_path
+    flight = new_user_flight.import_from_habhub(flight_params[:address])
+    redirect_to flight_path(flight)
   end
 
   def import
-    Flight.import(params[:file])
-    redirect_to root_url, notice: "Your flight has been imported."
+    flight = new_user_flight.import_from_csv(params[:file])
+    redirect_to flight_path(flight), notice: "Your flight has been imported."
   end
 
   private
-    def flight_params
-      params.require(:new_flight).permit(:address)
-    end
+
+  def new_user_flight
+    Flight.new(user_id: current_user.id)
+  end
+
+  def flight_params
+    params.require(:new_flight).permit(:address, :user_id)
+  end
 end

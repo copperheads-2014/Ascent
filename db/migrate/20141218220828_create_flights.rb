@@ -6,6 +6,7 @@ class CreateFlights < ActiveRecord::Migration
       t.integer    :max_altitude
       t.float 	   :distance_traveled
       t.belongs_to :launch_site
+      t.belongs_to :user
 
       t.timestamps
     end

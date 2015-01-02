@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150102155110) do
     t.integer  "max_altitude"
     t.float    "distance_traveled"
     t.integer  "launch_site_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
