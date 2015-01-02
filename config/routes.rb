@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   get 'welcome/index'
+
+  get "logout" => "sessions#destroy"
+  get "login" => "sessions#new"
+  get "signup" => "users#new"
+  resources :users
+  resources :sessions
+
+
+
 
   resources :flights do
     collection { post :import}
