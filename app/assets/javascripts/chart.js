@@ -81,5 +81,6 @@ var loadChart = function(seriesData) {
 };
 
 var playChart = function() {
+  loadChart(flight_data.slice(0, seriesIndex));
   chart.series[0].addPoint(flight_data[seriesIndex]);
 }
