@@ -111,10 +111,10 @@ class Flight < ActiveRecord::Base
 
 
   def self.import(file)
-   csv_flight_data = CSV.read(file.path, headers: true)
+   csv_flight_data = CSV.read(file.path, headers: true, converters: :all)
    sentence = csv_flight_data.first["_sentence"]
    flight = Flight.create!(callsign: callsign(sentence))
    create_data(csv_flight_data, flight)
-   update_flight(flight)
+   # update_flight(flight)
   end
 end

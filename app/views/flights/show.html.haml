@@ -8,8 +8,8 @@
 	%br
 	="Total Distance Traveled: #{@flight.distance_traveled.round} km"
 	%br
-	%button.show_all_data{id: 'button1'} View Data
-	%button.show_flight_chart{id: 'button2'} View Chart/Map
+	%button.show_all_data.button_left View Data
+	%button.show_flight_chart.button_right View Chart/Map
 %div.flight_chart
 	= render :partial => 'charts/index'
 %div.all_data
