@@ -69,13 +69,6 @@ var loadThermometer2 = function(seriesData){
   });
 };
 
-var playThermometer2 = function(interval_time) {
-  var seriesIndex = 0;
-  setInterval(function() {
-    var point = thermometer2.series[0].points[0];
-    seriesIndex++;
-    if (seriesIndex < flight_data.length) {
-      point.update(flight_data[seriesIndex].temp);
-    }
-  }, interval_time);
+var playThermometer2 = function() {
+  var point = thermometer2.series[0].points[0].update(flight_data[seriesIndex].temp);
 };
