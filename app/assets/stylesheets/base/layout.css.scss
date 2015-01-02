@@ -88,14 +88,14 @@ html,body {
 
 #gauges {
   display: flex;
-  height: 40%;
-  justify-content: flex-start;
+  width: 100%;
+  margin: 0 auto;
 }
-
-#gauge_1, #gauge_2, #gauge_3 {
-  min-width: 400px;
-  min-height: 400px;
+#gauge_1, #gauge_2 {
   flex: 1;
+}
+#gauge_3, #gauge_4 {
+  flex: 1.5;
 }
 
 @media (max-width: 1300px) {

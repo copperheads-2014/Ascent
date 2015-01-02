@@ -8,7 +8,11 @@ var loadThermometer = function(seriesData){
       plotBackgroundImage: null,
       plotBorderWidth: 0,
       plotShadow: false,
-      renderTo: 'gauge_2'
+      renderTo: 'gauge_2',
+      spacingTop: 0,
+      spacingLeft: 0,
+      spacingRight: 0,
+      spacingBottom: 0
     },
     title: {
       text: 'Thermometer'
@@ -16,6 +20,7 @@ var loadThermometer = function(seriesData){
     pane: {
       startAngle: -125,
       endAngle: 125,
+      size: '65%'
     },
     yAxis: [{
       min: -60,
@@ -72,8 +77,8 @@ var loadThermometer = function(seriesData){
             y2: 1
           },
           stops: [
-          [0, '#DDD'],
-          [1, '#FFF']
+            [0, '#DDD'],
+            [1, '#FFF']
           ]
         }
       },

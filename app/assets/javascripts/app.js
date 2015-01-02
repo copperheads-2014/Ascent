@@ -44,10 +44,12 @@ var ready = function() {
   request.done(function(response){
     flight_data = response;
     loadChart(flight_data);
-    loadAltimeter(flight_data[0]);
-    loadThermometer(flight_data[0]);
+    loadAltimeter(flight_data[0].y);
+    loadThermometer(flight_data[0].temp);
+    loadBarometer(flight_data[0].pressure);
+
+    loadThermometer2(flight_data[0].temp);
     // loadMap();
-    // loadBarometer();
   });
 
   var play = function(interval) {
@@ -56,7 +58,8 @@ var ready = function() {
       playChart();
       playAltimeter();
       playThermometer();
-      // playBarometer();
+      playThermometer2();
+      playBarometer();
       // playMap();
     }, interval);
   }

@@ -8,23 +8,28 @@ var loadAltimeter = function(seriesData){
       plotBackgroundImage: null,
       plotBorderWidth: 0,
       plotShadow: false,
-      renderTo: 'gauge_1'
+      renderTo: 'gauge_1',
+      spacingTop: 0,
+      spacingLeft: 0,
+      spacingRight: 0,
+      spacingBottom: 0
     },
     title: {
       text: 'Altimeter'
     },
     pane: {
-      startAngle: -180,
-      endAngle: 180
+      startAngle: -125,
+      endAngle: 125,
+      size: '65%'
     },
     yAxis: [{
       min: 0,
-      max: 5000,
+      max: 33500,
       lineColor: '#339',
       tickColor: '#339',
       minorTickColor: '#339',
       offset: -25,
-      lineWidth: 2,
+      lineWidth: 4,
       labels: {
         distance: -20,
         rotation: 'auto'
@@ -34,7 +39,7 @@ var loadAltimeter = function(seriesData){
       endOnTick: false
     }, {
       min: 0,
-      max: 5000 * 3.28084,
+      max: 33500 * 3.28084,
       tickPosition: 'outside',
       lineColor: '#933',
       lineWidth: 2,

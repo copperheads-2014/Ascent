@@ -1,10 +1,10 @@
-var barometer;
+var thermometer2;
 
-var loadBarometer = function(seriesData){
-  barometer = new Highcharts.Chart({
+var loadThermometer2 = function(seriesData){
+  thermometer2 = new Highcharts.Chart({
       chart: {
         type: 'solidgauge',
-        renderTo: 'gauge_3',
+        renderTo: 'gauge_4',
         plotBorderWidth: 0,
         spacingTop: 0,
         spacingLeft: 0,
@@ -12,7 +12,7 @@ var loadBarometer = function(seriesData){
         spacingBottom: 0
       },
       title: {
-        text: 'Barometer'
+        text: 'Thermometer'
       },
       pane: {
         center: ['50%', '85%'],
@@ -31,9 +31,9 @@ var loadBarometer = function(seriesData){
       },
       yAxis: {
         stops: [
+          [0.1, '#DF5353'], // red
           [0.5, '#DDDF0D'], // yellow
-          [0.9, '#55BF3B'], // green
-          [0.1, '#DF5353'] // red
+          [0.9, '#55BF3B'] // green
         ],
         lineWidth: 0,
         minorTickInterval: null,
@@ -42,8 +42,8 @@ var loadBarometer = function(seriesData){
         labels: {
           y: 16
         },
-        min: 0,
-        max: 1100
+        min: -50,
+        max: 50
       },
       plotOptions: {
         solidgauge: {
@@ -58,24 +58,17 @@ var loadBarometer = function(seriesData){
         enabled: false
       },
       series: [{
-        name: 'Pressure',
+        name: 'Temperature',
         data: [seriesData],
         dataLabels: {
           format: '<div style="text-align:center"><span style="font-size:25px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                   '<span style="font-size:14px;color:silver">mb</span></div>'
+                   '<span style="font-size:14px;color:silver">°C</span></div>'
         }
       }]
   });
 };
 
-var playBarometer = function(interval_time) {
-  var seriesIndex = 0;
-  setInterval(function() {
-    var point = barometer.series[0].points[0];
-    seriesIndex++;
-    if (seriesIndex < flight_data.length) {
-      point.update(flight_data[seriesIndex].pressure);
-    }
-  }, interval_time);
+var playThermometer2 = function() {
+  var point = thermometer2.series[0].points[0].update(flight_data[seriesIndex].temp);
 };
