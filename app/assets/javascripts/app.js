@@ -68,8 +68,7 @@ var ready = function() {
   $("#button-play").click(function(){
     togglePlayPause();
     $display.show('slide', {direction: 'left'}, 400);
-<<<<<<< HEAD
-    play();
+    play(1);
   });
 
   $("#map_button").click(function(){
@@ -83,11 +82,6 @@ var ready = function() {
     $("#chart").show();
   })
 }
-=======
-    loadChart([0,0]);
-    play(1);
-  });
->>>>>>> d837bcd1d62eec6795043f65eacd9db34ec506b5
 
   $("#button-pause").click(function() {
     pause();
