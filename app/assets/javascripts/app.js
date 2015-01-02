@@ -13,6 +13,7 @@ var ready = function() {
   $('.show_flight_chart').click(function(e){
     e.preventDefault();
     $('.flight_chart').fadeIn(800);
+    $("#map").hide();
   });
 
   $display = $('#display')

@@ -40,9 +40,7 @@ L.mapbox.featureLayer({
     ]
   },
   "properties": {
-   description: renderPoint(point),
-   'marker-size': "small",
-   'marker-color': '#44036F',
+   description: renderPoint(point)
  }
 }).addTo(map)
 };

@@ -6,9 +6,6 @@ var loadChart = function(seriesData) {
   chart = new Highcharts.Chart({
     chart: {
       backgroundColor: '#292929',
-      borderColor: "gray",
-      borderWidth: 10,
-      borderRadius: 15,
       zoomType: 'x',
       renderTo: 'chart',
       style: {
