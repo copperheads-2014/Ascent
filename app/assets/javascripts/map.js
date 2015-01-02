@@ -5,8 +5,14 @@ var setView = 0;
 var loadMap = function() {
   L.mapbox.accessToken = 'pk.eyJ1Ijoiam9zaGFkaWszMDciLCJhIjoiSzFib1hNbyJ9.9EvDIk_-qWq5TIf0t4YG7Q';
   map = L.mapbox.map('map', 'joshadik307.kh70onpa');
-
-  polyline = L.polyline([]).addTo(map);
+  var line_points = []
+  var getLatLng = function(element){
+    var coordinates = [element.latitude, element.longitude]
+    line_points.push(coordinates)
+  }
+  flight_data.forEach(getLatLng)
+  map.setView(line_points[0], 9)
+  polyline = L.polyline(line_points, {color: '#fff'}).addTo(map);
 };
 
 function slowAdd(pointIndex){
@@ -14,7 +20,6 @@ function slowAdd(pointIndex){
   if(pointIndex < flight_data.length-1){
     setTimeout(slowAdd, 1, pointIndex+1);
   }
-};
 
 function renderPoint(point) {
   return "<dl><dt>latitude:</dt><dd>"+point.latitude+"</dd>"+
