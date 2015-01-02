@@ -14,7 +14,6 @@ var advanceIndex = function() {
   }
 }
 
-
 var togglePlayPause = function() {
   $("#button-play").toggle();
   $("#button-pause").toggle();
@@ -69,12 +68,7 @@ var ready = function() {
   $("#button-play").click(function(){
     togglePlayPause();
     $display.show('slide', {direction: 'left'}, 400);
-    loadChart([0,0])
-    playAltimeter(1);
-    playThermometer(1);
-    // playBarometer(1)
-    playChart(1);
-    playMap();
+    play();
   });
 
   $("#map_button").click(function(){
