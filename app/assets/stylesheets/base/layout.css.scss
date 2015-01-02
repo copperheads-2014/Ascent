@@ -55,12 +55,12 @@ html,body {
   margin: 0 0 0 -30%;
   left: 50%;
 }
+
 #map {
-  float: right;
+  position: absolute;
   clear: both;
   height: 400px;
   margin: 10px auto 0;
-  display: inline-block;
   width: 60%;
   margin: 0 0 0 -30%;
   left: 50%;

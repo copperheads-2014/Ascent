@@ -2,7 +2,7 @@ var chart;
 
 var loadChart = function(seriesData) {
   if (typeof seriesData === 'undefined') { seriesData = [0,0]; }
-  console.log(flight_data)
+  // console.log(flight_data)
   chart = new Highcharts.Chart({
     chart: {
       backgroundColor: '#292929',

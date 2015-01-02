@@ -38,17 +38,26 @@ var ready = function() {
   $("#button-play").click(function(){
     $display.show('slide', {direction: 'left'}, 400);
     loadChart([0,0])
-    playChart(1);
     playAltimeter(1);
     playThermometer(1);
-    playBarometer(1)
-    // playMap();
+    // playBarometer(1)
+    playChart(1);
+    playMap();
   });
+
+  $("#map_button").click(function(){
+    $("#chart").hide();
+    $("#map").show();
+    loadMap();
+  })
+
+  $("#chart_button").click(function(){
+    $("#map").hide();
+    $("#chart").show();
+  })
 }
 
-// $("#map_button").click(function(){
 
-// })
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
