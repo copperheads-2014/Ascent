@@ -53,7 +53,7 @@ var loadChart = function(seriesData) {
             }
           }
         },
-          // animation: {duration: duration}
+          animation: false
         },
         area: {
           fillColor: null,
