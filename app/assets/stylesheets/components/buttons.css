@@ -27,14 +27,17 @@ button:active {
   width: 45%;
 
 }
-#button-play {
+#button-play, #button-pause {
   position: absolute;
   border-radius: 15px;
   color: #FCFCFC;
   margin: 0 0 0 -5%;
   left: 50%;
   width: 10%;
+}
 
+#button-pause {
+  display: none;
 }
 
 #button-step-back {
