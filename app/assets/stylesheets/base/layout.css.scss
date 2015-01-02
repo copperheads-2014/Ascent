@@ -51,7 +51,6 @@ html,body {
   position: absolute;
   height: 400px;
   margin: 10px auto 0;
-  // display: none;
   width: 60%;
   margin: 0 0 0 -30%;
   left: 50%;
@@ -68,14 +67,14 @@ html,body {
 }
 
 #display {
-  background: black;
   border: 5px solid #D1DBDD;
   border-radius: 15px;
   position: absolute;
   height: 300px;
   width: 15%;
-  display: none;
   right: 3%;
+  color: #acacac;
+  font-family: Sans-serif;
 }
 
 #below_chart {

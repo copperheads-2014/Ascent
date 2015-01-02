@@ -72,7 +72,7 @@ class Flight < ActiveRecord::Base
     new_hash[:battery] = json["battery"]
     new_hash[:time] = json["time"]
     new_hash[:humidity] = json["humidity"]
-    # json['pressure'] ? new_hash[:pressure] = json['pressure'] : new_hash[:pressure] = calculate_pressure(json)
+    json['pressure'] ? new_hash[:pressure] = json['pressure'] : new_hash[:pressure] = calculate_pressure(json)
     new_hash.to_json
   end
 

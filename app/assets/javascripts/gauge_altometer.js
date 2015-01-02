@@ -4,7 +4,7 @@ var loadAltimeter = function(seriesData){
   altimeter = new Highcharts.Chart({
     chart: {
       type: 'gauge',
-      plotBackgroundColor: '#292929',
+      plotBackgroundColor: null,
       plotBackgroundImage: null,
       plotBorderWidth: 0,
       plotShadow: false,
@@ -14,8 +14,8 @@ var loadAltimeter = function(seriesData){
       text: 'Altimeter'
     },
     pane: {
-      startAngle: -179,
-      endAngle: 179
+      startAngle: -180,
+      endAngle: 180
     },
     yAxis: [{
       min: 0,
@@ -55,6 +55,9 @@ var loadAltimeter = function(seriesData){
       name: 'Altitude',
       data: [seriesData],
       dataLabels: {
+        style: {
+            fontSize: '18px'
+        },
         formatter: function () {
           var meters = this.y,
           feet = Math.round(meters * 3.28084);
@@ -78,9 +81,17 @@ var loadAltimeter = function(seriesData){
         valueSuffix: ' m'
       }
     }]
-    });
+  });
+};  
+    // can add second dial with second series...
 
-};
+    // {
+    //   data: ([seriesData] * 100),
+    //   dial: {
+    //     radius: "90%",
+    //     rearLength: "-70%"
+    //   }
+
 
 var playAltimeter = function(interval_time) {
   var seriesIndex = 0;
@@ -92,3 +103,4 @@ var playAltimeter = function(interval_time) {
     }
   }, interval_time);
 };
+

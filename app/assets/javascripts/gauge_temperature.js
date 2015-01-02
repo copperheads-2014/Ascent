@@ -4,7 +4,7 @@ var loadThermometer = function(seriesData){
   thermometer = new Highcharts.Chart({
     chart: {
       type: 'gauge',
-      plotBackgroundColor: '#292929',
+      plotBackgroundColor: null,
       plotBackgroundImage: null,
       plotBorderWidth: 0,
       plotShadow: false,
@@ -55,6 +55,9 @@ var loadThermometer = function(seriesData){
       name: 'Thermometer',
       data: [seriesData],
       dataLabels: {
+        style: {
+            fontSize: '18px'
+        },
         formatter: function () {
           var celcius = this.y,
           fahrenheit = Math.round(celcius * (9/5) + 32);

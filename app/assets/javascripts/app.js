@@ -32,7 +32,7 @@ var ready = function() {
     loadAltimeter(flight_data[0]);
     loadThermometer(flight_data[1]);
     loadMap();
-    // loadBarometer();
+    loadBarometer();
   });
 
   $("#button-play").click(function(){
@@ -41,7 +41,7 @@ var ready = function() {
     playChart(1);
     playAltimeter(1);
     playThermometer(1);
-    // playBarometer(100)
+    playBarometer(1)
     playMap();
   });
 }
