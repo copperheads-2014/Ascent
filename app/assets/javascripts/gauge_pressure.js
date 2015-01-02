@@ -69,13 +69,6 @@ var loadBarometer = function(seriesData){
   });
 };
 
-var playBarometer = function(interval_time) {
-  var seriesIndex = 0;
-  setInterval(function() {
-    var point = barometer.series[0].points[0];
-    seriesIndex++;
-    if (seriesIndex < flight_data.length) {
-      point.update(flight_data[seriesIndex].pressure);
-    }
-  }, interval_time);
+var playBarometer = function() {
+  barometer.series[0].points[0].update(flight_data[seriesIndex].pressure)
 };
