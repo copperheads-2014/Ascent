@@ -1,5 +1,6 @@
 class Flight < ActiveRecord::Base
   has_many :data_points
+  belongs_to :user
 
   SEA_LEVEL_PRESSURE = 1013.25 #mbars
 
@@ -97,7 +98,6 @@ class Flight < ActiveRecord::Base
       sentence = json_flight_data.first["_sentence"]
       flight = Flight.create!(callsign: callsign(sentence))
       create_data(json_flight_data, flight)
-      # update_flight(flight)
     end
   end
 
@@ -106,7 +106,6 @@ class Flight < ActiveRecord::Base
 	  sentence = json_flight_data.first["_sentence"]
 	  flight = Flight.create!(callsign: callsign(sentence))
 	  create_data(json_flight_data, flight)
-	  # update_flight(flight)
   end
 
 
@@ -115,6 +114,5 @@ class Flight < ActiveRecord::Base
    sentence = csv_flight_data.first["_sentence"]
    flight = Flight.create!(callsign: callsign(sentence))
    create_data(csv_flight_data, flight)
-   # update_flight(flight)
   end
 end

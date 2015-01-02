@@ -1,12 +1,11 @@
 #above_chart.center-60
   .button-area1
-    %button.button_left.audiowide CHART
-    %button.button_right.audiowide MAP
+    %button.button_left.audiowide#chart_button CHART
+    %button.button_right.audiowide#map_button MAP
 
 #main
   #chart
   #map
-
   #display
     %h4.perm-marker.text-center Data Point:
     %p.perm-marker#time
@@ -18,6 +17,8 @@
     %i.fa.fa-step-backward
   %button#button-play
     %i.fa.fa-play
+  %button#button-pause
+    %i.fa.fa-pause
   %button#button-step-forw
     %i.fa.fa-step-forward
 

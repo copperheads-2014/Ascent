@@ -2,13 +2,10 @@ var chart;
 
 var loadChart = function(seriesData) {
   if (typeof seriesData === 'undefined') { seriesData = [0,0]; }
-  console.log(flight_data)
+
   chart = new Highcharts.Chart({
     chart: {
       backgroundColor: '#292929',
-      borderColor: "gray",
-      borderWidth: 10,
-      borderRadius: 15,
       zoomType: 'x',
       renderTo: 'chart',
       style: {
@@ -56,7 +53,7 @@ var loadChart = function(seriesData) {
             }
           }
         },
-          // animation: {duration: duration}
+          animation: false
         },
         area: {
           fillColor: null,
@@ -83,14 +80,7 @@ var loadChart = function(seriesData) {
 
 };
 
-var playChart = function(interval_time) {
-  var seriesIndex = 0;
-  setInterval(function() {
-    series = chart.series[0];
-    seriesIndex++;
-    if (seriesIndex < flight_data.length) {
-      series.addPoint(flight_data[seriesIndex]);
-    }
-  }, interval_time);
+var playChart = function() {
+  loadChart(flight_data.slice(0, seriesIndex));
+  chart.series[0].addPoint(flight_data[seriesIndex]);
 }
-

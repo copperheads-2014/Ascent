@@ -82,25 +82,9 @@ var loadAltimeter = function(seriesData){
       }
     }]
   });
-};  
-    // can add second dial with second series...
+};
 
-    // {
-    //   data: ([seriesData] * 100),
-    //   dial: {
-    //     radius: "90%",
-    //     rearLength: "-70%"
-    //   }
-
-
-var playAltimeter = function(interval_time) {
-  var seriesIndex = 0;
-  setInterval(function() {
-    var point = altimeter.series[0].points[0];
-    seriesIndex++;
-    if (seriesIndex < flight_data.length) {
-      point.update(flight_data[seriesIndex].y);
-    }
-  }, interval_time);
+var playAltimeter = function() {
+  altimeter.series[0].points[0].update(flight_data[seriesIndex].y);
 };
 
