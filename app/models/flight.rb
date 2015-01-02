@@ -1,5 +1,6 @@
 class Flight < ActiveRecord::Base
   has_many :data_points
+  belongs_to :user
 
   SEA_LEVEL_PRESSURE = 1013.25 #mbars
 
