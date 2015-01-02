@@ -31,7 +31,7 @@ var ready = function() {
     loadChart(flight_data);
     loadAltimeter(flight_data[0]);
     loadThermometer(flight_data[1]);
-    loadMap();
+    // loadMap();
     loadBarometer();
   });
 
@@ -42,9 +42,13 @@ var ready = function() {
     playAltimeter(1);
     playThermometer(1);
     playBarometer(1)
-    playMap();
+    // playMap();
   });
 }
+
+// $("#map_button").click(function(){
+
+// })
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
