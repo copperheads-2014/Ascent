@@ -3,7 +3,7 @@ require 'habhub'
 class Flight < ActiveRecord::Base
   has_many :data_points
   has_many :launches
-  has_many :users, through: "Launches"
+  has_many :users, through: :launches
   has_many :comments
 
   SEA_LEVEL_PRESSURE = 1013.25 #mbars
