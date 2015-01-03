@@ -15,7 +15,7 @@ class FlightsController < ApplicationController
 
   def import
     flight = new_user_flight.import_from_csv(params[:file])
-    redirect_to flight_path(flight), notice: "Your flight has been imported."
+    redirect_to new_flight_picture_path(flight), notice: "Your flight has been imported."
   end
 
   def feed
