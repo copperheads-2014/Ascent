@@ -5,6 +5,7 @@ class Flight < ActiveRecord::Base
   has_many :launches
   has_many :users, through: :launches
   has_many :comments
+  has_many :pictures
 
   SEA_LEVEL_PRESSURE = 1013.25 #mbars
 
@@ -78,7 +79,7 @@ class Flight < ActiveRecord::Base
   end
 
   def import_from_csv(file)
-    csv_flight_data = CSV.read(file, headers: true, converters: :all)
+    csv_flight_data = CSV.read(file.path, headers: true, converters: :all)
     import(csv_flight_data)
   end
 

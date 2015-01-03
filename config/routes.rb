@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   get "flights/feed" => "flights#feed"
 
   resources :flights do
-    collection { post :import}
+    collection { post :import }
     resources :data_points
+    resources :pictures
   end
 
 
