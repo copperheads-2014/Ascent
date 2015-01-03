@@ -61,14 +61,17 @@ var loadBarometer = function(seriesData){
         name: 'Pressure',
         data: [seriesData],
         dataLabels: {
-          format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+          formatter: function() {
+            var mbar = Math.round(this.y)
+            return '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + mbar + '</span><br/>' +
                    '<span style="font-size:14px;color:silver">mb</span></div>'
+          }
         }
       }]
   });
 };
 
 var playBarometer = function() {
-  barometer.series[0].points[0].update(flight_data[seriesIndex].pressure)
+  barometer.series[0].points[0].update(flight_data[seriesIndex].pressure);
 };
