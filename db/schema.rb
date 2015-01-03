@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150103005546) do
   create_table "comments", force: true do |t|
     t.integer  "user_id"
     t.integer  "flight_id"
+    t.integer  "status",     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
