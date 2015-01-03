@@ -18,3 +18,5 @@ end
 #   @flight = Flight.new
 #   @flight.import_from_habhub(url)
 # end
+
+User.create(username: "danielle", password: "password")
