@@ -2,7 +2,7 @@ require 'json'
 
 # seed from CSV files
 
-files = ['mod1_flight_data.csv', 'mulder_flight_data.csv', 'meurs_flight_data.csv']
+files = ['mod1_flight_data.csv', 'mulder_flight_data.csv', 'meurs_flight_data.csv'].map { |f| 'flight_data_seeds/' + f }
 
 files.each do |file|
   @flight = Flight.new
