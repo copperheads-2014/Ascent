@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150102155110) do
+ActiveRecord::Schema.define(version: 20150103005546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "flight_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "data_points", force: true do |t|
     t.json     "data"
@@ -30,14 +37,21 @@ ActiveRecord::Schema.define(version: 20150102155110) do
     t.float    "distance_traveled"
     t.integer  "launch_site_id"
     t.integer  "user_id"
+    t.integer  "likes",             default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "launch_sites", force: true do |t|
-    t.string   "name"
-    t.string   "coordinates"
-    t.integer  "elevation"
+  create_table "friendships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "launches", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "flight_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
