@@ -78,7 +78,7 @@ class Flight < ActiveRecord::Base
   end
 
   def import_from_csv(file)
-    csv_flight_data = CSV.read(file.path, headers: true, converters: :all)
+    csv_flight_data = CSV.read(file, headers: true, converters: :all)
     import(csv_flight_data)
   end
 
