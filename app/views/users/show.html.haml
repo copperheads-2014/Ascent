@@ -6,3 +6,12 @@
   %br
   -@user.flights.each do |flight|
     =link_to "#{flight.callsign}", flight_path(flight)
+-if current_user == @user
+  -current_user.inverse_friendships.where("approved = false").each do |friendship|
+    - if friendship.friend = current_user
+      %li friendship.user.username
+      =form_for :friendships do |f|
+        %a
+          -friendship.approved = true
+          -friendship.save
+          %p= f.submit
