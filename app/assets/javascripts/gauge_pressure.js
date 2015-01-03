@@ -16,7 +16,7 @@ var loadBarometer = function(seriesData){
       },
       pane: {
         center: ['50%', '85%'],
-        size: '100%',
+        size: '60%',
         startAngle: -90,
         endAngle: 90,
         background: {

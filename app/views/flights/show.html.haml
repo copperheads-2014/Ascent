@@ -11,7 +11,7 @@
 	%button.show_all_data.button_left View Data
 	%button.show_flight_chart.button_right View Chart/Map
 %div.flight_chart
-	= render :partial => 'charts/index'
+	= render :partial => 'data_visualizations/index'
 %div.all_data
 	-@data_points.each_with_index do |point, index|
 		%br
