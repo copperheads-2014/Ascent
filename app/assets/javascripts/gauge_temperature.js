@@ -20,7 +20,7 @@ var loadThermometer = function(seriesData){
     pane: {
       startAngle: -125,
       endAngle: 125,
-      size: '50%'
+      size: '65%'
     },
     yAxis: [{
       min: -60,
