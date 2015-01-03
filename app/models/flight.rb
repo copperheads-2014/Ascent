@@ -84,7 +84,6 @@ class Flight < ActiveRecord::Base
   end
 
   def import(flight_data)
-    console.log(flight_data)
     sentence = flight_data.first["_sentence"]
     self.update(callsign: self.class.callsign(sentence))
     create_data_points(flight_data)
