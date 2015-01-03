@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if current_user.id == @user.id
       user_path(@user)
     else
-      redirect_to user_path(current_user)
+      render "private"
     end
   end
 

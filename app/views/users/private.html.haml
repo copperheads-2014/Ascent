@@ -1,0 +1,4 @@
+%h3
+  ="Unfortunately #{@user.username}'s profile is private, if you'd like, you can request to be their friend below."
+  %hr
+  =link_to "Send #{@user.username} a friend request", friendships_path, method: :post, notice: "Friend Request sent!"
