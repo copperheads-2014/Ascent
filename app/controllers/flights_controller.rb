@@ -18,6 +18,10 @@ class FlightsController < ApplicationController
     redirect_to flight_path(flight), notice: "Your flight has been imported."
   end
 
+  def feed
+    @flights = current_user.friends.collect{|x| x.flights}.flatten.sort_by{|x| x.created_at}
+  end
+
   private
 
   def new_user_flight
@@ -27,4 +31,5 @@ class FlightsController < ApplicationController
   def flight_params
     params.require(:new_flight).permit(:address, :user_id)
   end
+
 end

@@ -19,7 +19,9 @@ ActiveRecord::Schema.define(version: 20150103005546) do
   create_table "comments", force: true do |t|
     t.integer  "user_id"
     t.integer  "flight_id"
-    t.integer  "status",     default: 0
+    t.integer  "data_point_id"
+    t.text     "body"
+    t.integer  "status",        default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,7 +38,6 @@ ActiveRecord::Schema.define(version: 20150103005546) do
     t.string   "duration"
     t.integer  "max_altitude"
     t.float    "distance_traveled"
-    t.integer  "launch_site_id"
     t.integer  "user_id"
     t.integer  "likes",             default: 0
     t.datetime "created_at"
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150103005546) do
   create_table "launches", force: true do |t|
     t.integer  "user_id"
     t.integer  "flight_id"
+    t.date     "launch_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

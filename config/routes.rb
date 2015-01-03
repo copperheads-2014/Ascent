@@ -10,12 +10,13 @@ Rails.application.routes.draw do
   resources :sessions
 
 
-
+  get "flights/feed" => "flights#feed"
 
   resources :flights do
     collection { post :import}
     resources :data_points
   end
+
 
   resources :charts, only: [:index, :show]
 
