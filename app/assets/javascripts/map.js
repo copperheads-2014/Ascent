@@ -15,13 +15,6 @@ var loadMap = function() {
   polyline = L.polyline(line_points, {color: '#fff'}).addTo(map);
 };
 
-function slowAdd(pointIndex){
-  addPoint(flight_data[pointIndex]);
-  if(pointIndex < flight_data.length-1){
-    setTimeout(slowAdd, 1, pointIndex+1);
-  }
-};
-
 function renderPoint(point) {
   return "<dl><dt>latitude:</dt><dd>"+point.latitude+"</dd>"+
   "<dt>longitude:</dt><dd>"+point.longitude+"</dd>"+
@@ -53,5 +46,5 @@ L.mapbox.featureLayer({
 
 
 var playMap = function() {
-  slowAdd(0);
+  addPoint(flight_data[seriesIndex]);
 };
