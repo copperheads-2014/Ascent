@@ -7,6 +7,7 @@ class CreateFlights < ActiveRecord::Migration
       t.float 	   :distance_traveled
       t.belongs_to :launch_site
       t.belongs_to :user
+      t.integer    :likes, default: 0
 
       t.timestamps
     end
