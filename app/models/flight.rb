@@ -79,11 +79,12 @@ class Flight < ActiveRecord::Base
   end
 
   def import_from_csv(file)
-    csv_flight_data = CSV.read(file, headers: true, converters: :all)
+    csv_flight_data = CSV.read(file.path, headers: true, converters: :all)
     import(csv_flight_data)
   end
 
   def import(flight_data)
+    console.log(flight_data)
     sentence = flight_data.first["_sentence"]
     self.update(callsign: self.class.callsign(sentence))
     create_data_points(flight_data)
