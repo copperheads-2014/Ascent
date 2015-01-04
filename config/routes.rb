@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "signup" => "users#new"
   put "approve/:id" => "friendships#approve"
   resources :friendships
+  resources :likes, only: :create
 
   resources :users
   resources :sessions
