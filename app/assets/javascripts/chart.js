@@ -55,7 +55,6 @@ var loadChart = function(seriesData) {
               $('#temp').html("Temperature: " + this.temp + " °C");
               loadAltimeter(this.y);
               loadThermometer2(this.temp);
-              console.log(this.pressure)
               loadBarometer(this.pressure);
 
             }
@@ -86,8 +85,7 @@ var loadChart = function(seriesData) {
 
          formatter: function() {
              return  '<b>' + 'Altitude: ' + this.y + 'm / ' + (Math.round(this.y * 3.28084)) + 'ft</b><br/>' + 'Elapsed Time: ' +
-                 Highcharts.dateFormat('%H:%M:%S',
-                                       new Date(this.x));
+                 Highcharts.dateFormat('%H:%M:%S', new Date(this.x));
          }
 
       }
