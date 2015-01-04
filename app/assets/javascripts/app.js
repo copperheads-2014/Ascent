@@ -5,6 +5,12 @@ var flight_data;
 var seriesIndex = 0;
 var pause;
 
+var resizeContainer = function(){
+  var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  var window_height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  $('.container').css('height', (window_height - 50))
+}
+
 var advanceIndex = function() {
   if(seriesIndex < flight_data.length) {
     seriesIndex++;
@@ -20,19 +26,7 @@ var togglePlayPause = function() {
 }
 
 var ready = function() {
-
-  $('.show_all_data').click(function(e){
-    e.preventDefault();
-    $('.all_data').fadeIn(800);
-  })
-
-  $('.show_flight_chart').click(function(e){
-    e.preventDefault();
-    $('.flight_chart').fadeIn(800);
-    $("#map").hide();
-  });
-
-  $display = $('#display')
+  resizeContainer();
 
   flight_id = window.location.pathname.split('/')[2];
 
@@ -45,7 +39,7 @@ var ready = function() {
     flight_data = response;
     loadChart(flight_data);
     loadAltimeter(flight_data[0].y);
-    loadThermometer(flight_data[0].temp);
+    // loadThermometer(flight_data[0].temp);
     loadThermometer2(flight_data[0].temp);
     loadBarometer(flight_data[0].pressure);
     // loadMap();
@@ -66,6 +60,10 @@ var ready = function() {
   pause = function() {
     clearInterval(indexInterval);
   }
+
+  $(window).on('resize', function(){
+    resizeContainer();
+  })
 
   $("#button-play").click(function(){
     togglePlayPause();

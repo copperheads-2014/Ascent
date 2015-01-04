@@ -14,6 +14,9 @@ var loadThermometer = function(seriesData){
       spacingRight: 0,
       spacingBottom: 0
     },
+     credits: {
+        enabled: false
+    },
     title: {
       text: 'Thermometer'
     },

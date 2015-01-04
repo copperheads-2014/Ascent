@@ -5,13 +5,16 @@ var loadChart = function(seriesData) {
 
   chart = new Highcharts.Chart({
     chart: {
-      backgroundColor: '#292929',
+      backgroundColor: '#191919',
       zoomType: 'x',
       renderTo: 'chart',
       style: {
         fontFamily: 'Arial',
         fontSize: '12px'
       }
+    },
+     credits: {
+        enabled: false
     },
     title: {
       text: 'The Journey',
@@ -24,7 +27,7 @@ var loadChart = function(seriesData) {
       min: 0,
       max: flight_data[flight_data.length -1].x,
       type: 'datetime',
-      title: {text: 'Time'},
+      // title: {text: 'Time'},
       dateTimeLabelFormats: {second: '%H:%M:%S'}
     },
     yAxis: {

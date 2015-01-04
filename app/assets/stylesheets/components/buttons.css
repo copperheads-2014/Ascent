@@ -1,11 +1,12 @@
 button {
   height: 50px;
-  border: 5px solid #FCFCFC;
+  border: 2px solid #purple;
   color: black;
-  background-color: purple;
+  background-color: #f3f3f3;
 }
 button:hover {
   background-color: #CC00CC;
+  color: #f3f3f3;
 }
 button:focus {
   outline: 0;
@@ -17,20 +18,17 @@ button:active {
 
 .button_left {
   border-radius: 15px 0 0 15px;
-  color: #FCFCFC;
   width: 45%;
 
 }
 .button_right {
   border-radius: 0 15px 15px 0;
-  color: #FCFCFC;
   width: 45%;
 
 }
 #button-play, #button-pause {
   position: absolute;
-  border-radius: 15px;
-  color: #FCFCFC;
+  border-radius: 2%;
   margin: 0 0 0 -5%;
   left: 50%;
   width: 10%;
@@ -44,8 +42,7 @@ button:active {
   height: 40px;
   width: 8%;
   position: absolute;
-  border-radius: 12px 0 0 12px;
-  color: #FCFCFC;
+  border-radius: 2%;
   margin: 0 0 0 -4%;
   left: 40%;
   top: 5px;
@@ -57,8 +54,7 @@ button:active {
   height: 40px;
   width: 8%;
   position: absolute;
-  border-radius: 0 12px 12px 0;
-  color: #FCFCFC;
+  border-radius: 2%;
   margin: 0 -4% 0 0;
   right: 40%;
   top: 5px;
