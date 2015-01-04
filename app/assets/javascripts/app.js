@@ -136,7 +136,7 @@ var ready = function() {
     var request = $.ajax({
       url: "/likes",
       method: "post",
-      data: $("form").serialize()
+      data: $("#like").serialize()
     })
     request.fail(function(response){
       var string = $("#like_num").val()
@@ -145,8 +145,22 @@ var ready = function() {
       var numWithLike = splitText.join(" ")
       $("#like_num").val(numWithLike)
     })
-    $(this).css("color", "purple")
+    console.log(this)
+    $('#like_num').css("color", "purple")
     $(this).find('input[type="submit"]').attr('disabled','disabled');
+  })
+
+  $("#toggle_comment").on("click", function(){
+    $("#comment").toggle("display")
+  })
+
+  $("#post_comment").on("submit", function(e){
+    e.preventDefault()
+    $.ajax({
+      url: "/comments",
+      method: "post",
+      data: $(form)
+    })
   })
 }
 
