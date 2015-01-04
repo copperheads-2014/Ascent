@@ -102,6 +102,7 @@ var ready = function() {
   });
 
   $('.signup').click(function(){
+    $('#signup').css('visibility', 'initial')
     var container_height = $('.container').height();
     $('body').animate({ scrollTop: container_height }, 50);
   });
