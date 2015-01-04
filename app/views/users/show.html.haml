@@ -7,9 +7,9 @@
   -@user.flights.each do |flight|
     =link_to "#{flight.callsign}", flight_path(flight)
 -if current_user == @user
-  -current_user.inverse_friendships.where("approved = false").each do |friendship|
-    - if friendship.friend == current_user
-      %li= friendship.user.username
+  -current_user.friendships.where("approved = false").each do |friendship|
+    - if friendship.user == current_user
+      %li= friendship.friend.username
       =form_for :friendships, method: 'PUT', url: "/approve/#{friendship.id}" do |f|
         =f.submit 'Add Friend' , class: 'button'
 

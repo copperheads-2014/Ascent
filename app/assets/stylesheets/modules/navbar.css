@@ -10,7 +10,7 @@ nav {
 nav:hover {
   background-position: left bottom;
 }
-nav:hover a, nav:hover .signup, nav:hover .login, nav:hover .box-right { color: black; }
+nav:hover a, nav:hover .signup, nav:hover .login, nav:hover #dropdown1, nav:hover #dropdown2 { color: black; }
 .login, .signup {
   color: white;
   -webkit-transition-property:color, text;
@@ -33,22 +33,13 @@ nav:hover a, nav:hover .signup, nav:hover .login, nav:hover .box-right { color: 
 }
 .box-right {
   margin-left: auto;
+}
+#dropdown1, #dropdown2 {
   color: white;
   -webkit-transition-property:color, text;
   -webkit-transition-duration: 0.5s, 0.5s;
   -webkit-transition-timing-function: linear, ease-in;
   font-family: 'Armata', sans-serif;
-}
-.menu.active {
-  display: flex;
-  flex-flow: column;
-  position: fixed;
-  top: 50px;
-  right: 0px;
-  height: 66px;
-  width: 146px;
-  border: 2px solid lightgray;
-  background: white;
 }
 nav a {
   text-decoration: none;
@@ -71,7 +62,18 @@ nav a {
 .menu {
   display: none;
 }
-i {
+.menu.active {
+  display: flex;
+  flex-flow: column;
+  position: fixed;
+  top: 50px;
+  right: 0px;
+  height: 66px;
+  width: 146px;
+  border: 2px solid lightgray;
+  background: white;
+}
+#caret {
   padding-left: 15px;
 }
 hr {
@@ -170,4 +172,23 @@ form {
 #signup-button:hover {
   background: lightgray;
 }
+/* Notification ------------ */
+#notification {
+  display: none;
+}
+#notification.active {
+  display: flex;
+  flex-flow: column;
+  position: fixed;
+  top: 50px;
+  right: 0px;
+  height: 266px;
+  width: 246px;
+  border: 2px solid lightgray;
+  background: white;
+  overflow: scroll;
+}
+
+
+
 

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150104044628) do
+=======
+ActiveRecord::Schema.define(version: 20150103184345) do
+>>>>>>> navbar friend add divs w/o styling
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +64,7 @@ ActiveRecord::Schema.define(version: 20150104044628) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "likes", force: true do |t|
     t.integer  "user_id"
     t.integer  "flight_id"
@@ -67,6 +72,8 @@ ActiveRecord::Schema.define(version: 20150104044628) do
     t.datetime "updated_at"
   end
 
+=======
+>>>>>>> navbar friend add divs w/o styling
   create_table "pictures", force: true do |t|
     t.integer  "flight_id"
     t.string   "image"
