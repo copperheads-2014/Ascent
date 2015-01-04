@@ -1,6 +1,8 @@
 var thermometer2;
 
 var loadThermometer2 = function(seriesData){
+  console.log(seriesData)
+
   thermometer2 = new Highcharts.Chart({
       chart: {
         type: 'solidgauge',
@@ -59,11 +61,13 @@ var loadThermometer2 = function(seriesData){
         name: 'Temperature',
         data: [seriesData],
         dataLabels: {
-          format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + Math.round(this.y) + '</span><br/>' +
+          formatter: function() {
+            var degrees = Math.round(seriesData)
+            return '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'silver') + '">' + degrees + '</span><br/>' +
                    '<span style="font-size:14px;color:silver">°C</span></div>'
         }
-      }]
+      }}]
   });
 };
 
