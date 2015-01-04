@@ -6,6 +6,8 @@ class Flight < ActiveRecord::Base
   has_many :users, through: :launches
   has_many :comments
   has_many :pictures
+  has_many :likes
+  has_many :likers, through: :likes, source: :user
 
   SEA_LEVEL_PRESSURE = 1013.25 #mbars
 

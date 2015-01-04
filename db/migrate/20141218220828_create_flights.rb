@@ -5,7 +5,6 @@ class CreateFlights < ActiveRecord::Migration
       t.string     :duration
       t.integer    :max_altitude
       t.float 	   :distance_traveled
-      t.integer    :likes, default: 0
 
       t.timestamps
     end

@@ -107,6 +107,23 @@ var ready = function() {
     var container_height = $('.container').height();
     $('body').animate({ scrollTop: container_height }, 50);
   });
+
+  $("#like").one("submit", function(e){
+    e.preventDefault()
+    var request = $.ajax({
+      url: "/likes",
+      method: "post",
+      data: $("form").serialize()
+    })
+    request.fail(function(response){
+      var string = $("#like_num").html()
+      var number = Number(string)
+      var numPlusOne = number += 1
+      $("#like_num").html(numPlusOne)
+    })
+    $(this).css("color", "purple")
+    $(this).find('input[type="submit"]').attr('disabled','disabled');
+  })
 }
 
 $(document).ready(ready);

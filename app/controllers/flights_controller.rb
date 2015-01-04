@@ -19,7 +19,7 @@ class FlightsController < ApplicationController
   end
 
   def feed
-    @flights = current_user.friends.collect{|x| x.flights}.flatten.sort_by{|x| x.created_at}
+    @flights = current_user.all_friends.collect{|x| x.flights}.flatten.sort_by{|x| x.created_at}
   end
 
   private

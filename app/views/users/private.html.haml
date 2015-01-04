@@ -1,14 +1,6 @@
 %h3
   ="Unfortunately #{@user.username}'s profile is private, if you'd like, you can request to be their friend below."
   %hr
-  / %a{href: "/friendships", method: "POST" } send
-  / = link_to "Send #{@user.username} a friend request", friendships_path, method: 'POST',  {action: 'create'}
-  / = form_for :friendships, method: "post", url: {action: "create"} do |f|
-  /   =f.text :friend_id
-  /   =f.submit
-
 
   =form_for :friendships, method: 'POST', url: friendships_path(:friend_id => @user.id) do |f|
-    / =f.hidden_field :new_friendship, name: "user_id", value: @user.id
-    / =f.hidden_field :new_friendship, name: "friend_id", value: current_user.id
     =f.submit 'Add Friend' , class: 'button'
