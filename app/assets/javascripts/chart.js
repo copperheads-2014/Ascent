@@ -24,7 +24,7 @@ var loadChart = function(seriesData) {
       text: 'Drag over chart to zoom in'
     },
     xAxis: {
-      min: 0,
+      min: 1,
       max: flight_data[flight_data.length -1].x,
       type: 'datetime',
       // title: {text: 'Time'},
