@@ -1,7 +1,8 @@
 var chart;
 
-var loadChart = function(seriesData) {
+var loadChart = function(seriesData, duration) {
   if (typeof seriesData === 'undefined') { seriesData = [0,0]; }
+  if (typeof duration === 'undefined') { duration = 1000; }
 
   chart = new Highcharts.Chart({
     chart: {
@@ -60,7 +61,7 @@ var loadChart = function(seriesData) {
             }
           }
         },
-          animation: false
+          animation: {duration: duration}
         },
         area: {
           fillColor: null,

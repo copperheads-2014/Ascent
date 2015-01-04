@@ -26,13 +26,25 @@ button:active {
   width: 45%;
 
 }
-#button-play, #button-pause {
-  position: absolute;
-  border-radius: 2%;
-  margin: 0 0 0 -5%;
-  left: 50%;
-  width: 10%;
+#button-play, #button-pause, #chart_button, #map_button {
+  width: 45%;
+  height: 35px;
+  border: 2px solid #999999;
+  background: #191919;
+  outline: none;
+  font-family: 'Unica One';
+  font-weight: bold;
+  color: #999999;
+  display: inline-block;
 }
+
+
+
+#button-play:hover, #button-pause:hover, #chart_button:hover, #map_button:hover {
+  color: #191919;
+  background-color: #B2B2C1;
+}
+
 
 #button-pause {
   display: none;

@@ -11,6 +11,7 @@ var loadBarometer = function(seriesData){
         spacingRight: 0,
         spacingBottom: 0
       },
+
       title: {
         text: 'Barometer'
       },
@@ -49,6 +50,7 @@ var loadBarometer = function(seriesData){
       },
       plotOptions: {
         solidgauge: {
+          animation: true,
           dataLabels: {
             y: 5,
             borderWidth: 0,
