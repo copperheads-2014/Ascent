@@ -25,7 +25,9 @@ class FlightsController < ApplicationController
   private
 
   def new_user_flight
-    Flight.new(user_id: current_user.id)
+    @flight = Flight.create
+    @launch = Launch.create(user_id: current_user.id, flight_id: @flight.id)
+    @flight
   end
 
   def flight_params
