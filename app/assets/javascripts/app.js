@@ -5,6 +5,12 @@ var flight_data;
 var seriesIndex = 0;
 var pause;
 
+var resizeContainer = function(){
+  var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  var window_height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  $('.container').css('height', (window_height - 50))
+}
+
 var advanceIndex = function() {
   if(seriesIndex < flight_data.length) {
     seriesIndex++;
@@ -20,8 +26,7 @@ var togglePlayPause = function() {
 }
 
 var ready = function() {
-
-  $display = $('#display')
+  resizeContainer();
 
   flight_id = window.location.pathname.split('/')[2];
 
@@ -55,6 +60,10 @@ var ready = function() {
   pause = function() {
     clearInterval(indexInterval);
   }
+
+  $(window).on('resize', function(){
+    resizeContainer();
+  })
 
   $("#button-play").click(function(){
     togglePlayPause();

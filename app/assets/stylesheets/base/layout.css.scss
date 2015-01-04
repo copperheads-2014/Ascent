@@ -19,7 +19,7 @@ html,body {
 }
 
 .container {
-  height: 700px;
+  height: 940px;
 }
 
 #above_chart {
@@ -84,6 +84,11 @@ table {
 desc {
   display: none;
   color: #191919;
+}
+
+.flight_body {
+  height: 1200px;
+  background-color: #191919;
 }
 
 // ----------------------------------------------
