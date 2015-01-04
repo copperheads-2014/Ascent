@@ -42,8 +42,6 @@ ActiveRecord::Schema.define(version: 20150103184345) do
     t.string   "duration"
     t.integer  "max_altitude"
     t.float    "distance_traveled"
-    t.integer  "user_id"
-    t.integer  "likes",             default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
