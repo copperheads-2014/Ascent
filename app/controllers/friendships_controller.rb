@@ -10,6 +10,13 @@ class FriendshipsController < ApplicationController
     end
    end
 
+   def approve
+      @friendship = Friendship.find(params[:id])
+      @friendship.update(approved: true)
+      @friendship.save
+      redirect_to root_path
+   end
+
    def destroy
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
