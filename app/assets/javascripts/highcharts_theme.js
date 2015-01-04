@@ -196,7 +196,7 @@ Highcharts.theme = {
 
    // special colors for some of the
    legendBackgroundColor: 'rgba(0, 0, 0, 0.5)',
-   background2: '#505053',
+   background2: '#191919',
    dataLabelsColor: '#B0B0B3',
    textColor: '#C0C0C0',
    contrastTextColor: '#F0F0F3',

@@ -27,7 +27,7 @@ var loadChart = function(seriesData) {
       min: 0,
       max: flight_data[flight_data.length -1].x,
       type: 'datetime',
-      title: {text: 'Time'},
+      // title: {text: 'Time'},
       dateTimeLabelFormats: {second: '%H:%M:%S'}
     },
     yAxis: {

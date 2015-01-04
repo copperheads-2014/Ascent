@@ -31,9 +31,7 @@ var loadThermometer2 = function(seriesData){
       },
       yAxis: {
         stops: [
-          [0.1, '#DF5353'], // red
-          [0.5, '#DDDF0D'], // yellow
-          [0.9, '#55BF3B'] // green
+          [0.1, '#999999']
         ],
         lineWidth: 0,
         minorTickInterval: null,
