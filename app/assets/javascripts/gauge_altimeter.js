@@ -1,7 +1,5 @@
 var altimeter;
 
-
-
 var loadAltimeter = function(seriesData){
   altimeter = new Highcharts.Chart({
     chart: {
@@ -16,9 +14,11 @@ var loadAltimeter = function(seriesData){
       spacingRight: 0,
       spacingBottom: 0
     },
+
     title: {
       text: 'Altimeter'
     },
+
     pane: {
       startAngle: 0,
       endAngle: 360,
