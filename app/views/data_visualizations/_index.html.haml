@@ -1,8 +1,12 @@
 #above_chart
-  .button-area1
-    / %button.button_left.audiowide#chart_button CHART
-    / %button.button_right.audiowide#map_button MAP
+  %grid
+    %div{:class => 'col-3-4'}
+      balls
+    %div{:class => 'col-1-4'}
+      %button#chart_button CHART
+      %button#map_button MAP
 
 #main
-  #chart
-  #map
+  %grid
+    #chart
+    #map

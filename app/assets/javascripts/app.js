@@ -28,22 +28,33 @@ var togglePlayPause = function() {
 var ready = function() {
   resizeContainer();
 
+  full_path = window.location.pathname
+  domain = window.location.pathname.split('/')[0]
   flight_id = window.location.pathname.split('/')[2];
 
-  var request = $.ajax({
-    url: "/charts/" + flight_id + ".json",
-    method: "get"
-  })
+  if(full_path === "/"){
+    $('#signup').css('visibility', 'initial')
+  }
+  else {
+    $('#signup').css('visibility', 'hidden')
+  };
 
-  request.done(function(response){
-    flight_data = response;
-    loadChart(flight_data);
-    loadAltimeter(flight_data[0].y);
-    // loadThermometer(flight_data[0].temp);
-    loadThermometer2(flight_data[0].temp);
-    loadBarometer(flight_data[0].pressure);
-    // loadMap();
-  });
+
+  if(flight_id != 'undefined'){
+    var request = $.ajax({
+      url: "/charts/" + flight_id + ".json",
+      method: "get"
+    })
+    request.done(function(response){
+      flight_data = response;
+      loadChart(flight_data);
+      loadAltimeter(flight_data[0].y);
+      loadThermometer2(flight_data[0].temp);
+      loadBarometer(flight_data[0].pressure);
+      // loadMap();
+    });
+  };
+
 
   var play = function(interval) {
     indexInterval = setInterval(function() {
@@ -103,7 +114,14 @@ var ready = function() {
 
   $('.signup').click(function(){
     var container_height = $('.container').height();
-    $('body').animate({ scrollTop: container_height }, 50);
+    if (full_path == '/'){
+      console.log('full path is index')
+      $('body').animate({ scrollTop: container_height }, 200);
+    }
+    else {
+      console.log('something other than root')
+      window.location.href = '/';
+    };
   });
 
   $('#dropdown2').click(function() {

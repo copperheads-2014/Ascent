@@ -11,6 +11,7 @@ var loadBarometer = function(seriesData){
         spacingRight: 0,
         spacingBottom: 0
       },
+
       title: {
         text: 'Barometer'
       },
@@ -31,20 +32,25 @@ var loadBarometer = function(seriesData){
       },
       yAxis: {
         stops: [
-          [0.1, '#999999'] // red
+            [0.1, '#555555'],
+            [0.5, '#888888'],
+            [0.9, '#BBBBBB']
         ],
         lineWidth: 0,
+        tickPixelInterval: 400,
         minorTickInterval: null,
         tickPixelInterval: 100,
         tickWidth: 0,
         labels: {
-          y: 16
+          y: 16,
+          style: {color: 'purple'}
         },
-        min: 0,
+        min: .001,
         max: 1100
       },
       plotOptions: {
         solidgauge: {
+          animation: true,
           dataLabels: {
             y: 5,
             borderWidth: 0,

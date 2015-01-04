@@ -1,8 +1,7 @@
 var altimeter;
 
-
-
 var loadAltimeter = function(seriesData){
+  console.log([seriesData*10])
   altimeter = new Highcharts.Chart({
     chart: {
       type: 'gauge',
@@ -16,9 +15,11 @@ var loadAltimeter = function(seriesData){
       spacingRight: 0,
       spacingBottom: 0
     },
+
     title: {
       text: 'Altimeter'
     },
+
     pane: {
       startAngle: 0,
       endAngle: 360,
@@ -33,7 +34,7 @@ var loadAltimeter = function(seriesData){
     },
     yAxis: [{
       min: 0,
-      max: 10000,
+      max: 9999,
       lineColor: '#191919',
       tickColor: 'purple',
       minorTickColor: '#878787',
@@ -85,6 +86,26 @@ var loadAltimeter = function(seriesData){
       tooltip: {
         valueSuffix: ' m'
       }
+    },
+    {
+      data: [seriesData*100],
+      dial: {
+        radius: '30%',
+        baseWidth: 10,
+        baseLength: '30%',
+        backgroundColor: '#777777'
+      },
+      dataLabels: {enabled: false}
+    },
+    {
+      data: [seriesData*10],
+      dial: {
+        radius: '60%',
+        baseWidth: 5,
+        baseLength: '50%',
+        backgroundColor: '#777777'
+      },
+      dataLabels: {enabled: false}
     }]
   });
 };

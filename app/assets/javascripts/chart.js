@@ -1,7 +1,8 @@
 var chart;
 
-var loadChart = function(seriesData) {
+var loadChart = function(seriesData, duration) {
   if (typeof seriesData === 'undefined') { seriesData = [0,0]; }
+  if (typeof duration === 'undefined') { duration = 1000; }
 
   chart = new Highcharts.Chart({
     chart: {
@@ -18,13 +19,16 @@ var loadChart = function(seriesData) {
     },
     title: {
       text: 'The Journey',
-      style: { "color": 'gray'}
+      style: {
+        "color": 'gray',
+        "fontFamily" : 'Codystar'}
     },
     subtitle: {
-      text: 'Drag over chart to zoom in'
+      text: 'Drag over chart to zoom in',
+      style: {"fontFamily" : "Unica One"}
     },
     xAxis: {
-      min: 0,
+      min: 1,
       max: flight_data[flight_data.length -1].x,
       type: 'datetime',
       // title: {text: 'Time'},
@@ -51,12 +55,13 @@ var loadChart = function(seriesData) {
               $('#altitude').html("Altitude: " + this.y + " m");
               $('#temp').html("Temperature: " + this.temp + " °C");
               loadAltimeter(this.y);
-              loadThermometer(this.temp);
+              loadThermometer2(this.temp);
+              loadBarometer(this.pressure);
 
             }
           }
         },
-          animation: false
+          animation: {duration: duration}
         },
         area: {
           fillColor: null,
@@ -77,7 +82,13 @@ var loadChart = function(seriesData) {
         backgroundColor: '#E6E6FA'
       },
       tooltip: {
-        dateTimeLabelFormats: {second: '%H:%M:%S'}
+        // dateTimeLabelFormats: {second: '%H:%M:%S'},
+
+         formatter: function() {
+             return  '<b>' + 'Altitude: ' + this.y + 'm / ' + (Math.round(this.y * 3.28084)) + 'ft</b><br/>' + 'Elapsed Time: ' +
+                 Highcharts.dateFormat('%H:%M:%S', new Date(this.x));
+         }
+
       }
     });
 

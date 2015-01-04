@@ -1,9 +1,10 @@
-%flight_body
-  %h1
+%container
+  %h2
     ="#{@flight.callsign}"
   %grid{:class => 'grid-pad'}
     %div{:class => 'col-1-3'}
-      %h3
+      %h2
+        The Data
         / %table
         /   %tr
         /     %td Max Altitude
@@ -22,15 +23,15 @@
       %div.flight_chart
         = render :partial => 'data_visualizations/index'
 
-        / #below_chart
-        /   %button#button-step-back
-        /     %i.fa.fa-step-backward
-        /   %button#button-play
-        /     %i.fa.fa-play
-        /   %button#button-pause
-        /     %i.fa.fa-pause
-        /   %button#button-step-forw
-        /     %i.fa.fa-step-forward
+      #below_chart
+        %grid
+          %grid{:class => 'col-3-4'}
+            %h3 comments will go here
+          %grid{:class => 'col-1-4'}
+            %button#button-play
+              %i.fa.fa-play
+            %button#button-pause
+              %i.fa.fa-pause
 
     .gauges{:class => 'grid grid-pad'}
       #gauge_3

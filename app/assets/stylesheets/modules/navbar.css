@@ -127,6 +127,7 @@ hr {
 }
 /* Sign-up ------------ */
 #signup {
+  visibility: 'hidden';
   width: 100%;
   background: white;
   height: 500px;
