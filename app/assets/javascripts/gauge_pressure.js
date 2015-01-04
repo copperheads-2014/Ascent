@@ -31,7 +31,7 @@ var loadBarometer = function(seriesData){
       },
       yAxis: {
         stops: [
-          [0.1, '#999999'] // red
+          [0.1, '#999999']
         ],
         lineWidth: 0,
         minorTickInterval: null,
