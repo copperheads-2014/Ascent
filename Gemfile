@@ -38,3 +38,7 @@ end
 gem "rmagick"
 gem 'carrierwave'
 
+group :production do
+  gem 'rails_12factor'
+end
+
