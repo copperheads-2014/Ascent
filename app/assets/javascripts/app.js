@@ -147,7 +147,6 @@ var ready = function() {
     $(this).css("color", "purple")
     $(this).find('input[type="submit"]').attr('disabled','disabled');
   })
-
 }
 
 $(document).ready(ready);
