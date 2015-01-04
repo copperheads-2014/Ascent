@@ -33,7 +33,7 @@ var loadAltimeter = function(seriesData){
     },
     yAxis: [{
       min: 0,
-      max: 10000,
+      max: 9999,
       lineColor: '#191919',
       tickColor: 'purple',
       minorTickColor: '#878787',
