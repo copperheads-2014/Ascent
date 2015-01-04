@@ -54,7 +54,9 @@ var loadChart = function(seriesData) {
               $('#altitude').html("Altitude: " + this.y + " m");
               $('#temp').html("Temperature: " + this.temp + " °C");
               loadAltimeter(this.y);
-              loadThermometer(this.temp);
+              loadThermometer2(this.temp);
+              console.log(this.pressure)
+              loadBarometer(this.pressure);
 
             }
           }
