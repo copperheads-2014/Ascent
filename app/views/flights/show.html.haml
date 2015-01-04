@@ -3,21 +3,23 @@
     ="#{@flight.callsign}"
   %grid{:class => 'grid-pad'}
     %div{:class => 'col-1-3'}
-      %h2
-        The Data
-        / %table
-        /   %tr
-        /     %td Max Altitude
-        /     %td
-        /       =@flight.max_altitude
-        /   %tr
-        /     %td Sounding Duration
-        /     %td
-        /       =@flight.duration
-        /   %tr
-        /     %td Distance Traveled
-        /     %td
-        /       =@flight.distance_traveled.round
+      %centered
+        %h2
+          The Data
+        %h3
+          %table
+            %tr
+              %td Max Altitude
+              %td
+                ="#{@flight.max_altitude} m"
+            %tr
+              %td Trip Duration
+              %td
+                =@flight.duration
+            %tr
+              %td Distance Traveled
+              %td
+                =@flight.distance_traveled.round
 
     %div{:class => 'col-2-3'}
       %div.flight_chart
