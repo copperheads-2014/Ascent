@@ -77,17 +77,36 @@ var ready = function() {
     $("#chart").hide();
     $("#map").show();
     loadMap();
-  })
+  });
 
   $("#chart_button").click(function(){
     $("#map").hide();
     $("#chart").show();
-  })
+  });
 
   $("#button-pause").click(function() {
     pause();
     togglePlayPause();
-  })
+  });
+
+  $('.box-right').click(function(){
+    $('.menu').toggleClass("active");
+  });
+  $(".menu").hover(function(){}, function() {
+    $('.menu').removeClass("active");
+  });
+
+  $('.login').click(function(){
+    $('.menu-login').toggleClass("active");
+  });
+  $(".menu-login").hover(function(){}, function() {
+    $('.menu-login').removeClass("active");
+  });
+
+  $('.signup').click(function(){
+    var container_height = $('.container').height();
+    $('body').animate({ scrollTop: container_height }, 50);
+  });
 }
 
 $(document).ready(ready);
