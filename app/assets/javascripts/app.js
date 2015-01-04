@@ -29,7 +29,6 @@ var ready = function() {
   resizeContainer();
 
   full_path = window.location.pathname
-  domain = window.location.pathname.split('/')[0]
   flight_id = window.location.pathname.split('/')[2];
 
   if(full_path === "/"){
@@ -59,9 +58,8 @@ var ready = function() {
   var play = function(interval) {
     indexInterval = setInterval(function() {
       advanceIndex();
-      playChart();
+      // playChart();
       playAltimeter();
-      playThermometer();
       playThermometer2();
       playBarometer();
       playMap();
@@ -78,8 +76,7 @@ var ready = function() {
 
   $("#button-play").click(function(){
     togglePlayPause();
-    $display.show('slide', {direction: 'left'}, 400);
-    play(1);
+    play(1000);
   });
 
   $("#map_button").click(function(){
