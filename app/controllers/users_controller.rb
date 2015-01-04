@@ -14,12 +14,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @friendship = Friendship.find_by(user_id: @user.id, friend_id: current_user.id) || Friendship.find_by(user_id: current_user.id, friend_id: @user.id)
     if current_user.id == @user.id
+      user_path(@user)
+    elsif current_user.friends.include?(@user) && @friendship.approved
       user_path(@user)
     else
       redirect_to user_path(current_user)
     end
   end
+
+
 
   private
     def user_params
