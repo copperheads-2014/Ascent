@@ -89,7 +89,7 @@ var ready = function() {
     togglePlayPause();
   });
 
-  $('.box-right').click(function(){
+  $('#dropdown1').click(function(){
     $('.menu').toggleClass("active");
   });
   $(".menu").hover(function(){}, function() {
@@ -108,6 +108,13 @@ var ready = function() {
     $('body').animate({ scrollTop: container_height }, 50);
   });
 
+  $('#dropdown2').click(function() {
+    $('#notification').toggleClass("active");
+  });
+  $("#notification").hover(function(){}, function() {
+    $('#notification').removeClass("active");
+  });
+
   $("#like").one("submit", function(e){
     e.preventDefault()
     var request = $.ajax({
@@ -124,6 +131,7 @@ var ready = function() {
     $(this).css("color", "purple")
     $(this).find('input[type="submit"]').attr('disabled','disabled');
   })
+
 }
 
 $(document).ready(ready);
