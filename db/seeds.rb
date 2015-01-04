@@ -31,26 +31,26 @@ end
 
 counter = 6
 10.times do
-  Friendship.create(user_id: 1, friend_id: counter)
+  Friendship.create(user_id: counter, friend_id: 1)
   counter += 1
 end
 
 10.times do
-  Friendship.create(user_id: 2, friend_id: counter)
+  Friendship.create(user_id: counter, friend_id: 2)
   counter += 1
 end
 
 10.times do
-  Friendship.create(user_id: 3, friend_id: counter)
+  Friendship.create(user_id: counter, friend_id: 3)
   counter += 1
 end
 
 10.times do
-  Friendship.create(user_id: 4, friend_id: counter)
+  Friendship.create(user_id: counter, friend_id: 4)
   counter += 1
 end
 
 10.times do
-  Friendship.create(user_id: 5, friend_id: counter)
+  Friendship.create(user_id: counter, friend_id: 5)
   counter += 1
 end
