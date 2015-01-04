@@ -3,14 +3,14 @@
 // }
 
 html,body {
-  height: 100%;
+  height: auto;
   width: 100%;
   margin: 0;
   padding: 0;
 }
 
 .bg-tile {
-  background-color: #292929;
+  background-color: rgb(19,19,19);
 }
 
 .center-60 {
@@ -24,8 +24,7 @@ html,body {
 }
 
 .container {
-  height: 100%;
-  margin: 0, auto;
+  height: 700px;
 }
 
 #above_chart {
