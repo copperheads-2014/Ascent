@@ -31,7 +31,9 @@ var loadBarometer = function(seriesData){
       },
       yAxis: {
         stops: [
-          [0.1, '#999999']
+            [0.1, '#555555'],
+            [0.5, '#888888'],
+            [0.9, '#BBBBBB']
         ],
         lineWidth: 0,
         tickPixelInterval: 400,
@@ -39,9 +41,10 @@ var loadBarometer = function(seriesData){
         tickPixelInterval: 100,
         tickWidth: 0,
         labels: {
-          y: 16
+          y: 16,
+          style: {color: 'purple'}
         },
-        min: 0,
+        min: .001,
         max: 1100
       },
       plotOptions: {
