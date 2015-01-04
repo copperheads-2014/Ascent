@@ -6,9 +6,16 @@ class PicturesController < ApplicationController
 
   def create
     flight = Flight.find(params[:flight_id])
-    params[:picture][:files].each do |file|
+    files = params[:picture][:files]
+    if files
+      files.each do |file|
+        picture = Picture.new(flight_id: flight.id, caption: params[:picture][:caption])
+        picture.image = file
+        picture.save!
+      end
+    else
       picture = Picture.new(flight_id: flight.id, caption: params[:picture][:caption])
-      picture.image = file
+      picture.remote_image_url = params[:picture][:remote_image_url]
       picture.save!
     end
     redirect_to flight_pictures_path(flight)
