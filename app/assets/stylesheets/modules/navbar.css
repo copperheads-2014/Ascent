@@ -196,7 +196,7 @@ form {
 }
 #notification.active a {
   font-family: 'Armata', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   color: #D1DBDD;
   padding-left: 10px;
 }
@@ -220,6 +220,7 @@ form {
   justify-content: center;
   align-items: center;
   flex: 3;
+  padding: 0 5px;
 }
 #notification hr:last-child { display: none; }
 #notification.active input {
