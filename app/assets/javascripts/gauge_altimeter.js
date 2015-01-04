@@ -20,7 +20,10 @@ var loadAltimeter = function(seriesData){
     pane: {
       startAngle: -125,
       endAngle: 125,
-      size: '65%'
+      size: '90%',
+      background: {
+        backgroundColor: '#191919'
+      }
     },
      credits: {
         enabled: false
@@ -62,6 +65,10 @@ var loadAltimeter = function(seriesData){
     series: [{
       name: 'Altitude',
       data: [seriesData],
+      dial: {
+            backgroundColor: 'red',
+            borderColor: 'red'
+          },
       dataLabels: {
         style: {
             fontSize: '18px'
@@ -72,7 +79,7 @@ var loadAltimeter = function(seriesData){
           return '<span style="color:#339">'+ meters + ' m</span><br/>' +
           '<span style="color:#933">' + feet + ' ft</span>';
         },
-        backgroundColor: '#393939'
+        backgroundColor: '#191919'
       },
       tooltip: {
         valueSuffix: ' m'
