@@ -139,10 +139,11 @@ var ready = function() {
       data: $("form").serialize()
     })
     request.fail(function(response){
-      var string = $("#like_num").html()
-      var number = Number(string)
-      var numPlusOne = number += 1
-      $("#like_num").html(numPlusOne)
+      var string = $("#like_num").val()
+      var splitText = string.split(" ")
+      splitText[1] = (Number(splitText[1]) + 1)
+      var numWithLike = splitText.join(" ")
+      $("#like_num").val(numWithLike)
     })
     $(this).css("color", "purple")
     $(this).find('input[type="submit"]').attr('disabled','disabled');

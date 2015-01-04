@@ -40,5 +40,6 @@
 
   =form_for :likes, html: {id: "like"} do |f|
     =f.hidden_field :id, value: "#{params[:id]}"
-    =f.submit 'LIKE' , class: 'like_button'
-  #like_num=@flight.likes.length
+    =f.submit "LIKE #{@flight.likes.length}" , class: 'like_button', id: "like_num"
+  %input{type: "submit", value: "COMMENT"}
+
