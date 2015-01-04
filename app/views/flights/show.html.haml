@@ -40,6 +40,12 @@
 
   =form_for :likes, html: {id: "like"} do |f|
     =f.hidden_field :id, value: "#{params[:id]}"
-    =f.submit "LIKE #{@flight.likes.length}" , class: 'like_button', id: "like_num"
-  %input{type: "submit", value: "COMMENT"}
+    =f.submit "LIKE: #{@flight.likes.length}" , class: 'like_button', id: "like_num"
+  %input{type: "submit", value: "COMMENT", id: "toggle_comment"}
+  #comment
+    =form_for :comments, html: {id: "post_comment"} do |f|
+      =f.hidden_field :id, value: "#{params[:id]}"
+      =f.text_area name: "body"
+      =f.submit "Submit"
+
 

@@ -13,10 +13,14 @@ h3 {
 }
 
 html,body {
-  height: auto;
+  height: 1400px;
   width: 100%;
   margin: 0;
   padding: 0;
+}
+
+#comment{
+  display: none;
 }
 
 input[type="submit"] {
@@ -25,8 +29,8 @@ input[type="submit"] {
   border: 2px solid black;
   background: rgba(0,0,0,0);
   outline: none;
-  font-weight: bold;
 }
+
 input[type="submit"]:hover {
   background: lightgray;
 }
