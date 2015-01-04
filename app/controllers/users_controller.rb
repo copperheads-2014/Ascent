@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     elsif current_user.friends.include?(@user) && @friendship.approved
       user_path(@user)
     else
-      redirect_to user_path(current_user)
+      render "private"
     end
   end
 

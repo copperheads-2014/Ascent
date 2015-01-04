@@ -25,10 +25,10 @@
         <div id="dropdown2" class="flexbox box-right"><i class="fa fa-users fa-2x"></i></div>
 
         <div id="notification">
-        <% current_user.friendships.where("approved = false").each do |friendship| %>
-            <% if friendship.user == current_user %>
+        <% current_user.inverse_friendships.where("approved = false").each do |friendship| %>
+            <% if friendship.friend == current_user %>
               <div class="flexbox">
-                <%= friendship.friend.username %>
+                <%= friendship.user.username %>
               </div>
               <%= form_for :friendships, method: 'PUT', url: "/approve/#{friendship.id}" do |f| %>
                 <%= f.submit 'Add Friend' , class: 'button' %>
