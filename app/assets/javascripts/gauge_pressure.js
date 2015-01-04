@@ -34,6 +34,7 @@ var loadBarometer = function(seriesData){
           [0.1, '#999999']
         ],
         lineWidth: 0,
+        tickPixelInterval: 400,
         minorTickInterval: null,
         tickPixelInterval: 100,
         tickWidth: 0,
