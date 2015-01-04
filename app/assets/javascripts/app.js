@@ -29,20 +29,21 @@ var ready = function() {
   resizeContainer();
 
   flight_id = window.location.pathname.split('/')[2];
+  if(flight_id != 'undefined' && flight_id != null){
+    var request = $.ajax({
+      url: "/charts/" + flight_id + ".json",
+      method: "get"
+    })
+    request.done(function(response){
+      flight_data = response;
+      loadChart(flight_data);
+      loadAltimeter(flight_data[0].y);
+      loadThermometer2(flight_data[0].temp);
+      loadBarometer(flight_data[0].pressure);
+      // loadMap();
+    });
+  };
 
-  var request = $.ajax({
-    url: "/charts/" + flight_id + ".json",
-    method: "get"
-  })
-
-  request.done(function(response){
-    flight_data = response;
-    loadChart(flight_data);
-    loadAltimeter(flight_data[0].y);
-    loadThermometer2(flight_data[0].temp);
-    loadBarometer(flight_data[0].pressure);
-    // loadMap();
-  });
 
   var play = function(interval) {
     indexInterval = setInterval(function() {
@@ -101,7 +102,8 @@ var ready = function() {
   });
 
   $('.signup').click(function(){
-    $('#signup').css('visibility', 'initial')
+    // if()
+    $('#signup').css('visibility', 'hidden')
     var container_height = $('.container').height();
     $('body').animate({ scrollTop: container_height }, 50);
   });
