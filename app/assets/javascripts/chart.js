@@ -5,13 +5,16 @@ var loadChart = function(seriesData) {
 
   chart = new Highcharts.Chart({
     chart: {
-      backgroundColor: '#292929',
+      backgroundColor: '#191919',
       zoomType: 'x',
       renderTo: 'chart',
       style: {
         fontFamily: 'Arial',
         fontSize: '12px'
       }
+    },
+     credits: {
+        enabled: false
     },
     title: {
       text: 'The Journey',

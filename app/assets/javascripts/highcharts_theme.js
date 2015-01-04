@@ -9,7 +9,7 @@ Highcharts.theme = {
    colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
       "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
    chart: {
-      backgroundColor: '   #292929',
+      backgroundColor: '#191919',
       style: {
          fontFamily: "'Unica One', sans-serif"
       },
@@ -58,7 +58,7 @@ Highcharts.theme = {
       lineColor: '#707073',
       minorGridLineColor: '#505053',
       tickColor: '#707073',
-      tickWidth: 1,
+      tickWidth: 3,
       title: {
          style: {
             color: '#A0A0A3',

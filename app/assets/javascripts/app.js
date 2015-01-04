@@ -21,17 +21,6 @@ var togglePlayPause = function() {
 
 var ready = function() {
 
-  $('.show_all_data').click(function(e){
-    e.preventDefault();
-    $('.all_data').fadeIn(800);
-  })
-
-  $('.show_flight_chart').click(function(e){
-    e.preventDefault();
-    $('.flight_chart').fadeIn(800);
-    $("#map").hide();
-  });
-
   $display = $('#display')
 
   flight_id = window.location.pathname.split('/')[2];
@@ -45,7 +34,7 @@ var ready = function() {
     flight_data = response;
     loadChart(flight_data);
     loadAltimeter(flight_data[0].y);
-    loadThermometer(flight_data[0].temp);
+    // loadThermometer(flight_data[0].temp);
     loadThermometer2(flight_data[0].temp);
     loadBarometer(flight_data[0].pressure);
     // loadMap();

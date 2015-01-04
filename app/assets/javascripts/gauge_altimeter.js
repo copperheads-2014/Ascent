@@ -22,12 +22,15 @@ var loadAltimeter = function(seriesData){
       endAngle: 125,
       size: '65%'
     },
+     credits: {
+        enabled: false
+    },
     yAxis: [{
       min: 0,
       max: 33500,
-      lineColor: '#339',
-      tickColor: '#339',
-      minorTickColor: '#339',
+      lineColor: 'purple',
+      tickColor: 'purple',
+      minorTickColor: 'purple',
       offset: -25,
       lineWidth: 4,
       labels: {
@@ -41,7 +44,7 @@ var loadAltimeter = function(seriesData){
       min: 0,
       max: 33500 * 3.28084,
       tickPosition: 'outside',
-      lineColor: '#933',
+      lineColor: 'purple',
       lineWidth: 2,
       minorTickPosition: 'outside',
       tickColor: '#933',
@@ -69,18 +72,7 @@ var loadAltimeter = function(seriesData){
           return '<span style="color:#339">'+ meters + ' m</span><br/>' +
           '<span style="color:#933">' + feet + ' ft</span>';
         },
-        backgroundColor: {
-          linearGradient: {
-            x1: 0,
-            y1: 0,
-            x2: 0,
-            y2: 1
-          },
-          stops: [
-          [0, '#DDD'],
-          [1, '#FFF']
-          ]
-        }
+        backgroundColor: '#393939'
       },
       tooltip: {
         valueSuffix: ' m'

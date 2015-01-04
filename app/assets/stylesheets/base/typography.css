@@ -1,14 +1,11 @@
 .text-center {
   text-align:  center;
 }
-.ceviche {
-  /*font-family: 'Ceviche One', cursive;*/
-}
-.audiowide {
-  /*font-family: 'Audiowide', cursive;*/
-}
-.perm-marker {
-  /*font-family: 'Permanent Marker', cursive;*/
+
+h1 {
+  font-size: 100px;
+  color: white;
+  margin: 0;
 }
 
 h2 {
