@@ -12,14 +12,19 @@
               %td Max Altitude
               %td
                 ="#{@flight.max_altitude} m"
-            %tr
-              %td Trip Duration
-              %td
-                =@flight.duration
+              / %td
+              /   ="#{to_feet(@flight.max_altitude)} ft"
             %tr
               %td Distance Traveled
               %td
-                =@flight.distance_traveled.round
+                ="#{@flight.distance_traveled.round} km"
+              / %td
+              /   ="#{to_miles(@flight.distance_traveled.round)} miles"
+            %tr
+              %td Trip Duration
+              %td
+                ="#{@flight.duration}"
+              %td
 
     %div{:class => 'col-2-3'}
       %div.flight_chart
