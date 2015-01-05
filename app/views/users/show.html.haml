@@ -1,28 +1,23 @@
-%h1
-  ="#{@user.username}"
+/ #profile_user.col-1-3
+/   .avatar_container
+/     =image_tag @user.avatar_url
+/   %h3.col-1-2= "#{@user.username}"
 
-#profile_friends.col-1-3
-  %h3="friends"
+#profile_friends.col-1-4
+  %h3="#{@user.username}'s friends"
   %br
-  -@user.approved_friends.each do |friend|
-    =link_to friend.username, user_path(friend)
-
-  #profile_pending
+  %table#friends
+    -@user.approved_friends.each do |friend|
+      %tr
+        %td= image_tag friend.avatar_url(:avatar_thumb)
+        %td.username= link_to friend.username, user_path(friend)
+        %td.approved= link_to "unfriend", "/friendships/#{Friendship.find_by(user: @user, friend: friend).id}", method: :delete
     -if current_user == @user
-      %h3="Pending"
-      %br
       -@user.pending_friends.each do |friend|
-        =link_to friend.username, user_path(friend)
-
-  #profile_requests
-    -if current_user == @user
-      %h3="Friend requests"
-      %br
-      -@user.friend_requests.each do |friendship|
-        .friend.col-1-2
-          =link_to friendship.user.username, user_path(friendship.user)
-        =form_for :friendship, method: 'PUT', url: "/approve/#{friendship.id}", class: 'col-1-2' do |f|
-          =f.submit 'Add Friend' , class: 'button'
+        %tr
+          %td= image_tag friend.avatar_url(:avatar_thumb)
+          %td= link_to friend.username, user_path(friend)
+          %td.pending= "pending"
 
 #profile_flights.col-1-2
   %h3="flights"
