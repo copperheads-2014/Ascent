@@ -1,7 +1,21 @@
-.friend {
-  display: inline-block;
+* {
+  border: 1px solid yellow;
 }
 
-#profile_requests form {
-
+table#friends {
+  color: #ccc;
+  margin: auto;
+  a {
+    text-decoration: none;
+  }
+  .username {
+    font-size: 1.5em;
+    text-decoration: none;
+  }
+  .approved {
+    font-size: 1em;
+  }
+  .pending {
+    font-style: italic;
+  }
 }
