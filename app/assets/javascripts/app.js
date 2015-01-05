@@ -44,6 +44,11 @@ var togglePlayPause = function() {
   }
 }
 
+var toggleMapChart = function() {
+  $("#chart_button").toggle();
+  $("#map_button").toggle();
+}
+
 var ready = function() {
   resizeContainer();
 
