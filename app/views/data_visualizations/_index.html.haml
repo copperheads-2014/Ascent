@@ -10,3 +10,9 @@
   %grid
     #chart
     #map
+#data_comment
+  =form_for :comments do |f|
+    =f.text_field :name
+    #submit_field
+      =f.submit "comment", id: "data_submit"
+

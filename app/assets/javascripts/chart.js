@@ -1,4 +1,5 @@
 var chart;
+var clickDetected = false;
 
 var loadChart = function(seriesData, duration) {
   if (typeof seriesData === 'undefined') { seriesData = [0,0]; }
@@ -50,15 +51,16 @@ var loadChart = function(seriesData, duration) {
         allowPointSelect: true,
         point: {
           events: {
-            select: function() {
+            click: function() {
               $('#time').html("Time: " + Highcharts.dateFormat('%H:%M:%S', this.x) + " (H:M:S)");
               $('#altitude').html("Altitude: " + this.y + " m");
               $('#temp').html("Temperature: " + this.temp + " °C");
               loadAltimeter(this.y);
               loadThermometer2(this.temp);
               loadBarometer(this.pressure);
-
+              displayDataComment()
             }
+
           }
         },
           animation: {duration: duration}

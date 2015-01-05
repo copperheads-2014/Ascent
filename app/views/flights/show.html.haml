@@ -45,7 +45,8 @@
   #comment
     =form_for :comments, html: {id: "post_comment"} do |f|
       =f.hidden_field :id, value: "#{params[:id]}"
-      =f.text_area name: "body"
+      =f.text_field name: "body"
+      %br
       =f.submit "Submit"
 
 

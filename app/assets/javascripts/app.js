@@ -20,6 +20,19 @@ var advanceIndex = function() {
   }
 }
 
+var displayDataSubmit = function() {
+  $("#data_submit").delay(500).show('slide', {direction:'left'}, 1000)
+}
+
+var displayDataComment = function() {
+  if ($("#data_comment").is(":hidden")) {
+      $("#data_comment").slideDown("slow")
+      displayDataSubmit()
+    } else {
+      $("#data_comment").slideUp("slow")
+    }
+}
+
 var togglePlayPause = function() {
   $("#button-play").toggle();
   $("#button-pause").toggle();
@@ -150,18 +163,32 @@ var ready = function() {
     $(this).find('input[type="submit"]').attr('disabled','disabled');
   })
 
-  $("#toggle_comment").on("click", function(){
-    $("#comment").toggle("display")
+  // $("#toggle_comment").on("click", function(){
+  //   $("#comment").toggle("display")
+  // })
+
+  $("#toggle_comment").on("click", function(e){
+    e.preventDefault();
+    if ($("#comment").is(":hidden")) {
+      $("#comment").slideDown("slow")
+      $(this).css("color", "purple")
+    } else {
+      $("#comment").slideUp("slow")
+      $(this).css("color", "black")
+    }
   })
 
-  $("#post_comment").on("submit", function(e){
-    e.preventDefault()
-    $.ajax({
-      url: "/comments",
-      method: "post",
-      data: $(form)
-    })
+  $("body").on(".info_box", "click", function(){
+    console.log("sup")
   })
+  // $("#post_comment").on("submit", function(e){
+  //   e.preventDefault()
+  //   $.ajax({
+  //     url: "/comments",
+  //     method: "post",
+  //     data: $(form)
+  //   })
+  // })
 }
 
 $(document).ready(ready);
