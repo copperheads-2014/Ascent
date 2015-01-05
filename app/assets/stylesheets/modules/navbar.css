@@ -193,6 +193,7 @@ form {
   border: 2px solid lightgray;
   background: white;
   overflow: auto;
+  z-index: 999;
 }
 #notification.active a {
   font-family: 'Armata', sans-serif;

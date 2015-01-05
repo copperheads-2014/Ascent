@@ -10,7 +10,7 @@ var appendResult = function(entry){
 }
 
 
-$(document).ready(function(){
+var ready = function() {
 
   $("#toggle_comment").on("click", function(e){
     e.preventDefault();
@@ -60,4 +60,7 @@ $(document).ready(function(){
       $("#show_comments").trigger("click")
     }
   })
-})
+}
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
