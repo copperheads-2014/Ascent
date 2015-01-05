@@ -4,6 +4,7 @@ var flight_id;
 var flight_data;
 var seriesIndex = 0;
 var pause;
+var playSpeed;
 
 var resizeContainer = function(){
   var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -11,12 +12,13 @@ var resizeContainer = function(){
   $('.container').css('height', (window_height - 50))
 }
 
-var advanceIndex = function() {
-  if(seriesIndex < flight_data.length) {
-    seriesIndex++;
+var advanceIndex = function(resolution) {
+  if(seriesIndex < flight_data.length - 1) {
+    seriesIndex = seriesIndex + resolution;
   }
   else {
-    pause();
+    seriesIndex = seriesIndex[flight_data.length -1]
+    togglePlayPause();
   }
 }
 
@@ -37,6 +39,9 @@ var displayDataComment = function(data_point) {
 var togglePlayPause = function() {
   $("#button-play").toggle();
   $("#button-pause").toggle();
+  if (seriesIndex >= flight_data.length - 1){
+    seriesIndex = 0
+  }
 }
 
 var ready = function() {
@@ -70,9 +75,23 @@ var ready = function() {
 
 
   var play = function(interval) {
-    indexInterval = setInterval(function() {
-      advanceIndex();
-      // playChart();
+    console.log(interval);
+
+    if (playSpeed === 'superfast'){
+      resolution = 10;
+    }
+    else if (playSpeed === 'fast') {
+      resolution = 5
+    }
+    else {
+      resolution = 1
+    }
+
+    duration = (flight_data.length * interval) / resolution;
+
+    loadChart(flight_data, duration);
+    setInterval(function() {
+      advanceIndex(resolution);
       playAltimeter();
       playThermometer2();
       playBarometer();
@@ -90,7 +109,7 @@ var ready = function() {
 
   $("#button-play").click(function(){
     togglePlayPause();
-    play(1000);
+    play(200);
   });
 
   $("#map_button").click(function(){

@@ -26,7 +26,7 @@ var loadAltimeter = function(seriesData){
       size: '90%',
       background: {
         backgroundColor: '#191919',
-        borderWidth: 0
+        borderWidth: 0,
       }
     },
      credits: {
@@ -40,28 +40,15 @@ var loadAltimeter = function(seriesData){
       minorTickColor: '#878787',
       offset: -25,
       labels: {
-        distance: -20,
-        rotation: 'auto'
+        distance: -23,
+        rotation: 'auto',
+        formatter: function() {
+          return this.value / 1000;
+        }
       },
       tickLength: 10,
       minorTickLength: 0,
       endOnTick: false
-    // }, {
-    //   min: 0,
-    //   max: 33500 * 3.28084,
-    //   tickPosition: 'outside',
-    //   lineColor: '#191919',
-    //   minorTickPosition: 'outside',
-    //   tickColor: 'purple',
-    //   minorTickColor: '#878787',
-    //   tickLength: 8,
-    //   minorTickLength: 0,
-    //   labels: {
-    //     distance: 12,
-    //     rotation: 'auto'
-    //   },
-    //   offset: -20,
-    //   endOnTick: false
     }],
 
     series: [{
@@ -117,5 +104,7 @@ var loadAltimeter = function(seriesData){
 
 var playAltimeter = function() {
   altimeter.series[0].points[0].update(flight_data[seriesIndex].y);
+  altimeter.series[1].points[0].update(flight_data[seriesIndex].y*100);
+  altimeter.series[2].points[0].update(flight_data[seriesIndex].y*10);
 };
 
