@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   def create_for_flight
-    Comment.create(flight_id: params[:comments][:id], body: params[:comments][:body], user_id: current_user.id, status: 0)
+    @comment = Comment.create(flight_id: params[:comments][:id], body: params[:comments][:body], user_id: current_user.id, status: 0)
+    return {body: @comment.body, author: @comment.author}.to_json
   end
 
   def create_for_datapoint

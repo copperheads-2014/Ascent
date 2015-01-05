@@ -74,9 +74,10 @@
       %br
       =f.submit "Submit"
   #comment_roll
-    -@flight.comments.each do |comment|
+    -@f_comments.each do |comment|
       .comment_body
         = comment.body
+        %br
         = comment.author.username
 
 

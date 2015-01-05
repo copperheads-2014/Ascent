@@ -170,8 +170,12 @@ var ready = function() {
     e.preventDefault()
     var request = $.ajax({
       url: "/comments/flights",
-      method: "post",
-      data: $("#post_comment").serialize()
+      type: "post",
+      data: $("#post_comment").serialize(),
+      dataType: "json"
+    })
+    request.fail(function(response){
+      console.log(response.body)
     })
     $("#comment").slideUp("slow")
     $("#toggle_comment").css("color", "black")
@@ -196,7 +200,7 @@ var ready = function() {
       method: "post",
       data: $("#like").serialize()
     })
-    request.fail(function(response){
+    request.done(function(response){
       var string = $("#like_num").val()
       var splitText = string.split(" ")
       splitText[1] = (Number(splitText[1]) + 1)
