@@ -1,0 +1,5 @@
+- @flights.each do |flight|
+  .flight_box
+    =link_to "#{flight.callsign}", flight_path(flight)
+    -flight.users.each do |user|
+      ="by #{user.username}"

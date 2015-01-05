@@ -1,0 +1,6 @@
+%h3
+  ="Unfortunately #{@user.username}'s profile is private, if you'd like, you can request to be their friend below."
+  %hr
+
+  =form_for :friendships, method: 'POST', url: friendships_path(:friend_id => @user.id) do |f|
+    =f.submit 'Add Friend' , class: 'button'

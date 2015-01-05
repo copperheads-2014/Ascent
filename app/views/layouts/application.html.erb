@@ -9,18 +9,87 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
     <%= content_for(:header) %>
-    <link href='http://fonts.googleapis.com/css?family=Ceviche+One' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Codystar:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Armata' rel='stylesheet' type='text/css'>
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
   </head>
+
   <body class="bg-tile">
-    <header><h1 class="ceviche text-center">Ascent</h1></header>
+    <nav id="user_div" class="flex-container">
+        <div class="flexbox"><%= link_to "Ascent", flights_path %></div>
+        <div class="flexbox"><%= link_to "Create Flight", new_flight_path %></div>
+      <% if current_user %>
+        <div id="dropdown2" class="flexbox box-right"><i class="fa fa-users fa-2x"></i></div>
+
+        <div id="notification">
+        <div id="friend-request">Friend Requests</div>
+        <hr>
+        <% current_user.inverse_friendships.where("approved = false").each do |friendship| %>
+            <% if friendship.friend == current_user %>
+              <div class="friend-list">
+                <%= link_to friendship.user.username, user_path(friendship.friend), class: "flex-2" %>
+                <%= form_for :friendships, method: 'PUT', url: "/approve/#{friendship.id}", html: {class: "flex-1"} do |f| %>
+                  <%= f.submit 'Y', id: "yes" %>
+                <% end %>
+                <%= form_for :friendships, method: 'DELETE', url: "/friendships/#{friendship.id}", html: {class: "flex-1"} do |f| %>
+                  <%= f.submit 'N', id: "nope" %>
+                <% end %>
+              </div>
+              <hr>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div id="dropdown1" class="flexbox"><%= current_user.username %><i id="caret" class="fa fa-caret-down"></i></div>
+        <div class="menu">
+          <div class="flexbox-col"><%= link_to "Profile", user_path(current_user) %></div>
+          <hr>
+          <div id="logout" class="flexbox-col"><%= link_to "Log Out", logout_path %></div>
+        </div>
+      <% else %>
+        <div class="flexbox signup box-right">Sign Up</div>
+        <div class="flexbox login">Log In</div>
+        <div class="menu-login">
+          <%= form_tag sessions_path do %>
+            <%= text_field_tag :username, params[:username], id: "username", placeholder: "Username" %>
+            <%= password_field_tag :password_digest, "", id: "password", placeholder: "Password" %>
+            <%= submit_tag "Log In", id: "login-button" %>
+          <% end %>
+          <hr>
+          <a href="#">Forgot Your Password?</a>
+        </div>
+      <% end %>
+    </nav>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
 
     <div class="container">
       <%= yield %>
     </div>
+
+    <% unless current_user %>
+    <div id="signup">
+      <header><h1>Create An Account</h1></header>
+      <%= form_for User.new do |f| %>
+      <% if @user && @user.errors.any? %>
+      <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+      <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+      <% end %>
+        </ul>
+      </div>
+      <% end %>
+      <%= f.text_field :username, id: "signin-username", placeholder: "Enter Username" %>
+      <%= f.password_field :password, id: "signin-password", placeholder: "Enter Password" %>
+      <%= f.submit "Create Account", id: "signup-button" %>
+      <% end %>
+    </div>
+    <% end %>
 
     <footer></footer>
 

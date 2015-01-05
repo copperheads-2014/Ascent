@@ -11,7 +11,9 @@ class ChartsController < ApplicationController
   					 y: p[:data]['altitude'],
   					 temp: p[:data]['temperature'],
              latitude: p[:data]['latitude'],
-             longitude: p[:data]['longitude']}
+             longitude: p[:data]['longitude'],
+             id: p.id,
+             pressure: p[:data]['pressure']}
   	end
 
   	respond_to do |format|

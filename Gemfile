@@ -6,6 +6,7 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'haml-rails'
+gem 'bcrypt'
 
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
@@ -33,3 +34,16 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
+
+gem "rmagick"
+gem 'carrierwave'
+
+group :production do
+  gem 'rails_12factor'
+end
+
+gem "figaro"
+
+gem "fog", "~> 1.3.1"
+gem 'rails3-jquery-autocomplete'
+

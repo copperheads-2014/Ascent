@@ -1,22 +1,81 @@
-%h1
-	="#{@flight.callsign}"
+%container
+  %h3
+    ="#{@flight.callsign}"
+  %grid{:class => 'grid-pad'}
+    %div{:class => 'col-1-3'}
+      %centered
+        %h2
+          The Data
+        %h3
+          %table
+            %tr
+              %td.tdleft Max Altitude
+              %td.tdright
+                ="#{@flight.max_altitude} m"
+              / %td
+              /   ="#{to_feet(@flight.max_altitude)} ft"
+            %tr
+              %td.tdleft Distance Traveled
+              %td.tdright
+                ="#{@flight.distance_traveled.round} km"
+              / %td
+              /   ="#{to_miles(@flight.distance_traveled.round)} miles"
+            %tr
+              %td.tdleft Trip Duration
+              %td.tdright
+                ="#{@flight.duration}"
+            %tr
+            %tr
+              %td.tdleft
+                =form_for :likes, html: {id: "like"} do |f|
+                  =f.hidden_field :id, value: "#{params[:id]}"
+                  =f.submit "LIKE: #{@flight.likes.length}" , class: 'like_button', id: "like_num"
+              %td.tdright
+                %input{type: "submit", value: "COMMENT", id: "toggle_comment"}
+            %tr
+              %td.tdleft
+              %td.tdright
+                #comment
+                  =form_for :comments, html: {id: "post_comment"} do |f|
+                    =f.hidden_field :id, value: "#{params[:id]}"
+                    =f.text_field :body
+                    %br
+                    =f.submit "Submit"
+          %input{type: "submit", value: "show comments", id: "show_comments"}
+          #comment_roll
+            -@f_comments.each do |comment|
+              .comment_body
+                = comment.body
+                %br
+                = comment.author.username
 
-%h3
-	="Max Altitude: #{@flight.max_altitude} m"
-	%br
-	="Sounding Duration: #{@flight.duration}"
-	%br
-	="Total Distance Traveled: #{@flight.distance_traveled.round} km"
-	%br
-	%button.show_all_data{id: 'button1'} View Data
-	%button.show_flight_chart{id: 'button2'} View Chart/Map
-%div.flight_chart
-	= render :partial => 'charts/index'
-%div.all_data
-	-@data_points.each_with_index do |point, index|
-		%br
-		=index + 1
-		-point[:data].each do |key, value|
-			="#{key}: #{value}" if value
-#main
-	#map
+    %div{:class => 'col-2-3'}
+      %div.flight_chart
+        = render :partial => 'data_visualizations/index'
+
+      #below_chart
+        %grid
+          %grid{:class => 'col-3-4'}
+            %h3 comments will go here
+          %grid{:class => 'col-1-4'}
+            %button#chart_map_button Map
+            %button#button-play
+              %i.fa.fa-play
+            %button#button-pause
+              %i.fa.fa-pause
+
+
+    .gauges{:class => 'grid grid-pad'}
+      #gauge_3
+      #gauge_1
+      #gauge_4
+
+  / #comment_roll
+  /   -@f_comments.each do |comment|
+  /     .comment_body
+  /       = comment.body
+  /       %br
+  /       = comment.author.username
+
+
+

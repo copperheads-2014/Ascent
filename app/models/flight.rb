@@ -1,9 +1,20 @@
+require 'habhub'
+
+
 class Flight < ActiveRecord::Base
   has_many :data_points
+  has_many :launches
+  has_many :users, through: :launches
+  has_many :comments
+  has_many :pictures
+  has_many :likes
+  has_many :likers, through: :likes, source: :user
 
   SEA_LEVEL_PRESSURE = 1013.25 #mbars
 
+  include FlightsHelper
 # INSTANCE METHODS
+
   def starting_point
     [self.data_points.first.data["latitude"], self.data_points.first.data["longitude"]]
   end
@@ -63,58 +74,31 @@ class Flight < ActiveRecord::Base
     rm * c / 1000 # Delta in km
   end
 
-  def self.parse_habhub(json)
-    new_hash = {}
-    new_hash[:altitude] = json["altitude"]
-    new_hash[:latitude] = json["latitude"]
-    new_hash[:longitude] = json["longitude"]
-    new_hash[:temperature] = json["temperature_external"] || json["temperature"] || json["external_temperature"]
-    new_hash[:battery] = json["battery"]
-    new_hash[:time] = json["time"]
-    new_hash[:humidity] = json["humidity"]
-    # json['pressure'] ? new_hash[:pressure] = json['pressure'] : new_hash[:pressure] = calculate_pressure(json)
-    new_hash.to_json
-  end
-
-  def self.calculate_pressure(json)
-    altitude = json["altitude"]
-    ((SEA_LEVEL_PRESSURE * 100) * (1 - (2.25577 * 10**(-5) * altitude))**5.25588) / 100
-  end
-
   def self.callsign(sentence)
     sentence[2..(sentence.index(',')-1)]
   end
 
-  def self.create_data(json_flight_data, flight)
-    json_flight_data.each do |point|
-      DataPoint.create!(flight_id: flight.id, data: parse_habhub(point)) unless point["altitude"] == 0 || point["latitude"] == 0.0
+  def import_from_habhub(url)
+    json_flight_data = Crack::JSON.parse(RestClient.get(url))
+    import(json_flight_data)
+  end
+
+  def import_from_csv(file)
+    csv_flight_data = CSV.read(file.path, headers: true, converters: :all)
+    import(csv_flight_data)
+  end
+
+  def import(flight_data)
+    sentence = flight_data.first["_sentence"]
+    self.update(callsign: self.class.callsign(sentence))
+    create_data_points(flight_data)
+    self
+  end
+
+  def create_data_points(flight_data)
+    valid_points = flight_data.select {|x| x["altitude"] != 0 && x["latitude"] != 0.0 }
+    valid_points.each do |point|
+      data_points.create!(data: HabHub.parse(point).to_json)
     end
-  end
-
-  def self.import_habhub(files)
-    files.each do |file|
-      json_flight_data = JSON.load File.new(file)
-      sentence = json_flight_data.first["_sentence"]
-      flight = Flight.create!(callsign: callsign(sentence))
-      create_data(json_flight_data, flight)
-      # update_flight(flight)
-    end
-  end
-
-  def self.import_habhub_from_url(url)
-	  json_flight_data = Crack::JSON.parse(RestClient.get(url))
-	  sentence = json_flight_data.first["_sentence"]
-	  flight = Flight.create!(callsign: callsign(sentence))
-	  create_data(json_flight_data, flight)
-	  # update_flight(flight)
-  end
-
-
-  def self.import(file)
-   csv_flight_data = CSV.read(file.path, headers: true)
-   sentence = csv_flight_data.first["_sentence"]
-   flight = Flight.create!(callsign: callsign(sentence))
-   create_data(csv_flight_data, flight)
-   update_flight(flight)
   end
 end

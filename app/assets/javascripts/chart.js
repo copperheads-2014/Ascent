@@ -1,36 +1,13 @@
-var ready;
 var chart;
-var $display;
-var index_of_digit
-var flight_id
-var flight_data
+var clickDetected = false;
 
-ready = function(){
-
-  $display = $('#display')
-
-  function setProperTime(integer) {
-
-  }
-
-  index_of_digit = (document.URL.search(/\/\d/)) + 1;
-  flight_id = window.location.pathname.split('/')[2];
-
-  var request = $.ajax({
-    url: "/charts/" + flight_id + ".json",
-    method: "get"
-  })
-
-  request.done(function(response){
-    flight_data = response;
-  });
+var loadChart = function(seriesData, duration) {
+  if (typeof seriesData === 'undefined') { seriesData = [0,0]; }
+  if (typeof duration === 'undefined') { duration = 1000; }
 
   chart = new Highcharts.Chart({
     chart: {
-      backgroundColor: '#000',
-      borderColor: "#FFFFFF",
-      borderWidth: 5,
-      borderRadius: 15,
+      backgroundColor: '#191919',
       zoomType: 'x',
       renderTo: 'chart',
       style: {
@@ -38,125 +15,88 @@ ready = function(){
         fontSize: '12px'
       }
     },
+     credits: {
+        enabled: false
+    },
     title: {
       text: 'The Journey',
-      style: { "color": 'gray'}
+      style: {
+        "color": 'gray',
+        "fontFamily" : 'Codystar'}
     },
     subtitle: {
-      text: 'Drag over chart to zoom in'
+      text: 'Drag over chart to zoom in',
+      style: {"fontFamily" : "Unica One"}
     },
     xAxis: {
+      min: 1,
+      max: flight_data[flight_data.length -1].x,
       type: 'datetime',
-      title: {text: 'Time'},
+      // title: {text: 'Time'},
       dateTimeLabelFormats: {second: '%H:%M:%S'}
     },
     yAxis: {
-      title: {text: 'Altitute'}
+      min: 0,
+      max: 40000,
+      title: {text: 'Altitude'}
     },
+    series: [{
+      name: "Altitude",
+      type: "area",
+      data: seriesData,
+      color: '#E6E6FA'
+    }],
     plotOptions: {
       series: {
         allowPointSelect: true,
-          point: {
-            events: {
-              select: function() {
-                $('#time').html("Time: " + Highcharts.dateFormat('%H:%M:%S', this.x) + " (H:M:S)");
-                $('#altitude').html("Altitude: " + this.y + " m");
-                $('#temp').html("Temperature: " + this.temp + " °C");
-              }
+        point: {
+          events: {
+            click: function() {
+              $('#time').html("Time: " + Highcharts.dateFormat('%H:%M:%S', this.x) + " (H:M:S)");
+              $('#altitude').html("Altitude: " + this.y + " m");
+              $('#temp').html("Temperature: " + this.temp + " °C");
+              loadAltimeter(this.y);
+              loadThermometer2(this.temp);
+              loadBarometer(this.pressure);
+              displayDataComment(this.id);
             }
-          },
-        animation: {duration: 10000}
-      },
-      area: {
-        fillColor: 'purple',
-        marker: {
-          radius: 2
-        },
-        lineWidth: 1,
-        states: {
-          hover: {
-            lineWidth: 1
+
           }
         },
-        threshold: null
-      }
-    },
-    legend: {
-      enabled: false,
-      backgroundColor: '#E6E6FA'
-    },
-    tooltip: {
-      dateTimeLabelFormats: {second: '%H:%M:%S'}
-    }
-  });
-
-  $("#button-play").click(function(){
-    $("#map").css('visibility', 'initial');
-    slowAdd(0);
-    chart.addSeries({
-
-      type: 'area',
-      name: 'Altitude',
-      pointStart: 0,
-      color: '#E6E6FA',
-      // data: [
-      //   {x: 23232, y: 2000, temp: 232},
-      //   {x: 1222, y: 2333, temp: 244}
-      // ]
-      data: flight_data
-
-    });
-    console.log(flight_data)
-
-  });
-
-  $("#button-play").click(function(){
-    $display.show('slide', {direction: 'left'}, 1200);
-  });
-
-  L.mapbox.accessToken = 'pk.eyJ1Ijoiam9zaGFkaWszMDciLCJhIjoiSzFib1hNbyJ9.9EvDIk_-qWq5TIf0t4YG7Q';
-  var map = L.mapbox.map('map', 'joshadik307.kh70onpa').setView([40, -74.50], 6);
-
-  var polyline = L.polyline([]).addTo(map);
-
-  function slowAdd(pointIndex){
-    console.log(flight_data)
-    addPoint(flight_data[pointIndex]);
-    if(pointIndex < flight_data.length-1){
-      setTimeout(slowAdd, 20, pointIndex+1);
-    }
-  }
-
-  function renderPoint(point) {
-    return "<dl><dt>latitude:</dt><dd>"+point.latitude+"</dd>"+
-      "<dt>longitude:</dt><dd>"+point.longitude+"</dd>"+
-      "<dt>altitude:</dt><dd>"+point.altitude+"</dd>"+
-      "<dt>time:</dt><dd>"+point.time+"</dd>"+
-      "<dt>temperature:</dt><dd>"+point.temperature+"</dd></dl>"
-  }
-
-  function addPoint(point) {
-         polyline.addLatLng(
-           L.latLng(
-           point.latitude,
-           point.longitude));
-    map.setView([point.latitude, point.longitude]);
-    L.mapbox.featureLayer({
-        type: 'Feature',
-        geometry: {
-            type: 'Point',
-            coordinates: [
-              point.longitude, point.latitude
-            ]
+          animation: {duration: duration}
+        },
+        area: {
+          fillColor: null,
+          marker: {
+            radius: 2
           },
-        "properties": {
-             description: renderPoint(point),
-             'marker-size': "small",
-             'marker-color': '#44036F',
+          lineWidth: 1,
+          states: {
+            hover: {
+              lineWidth: 1
+            }
+          },
+          threshold: null
+        }
+      },
+      legend: {
+        enabled: false,
+        backgroundColor: '#E6E6FA'
+      },
+      tooltip: {
+        // dateTimeLabelFormats: {second: '%H:%M:%S'},
+
+         formatter: function() {
+             return  '<b>' + 'Altitude: ' + this.y + 'm / ' + (Math.round(this.y * 3.28084)) + 'ft</b><br/>' + 'Elapsed Time: ' +
+                 Highcharts.dateFormat('%H:%M:%S', new Date(this.x));
          }
-      }).addTo(map)
-  }
+
+      }
+    });
+
 };
 
-$(document).ready(ready);
-$(document).on('page:load', ready);
+var playChart = function() {
+  loadChart(flight_data.slice(0, seriesIndex));
+  chart.series[0].addPoint(flight_data[seriesIndex]);
+}

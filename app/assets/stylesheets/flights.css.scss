@@ -1,22 +1,19 @@
 // Place all the styles related to the flights controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 p,
 h3 {
 	color: #ccc
 }
 
 .all_data {
-	display: none
+	display: none;
+  z-index: -1
 }
 
-.flight_chart {
-	display: none
-}
 
 body { margin:0; padding:0; text-align:center;}
-#map {position:absolute; visibility:hidden; top:0; bottom:0; width:100%;}
+
 .leaflet-control-attribution, .leaflet-control-zoom {
   display: none;
 }
@@ -24,9 +21,6 @@ body { margin:0; padding:0; text-align:center;}
 ul {
   list-style-type: none;
   text-align: left;
-}
-
-li {
 }
 
 .leaflet-popup-content {

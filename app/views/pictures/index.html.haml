@@ -1,0 +1,11 @@
+%h2
+  = @flight.callsign
+  flight pictures
+
+#images_container
+  - @flight.pictures.each do |picture|
+    #image_container
+      = image_tag picture.image_url(:thumb).to_s
+
+
+

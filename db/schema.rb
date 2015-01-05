@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218220908) do
+ActiveRecord::Schema.define(version: 20150104044628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "flight_id"
+    t.integer  "data_point_id"
+    t.text     "body"
+    t.integer  "status",        default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "data_points", force: true do |t|
     t.json     "data"
@@ -28,17 +38,45 @@ ActiveRecord::Schema.define(version: 20141218220908) do
     t.string   "duration"
     t.integer  "max_altitude"
     t.float    "distance_traveled"
-    t.integer  "launch_site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "launch_sites", force: true do |t|
-    t.string   "name"
-    t.string   "coordinates"
-    t.integer  "elevation"
+  create_table "friendships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.boolean  "approved",   default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "launches", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "flight_id"
+    t.date     "launch_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "likes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "flight_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pictures", force: true do |t|
+    t.integer  "flight_id"
+    t.string   "image"
+    t.string   "caption"
+    t.integer  "altitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string "username"
+    t.string "password_digest"
   end
 
 end

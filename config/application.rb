@@ -15,7 +15,8 @@ require 'crack'
 require 'open-uri'
 require 'rest-client'
 # require "rails/test_unit/railtie"
-
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)

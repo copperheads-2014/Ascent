@@ -6,21 +6,33 @@ class FlightsController < ApplicationController
   def show
     @flight = Flight.find(params[:id])
     @data_points = @flight.data_points
+    @f_comments = @flight.comments.order(created_at: :desc)
   end
 
   def create
-      p flight_params
-      Flight::import_habhub_from_url(flight_params[:address])
-      redirect_to flights_path
+    flight = new_user_flight.import_from_habhub(flight_params[:address])
+    redirect_to flight_path(flight)
   end
 
   def import
-    Flight.import(params[:file])
-    redirect_to root_url, notice: "Your flight has been imported."
+    flight = new_user_flight.import_from_csv(params[:file])
+    redirect_to new_flight_picture_path(flight), notice: "Your flight has been imported."
+  end
+
+  def feed
+    @flights = current_user.all_friends.collect{|x| x.flights}.flatten.sort_by{|x| x.created_at}
   end
 
   private
-    def flight_params
-      params.require(:new_flight).permit(:address)
-    end
+
+  def new_user_flight
+    @flight = Flight.create
+    @launch = Launch.create(user_id: current_user.id, flight_id: @flight.id)
+    @flight
+  end
+
+  def flight_params
+    params.require(:new_flight).permit(:address, :user_id)
+  end
+
 end

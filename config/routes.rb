@@ -1,10 +1,39 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   get 'welcome/index'
 
-  resources :flights do
-    collection { post :import}
-    resources :data_points
+  get "logout" => "sessions#destroy"
+  get "login" => "sessions#new"
+  get "signup" => "users#new"
+  put "approve/:id" => "friendships#approve"
+  post "comments/flights" => "comments#create_for_flight"
+  post "comments/data" => "comments#create_for_datapoint"
+
+  # resources :comments, only: [:show] # do
+  #   collection do
+  #     post 'flight'
+  #     post 'data'
+  #   end
+  # end
+
+  resources :friendships
+  resources :likes, only: :create
+
+  resources :users do
+    get :autocomplete_username, :on => :collection
   end
+  resources :sessions
+
+
+  get "flights/feed" => "flights#feed"
+
+  resources :flights do
+    collection { post :import }
+    resources :data_points
+    resources :pictures
+  end
+
 
   resources :charts, only: [:index, :show]
 

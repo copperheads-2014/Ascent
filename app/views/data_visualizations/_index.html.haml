@@ -1,0 +1,11 @@
+#main
+  %grid
+    #chart
+    #map
+#data_comment
+  =form_for :comments, html: {id: "datapoint_comment"} do |f|
+    =f.text_field :body
+    =f.hidden_field :data_point, id: "data_point"
+    #submit_field
+      =f.submit "comment", id: "data_submit"
+
