@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :likes
   has_many :liked_flights, through: :likes, source: :flight
 
+  mount_uploader :avatar, ImageUploader
+
   def self.authenticate(username, password)
     find_by_username(username).try(:authenticate, password)
   end
