@@ -26,7 +26,7 @@ button:active {
   width: 45%;
 
 }
-#button-play, #button-pause, #chart_button, #map_button {
+#button-play, #button-pause, #chart_button, #chart_map_button {
   width: 45%;
   height: 35px;
   border: 2px solid #999999;
@@ -38,9 +38,15 @@ button:active {
   display: inline-block;
 }
 
+#chart_button {
+  visibility: hidden;
+}
 
+#map_button {
+  visibility: hidden;
+}
 
-#button-play:hover, #button-pause:hover, #chart_button:hover, #map_button:hover {
+#button-play:hover, #button-pause:hover, #chart_map_button:hover {
   color: #191919;
   background-color: #B2B2C1;
 }
