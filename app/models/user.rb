@@ -22,4 +22,16 @@ class User < ActiveRecord::Base
   def all_friends
     (friends + inverse_friends).uniq
   end
+
+  def approved_friends
+    friendships.where("approved = true").map(&:friend)
+  end
+
+  def pending_friends
+    friendships.where("approved = false").map(&:friend)
+  end
+
+  def friend_requests
+    inverse_friendships.where("approved = false")
+  end
 end
