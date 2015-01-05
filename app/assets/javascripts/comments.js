@@ -10,7 +10,11 @@ var appendResult = function(entry){
 }
 
 
+<<<<<<< HEAD
 var ready = function() {
+=======
+$(document).ready(function(){
+>>>>>>> made comments display
 
   $("#toggle_comment").on("click", function(e){
     e.preventDefault();
@@ -60,7 +64,11 @@ var ready = function() {
       $("#show_comments").trigger("click")
     }
   })
+<<<<<<< HEAD
 }
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
+=======
+})
+>>>>>>> made comments display
