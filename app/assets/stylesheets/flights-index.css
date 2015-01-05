@@ -1,0 +1,57 @@
+#flights-header {
+  margin: 3% 0;
+}
+#flights-header h1 {
+  font-family: 'Armata', sans-serif;
+  color: white;
+  font-size: 48px;
+}
+#flights-body {
+  display: flex;
+  flex-flow: column;
+  height: auto;
+  background: rgb(25, 25, 25);
+}
+.flights-row-header {
+  height: 28px;
+  text-align: left;
+  padding-left: 35px;
+  font-family: 'Armata', sans-serif;
+  color: white;
+  font-size: 18px;
+}
+.each-flight {
+  display: inline-block;
+  position: relative;
+  height: 160px;
+  width: 260px;
+  background: white;
+  margin: 10px;
+}
+.each-flight a {
+  font-family: 'Armata', sans-serif;
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  height: 100%;
+  width: 100%;
+  padding-top: 5px;
+}
+.flights-row-body {
+  position: relative;
+  height: 180px;
+  padding: 0 25px;
+  overflow: auto;
+  white-space: nowrap;
+  margin-bottom: 30px;
+}
+.flights-row-body div.scrollableArea img {
+  position: relative;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+#flights-footer {
+  width: 100%;
+  height:200px;
+}

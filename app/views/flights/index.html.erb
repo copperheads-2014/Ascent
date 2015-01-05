@@ -1,0 +1,49 @@
+<header id="flights-header"><h1>Flights</h1></header>
+
+<div id="flights-body">
+  <% if current_user %>
+  <div class="flights-row-header">Friends' Flights</div>
+  <div id="friends-flights" class="flights-row-body">
+    <% @flights.each do |flight| %>
+    <div class="each-flight" <% if flight.pictures.present? %> style="background: url(<%= flight.pictures.first.image_url(:thumb).to_s %>) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
+    <% end %>
+  </div>
+  <% end %>
+
+  <div class="flights-row-header">Most Liked</div>
+  <div id="most-liked" class="flights-row-body">
+    <% @flights.each do |flight| %>
+    <div class="each-flight"><%= link_to flight.callsign, flight_path(flight) %></div>
+    <% end %>
+  </div>
+
+  <div class="flights-row-header">Latest</div>
+  <div id="latest" class="flights-row-body">
+    <% @flights.each do |flight| %>
+    <div class="each-flight"><%= link_to flight.callsign, flight_path(flight) %></div>
+    <% end %>
+  </div>
+
+  <div class="flights-row-header">Flights Near You</div>
+  <div id="flights-near-you" class="flights-row-body">
+    <% @flights_near_you.each do |flight| %>
+    <div class="each-flight"><%= link_to flight.callsign, flight_path(flight) %></div>
+    <% end %>
+  </div>
+
+  <div class="flights-row-header">Highest Altitude</div>
+  <div id="highest-altitude" class="flights-row-body">
+    <% @flights.each do |flight| %>
+    <div class="each-flight"><%= link_to flight.callsign, flight_path(flight) %></div>
+    <% end %>
+  </div>
+
+  <div class="flights-row-header">Longest Duration</div>
+  <div id="longest-duration" class="flights-row-body">
+    <% @flights.each do |flight| %>
+    <div class="each-flight"><%= link_to flight.callsign, flight_path(flight) %></div>
+    <% end %>
+  </div>
+</div>
+
+<footer id="flights-footer"></footer>

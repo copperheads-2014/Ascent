@@ -194,6 +194,39 @@ var ready = function() {
   //   }
   // })
 
+  $(".flights-row-body").smoothDivScroll({
+      manualContinuousScrolling: true
+  });
+
+  $("#post_comment").on("submit", function(e) {
+    e.preventDefault()
+    var request = $.ajax({
+      url: "/comments/flights.json",
+      type: "post",
+      data: $("#post_comment").serialize(),
+      dataType: "json"
+    })
+    request.done(appendResult)
+    $("#comment").slideUp("slow")
+    $("#toggle_comment").css("color", "black")
+    $("#comment input[type='text']").val("")
+    if ($("#comment_roll").is(":hidden")){
+      $("#show_comments").trigger("click")
+    }
+  })
+
+  $("#datapoint_comment").on("submit", function(e) {
+    e.preventDefault()
+    var request = $.ajax({
+      url: "/comments/data",
+      method: "post",
+      data: $("#datapoint_comment").serialize()
+    })
+    $("#data_comment").slideUp("slow")
+    $("#data_comment input[type='text']").val("")
+  })
+
+
   // $("#datapoint_comment").on("submit", function(e) {
   //   e.preventDefault()
   //   var request = $.ajax({
