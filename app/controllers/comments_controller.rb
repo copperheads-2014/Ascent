@@ -4,6 +4,6 @@ class CommentsController < ApplicationController
   end
 
   def create_for_datapoint
-    Comment.create(data_point_id: params[], body: params[:data_point][:body], user_id: current_user.id)
+    Comment.create(data_point_id: params[:comments][:data_point], body: params[:comments][:body], user_id: current_user.id, status: 1)
   end
 end
