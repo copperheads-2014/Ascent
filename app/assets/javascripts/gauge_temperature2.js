@@ -65,14 +65,15 @@ var loadThermometer2 = function(seriesData){
         data: [seriesData],
         dataLabels: {
           formatter: function() {
-            var degrees = Math.round(seriesData)
+            var degrees = Math.round(this.y)
             return '<div style="text-align:center"><span style="font-size:25px;color:' +
-                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'silver') + '">' + degrees + '</span><br/>' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + degrees + '</span><br/>' +
                    '<span style="font-size:14px;color:silver">°C</span></div>'
         }
       }}]
   });
 };
+
 
 var playThermometer2 = function() {
   thermometer2.series[0].points[0].update(flight_data[seriesIndex].temp);
