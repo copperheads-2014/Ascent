@@ -165,7 +165,7 @@ var ready = function() {
     $('#notification').removeClass("active");
   });
 
-  $("div#makeMeScrollable").smoothDivScroll({
+  $("#makeMeScrollable").smoothDivScroll({
     autoScrollingMode: "onStart"
   });
 

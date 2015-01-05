@@ -27,7 +27,7 @@
   height: 100px;
   background: lightblue;
   padding: 0 25px;
-  overflow: hidden;
+  overflow: auto;
   white-space: nowrap;
 }
 .each-flight {
@@ -79,6 +79,8 @@
   width: 100%;
   height:200px;
 }
+
+
 
 
 #makeMeScrollable {
