@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get "login" => "sessions#new"
   get "signup" => "users#new"
   put "approve/:id" => "friendships#approve"
+  post "comments/flights" => "comments#create_for_flight"
+  post "comments/data" => "comments#create_for_datapoints"
+
   resources :friendships
   resources :likes, only: :create
 

@@ -20,6 +20,20 @@ var advanceIndex = function() {
   }
 }
 
+var displayDataSubmit = function() {
+  $("#data_submit").delay(500).show('slide', {direction:'left'}, 1000)
+}
+
+var displayDataComment = function(data_point) {
+  if ($("#data_comment").is(":hidden")) {
+      $("#data_comment").slideDown("slow")
+      $("#data_point").val(data_point)
+      displayDataSubmit()
+    } else {
+      $("#data_comment").slideUp("slow")
+    }
+}
+
 var togglePlayPause = function() {
   $("#button-play").toggle();
   $("#button-pause").toggle();
@@ -131,22 +145,63 @@ var ready = function() {
     $('#notification').removeClass("active");
   });
 
+  $("#post_comment").on("submit", function(e) {
+    e.preventDefault()
+    var request = $.ajax({
+      url: "/comments/flights",
+      method: "post",
+      data: $("#post_comment").serialize()
+    })
+    $("#comment").slideUp("slow")
+    $("#toggle_comment").css("color", "black")
+    $("#comment input[type='text']").val("")
+  })
+
   $("#like").one("submit", function(e){
     e.preventDefault()
     var request = $.ajax({
       url: "/likes",
       method: "post",
-      data: $("form").serialize()
+      data: $("#like").serialize()
     })
     request.fail(function(response){
-      var string = $("#like_num").html()
-      var number = Number(string)
-      var numPlusOne = number += 1
-      $("#like_num").html(numPlusOne)
+      var string = $("#like_num").val()
+      var splitText = string.split(" ")
+      splitText[1] = (Number(splitText[1]) + 1)
+      var numWithLike = splitText.join(" ")
+      $("#like_num").val(numWithLike)
     })
-    $(this).css("color", "purple")
+    console.log(this)
+    $('#like_num').css("color", "purple")
     $(this).find('input[type="submit"]').attr('disabled','disabled');
   })
+
+  // $("#toggle_comment").on("click", function(){
+  //   $("#comment").toggle("display")
+  // })
+
+  $("#toggle_comment").on("click", function(e){
+    e.preventDefault();
+    if ($("#comment").is(":hidden")) {
+      $("#comment").slideDown("slow")
+      $(this).css("color", "purple")
+    } else {
+      $("#comment").slideUp("slow")
+      $(this).css("color", "black")
+    }
+  })
+
+  $("body").on(".info_box", "click", function(){
+    console.log("sup")
+  })
+  // $("#post_comment").on("submit", function(e){
+  //   e.preventDefault()
+  //   $.ajax({
+  //     url: "/comments",
+  //     method: "post",
+  //     data: $(form)
+  //   })
+  // })
 }
 
 $(document).ready(ready);

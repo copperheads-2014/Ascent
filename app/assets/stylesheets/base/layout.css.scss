@@ -13,7 +13,7 @@ h3 {
 }
 
 html,body {
-  height: auto;
+  height: 1400px;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -155,3 +155,50 @@ desc {
   padding-right: 2%;
 }
 
+#comment{
+  display: none;
+}
+
+input[type="submit"] {
+  width: 200px;
+  height: 45px;
+  border: 2px solid black;
+  background: rgba(0,0,0,0);
+  outline: none;
+}
+
+input[type="submit"]:hover {
+  background: lightgray;
+}
+
+input[type="text"] {
+  height: 43px;
+  width: 200px;
+  border: 2px solid black;
+  outline: none;
+}
+#data_comment {
+  display: none;
+  margin-bottom: 10px;
+}
+#data_comment input[type="submit"]  {
+  height: 25px;
+  width: 150px;
+  font-size: 15px;
+}
+
+#data_comment input[type="text"] {
+  vertical-align: top;
+  height: 25px;
+  width: 300px;
+}
+
+#data_submit {
+  display: none;
+}
+
+#submit_field {
+  display: inline-block;
+  width: 150px;
+  height: 25px;
+}
