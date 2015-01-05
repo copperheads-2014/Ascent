@@ -53,16 +53,18 @@ html,body {
 
 #chart {
   height: 400px;
-  width: 90%;
+  width: 65%;
   margin: 0 auto;
-  left: 50%;
+  position: absolute;
 }
 
 #map {
   clear: both;
   height: 400px;
-  width: 90%;
+  width: 65%;
   margin: 0 auto;
+  z-index: -1;
+  position: absolute;
 }
 
 table {
