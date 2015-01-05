@@ -17,6 +17,8 @@ gem 'highcharts-rails'
 
 gem 'json'
 
+gem 'tweet-button'
+
 # scrapey scrapey
 
 gem 'crack'
