@@ -1,3 +1,27 @@
+* {
+  border: 1px solid yellow;
+}
+
+#profile_user {
+  position: relative;
+  height: 200px;
+  img {
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    width: 30%;
+    display: inline-block;
+  }
+  .username {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #ccc;
+    width: 30%;
+    font-size: 1.7em;
+  }
+}
+
 table#friends {
   color: #ccc;
   margin: auto;
@@ -13,5 +37,23 @@ table#friends {
   }
   .pending {
     font-style: italic;
+  }
+}
+
+#profile_flights {
+  .flight {
+    display: inline-block;
+    width: 30%;
+    height: 200px;
+    margin: auto;
+    margin-right: 10%;
+    position: relative;
+  }
+  p {
+    font-size: 1.5em;
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 25%;
   }
 }
