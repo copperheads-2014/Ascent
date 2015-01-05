@@ -165,8 +165,7 @@ var ready = function() {
     $('#notification').removeClass("active");
   });
 
-  $("#makeMeScrollable").smoothDivScroll({
-    autoScrollingMode: "onStart"
+  $(".flights-row-body").smoothDivScroll({
   });
 
   $("#post_comment").on("submit", function(e) {
