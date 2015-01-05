@@ -10,6 +10,13 @@ Rails.application.routes.draw do
   post "comments/flights" => "comments#create_for_flight"
   post "comments/data" => "comments#create_for_datapoint"
 
+  # resources :comments, only: [:show] # do
+  #   collection do
+  #     post 'flight'
+  #     post 'data'
+  #   end
+  # end
+
   resources :friendships
   resources :likes, only: :create
 

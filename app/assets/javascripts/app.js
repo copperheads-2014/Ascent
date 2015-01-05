@@ -78,6 +78,17 @@ var ready = function() {
     });
   };
 
+  var appendResult = function(entry){
+    console.log(entry)
+    var divForComment = "<div class = 'comment_body'>"
+    var commentBody = entry.body
+    var br = "</br>"
+    var commentAuthor = entry.author
+    var endOfDiv = "</div>"
+    var fullComment = divForComment + commentBody + br + commentAuthor + endOfDiv
+    $("#comment_roll").prepend(fullComment)
+  }
+
 
   var play = function(interval) {
     console.log(interval);
@@ -169,14 +180,12 @@ var ready = function() {
   $("#post_comment").on("submit", function(e) {
     e.preventDefault()
     var request = $.ajax({
-      url: "/comments/flights",
+      url: "/comments/flights.json",
       type: "post",
       data: $("#post_comment").serialize(),
       dataType: "json"
     })
-    request.fail(function(response){
-      console.log(response.body)
-    })
+    request.done(appendResult)
     $("#comment").slideUp("slow")
     $("#toggle_comment").css("color", "black")
     $("#comment input[type='text']").val("")

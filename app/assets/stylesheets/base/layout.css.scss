@@ -240,8 +240,13 @@ input[type="text"] {
   border-radius: 41px;
 }
 
+// $primary: ;
+// $secondary: ;
+$highlight: #4d1eb3;
+// lighten($highlight, 20%)
+
 .comment_body:hover {
-  background-color: #4d1eb3;
+  background-color: $highlight;
 }
 
 // .comment_body:after {
