@@ -49,6 +49,7 @@ var ready = function() {
   resizeContainer();
 
 
+
   full_path = window.location.pathname
   flight_id = window.location.pathname.split('/')[2];
 
@@ -71,7 +72,7 @@ var ready = function() {
       loadAltimeter(flight_data[0].y);
       loadThermometer2(flight_data[0].temp);
       loadBarometer(flight_data[0].pressure);
-      // loadMap();
+      loadMap();
     });
   };
 
