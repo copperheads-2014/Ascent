@@ -20,24 +20,37 @@ end
 # end
 
 User.create(username: "danielle", password: "password")
-
 User.create(username: "thomas", password: "1")
 User.create(username: "mak", password: "1")
 User.create(username: "josh", password: "1")
 User.create(username: "cody", password: "1")
-User.create(username: "grant", password: "1")
-User.create(username: "ryan", password: "1")
-User.create(username: "jordy", password: "1")
-User.create(username: "eleni", password: "1")
-User.create(username: "dave", password: "1")
-User.create(username: "lucas", password: "1")
 
-Friendship.create(user: "2", friend: "1")
-Friendship.create(user: "2", friend: "3")
-Friendship.create(user: "2", friend: "4")
-Friendship.create(user: "2", friend: "5")
-Friendship.create(user: "2", friend: "6")
-Friendship.create(user: "2", friend: "7")
-Friendship.create(user: "2", friend: "8")
-Friendship.create(user: "2", friend: "9")
+80.times do
+ User.create(username: Faker::Name.name, password: "1")
+end
 
+counter = 6
+10.times do
+  Friendship.create(user_id: counter, friend_id: 1)
+  counter += 1
+end
+
+10.times do
+  Friendship.create(user_id: counter, friend_id: 2)
+  counter += 1
+end
+
+10.times do
+  Friendship.create(user_id: counter, friend_id: 3)
+  counter += 1
+end
+
+10.times do
+  Friendship.create(user_id: counter, friend_id: 4)
+  counter += 1
+end
+
+10.times do
+  Friendship.create(user_id: counter, friend_id: 5)
+  counter += 1
+end

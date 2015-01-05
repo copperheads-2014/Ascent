@@ -1,6 +1,26 @@
 class FlightsController < ApplicationController
   def index
     @flights = Flight.all
+
+    if current_user
+      friends_array = []
+      current_user.friends.each do |friend|
+        friend.flights.each do |flight|
+          friends_array << flight
+        end
+      end
+      @friends_flights = friends_array.sort_by { |flight| flight.created_at }.reverse
+    end
+
+    likes_hash = {}
+    @flights.each { |flight| likes_hash[flight] = flight.likes.count }
+    liked_nested_array = likes_hash.sort_by {|k,v| v}.reverse
+    @most_liked = liked_nested_array.map { |nested_array| nested_array[0] }
+
+    @latest = @flights.order(created_at: :desc).limit(100)
+    @flights_near_you = Flight.all.limit(3)
+    @highest_altitude = @flights.order(max_altitude: :desc).limit(100)
+    @longest_duration = @flights.order(duration: :desc).limit(100)
   end
 
   def show

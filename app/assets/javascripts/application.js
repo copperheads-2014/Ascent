@@ -6,5 +6,3 @@
 //= require turbolinks
 //= require jquery_ujs
 
-
-

@@ -192,12 +192,12 @@ form {
   width: 256px;
   border: 2px solid lightgray;
   background: white;
-  overflow: scroll;
-  z-index: 1;
+  overflow: auto;
+  z-index: 999;
 }
 #notification.active a {
   font-family: 'Armata', sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   color: #D1DBDD;
   padding-left: 10px;
 }
@@ -218,8 +218,10 @@ form {
 }
 .flex-2 {
   display: flex;
+  justify-content: center;
   align-items: center;
   flex: 3;
+  padding: 0 5px;
 }
 #notification hr:last-child { display: none; }
 #notification.active input {
