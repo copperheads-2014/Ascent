@@ -115,14 +115,14 @@ var ready = function() {
   $('#dropdown1').click(function(){
     $('.menu').toggleClass("active");
   });
-  $(".menu").hover(function(){}, function() {
+  $(".menu").hover(function() {
     $('.menu').removeClass("active");
   });
 
   $('.login').click(function(){
     $('.menu-login').toggleClass("active");
   });
-  $(".menu-login").hover(function(){}, function() {
+  $(".menu-login").hover(function() {
     $('.menu-login').removeClass("active");
   });
 
@@ -155,6 +155,17 @@ var ready = function() {
     $("#comment").slideUp("slow")
     $("#toggle_comment").css("color", "black")
     $("#comment input[type='text']").val("")
+  })
+
+  $("#datapoint_comment").on("submit", function(e) {
+    e.preventDefault()
+    var request = $.ajax({
+      url: "/comments/data",
+      method: "post",
+      data: $("#datapoint_comment").serialize()
+    })
+    $("#data_comment").slideUp("slow")
+    $("#data_comment input[type='text']").val("")
   })
 
   $("#like").one("submit", function(e){
