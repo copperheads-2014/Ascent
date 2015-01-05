@@ -26,7 +26,7 @@ button:active {
   width: 45%;
 
 }
-#button-play, #button-pause, #chart_button, #chart_map_button {
+#button-play, #button-pause, #chart_button, #chart_map_button, #comment_button, #like_button {
   width: 45%;
   height: 35px;
   border: 2px solid #999999;

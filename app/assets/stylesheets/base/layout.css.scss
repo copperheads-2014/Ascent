@@ -67,12 +67,22 @@ html,body {
 
 table {
   margin: auto;
-  width: 80%;
+  width: 60%;
 }
 
 
-td {
+.tdleft {
   text-align: left;
+}
+
+.tdright {
+  text-align: right;
+  float: right;
+}
+
+.tdmiddle{
+  text-align: center;
+  margin: 0, auto;
 }
 
 .gauges {

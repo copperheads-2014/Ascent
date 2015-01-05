@@ -9,22 +9,40 @@
         %h3
           %table
             %tr
-              %td Max Altitude
-              %td
+              %td.tdleft Max Altitude
+              %td.tdright
                 ="#{@flight.max_altitude} m"
               / %td
               /   ="#{to_feet(@flight.max_altitude)} ft"
             %tr
-              %td Distance Traveled
-              %td
+              %td.tdleft Distance Traveled
+              %td.tdright
                 ="#{@flight.distance_traveled.round} km"
               / %td
               /   ="#{to_miles(@flight.distance_traveled.round)} miles"
             %tr
-              %td Trip Duration
-              %td
+              %td.tdleft Trip Duration
+              %td.tdright
                 ="#{@flight.duration}"
-              %td
+            %tr
+            %tr
+              %td.tdleft
+                =form_for :likes, html: {id: "like"} do |f|
+                  =f.hidden_field :id, value: "#{params[:id]}"
+                  =f.submit "LIKE: #{@flight.likes.length}" , class: 'like_button', id: "like_num"
+              %td.tdright
+                %input{type: "submit", value: "COMMENT", id: "toggle_comment"}
+            %tr
+              %td.tdleft
+              %td.tdright
+                #comment
+                  =form_for :comments, html: {id: "post_comment"} do |f|
+                    =f.hidden_field :id, value: "#{params[:id]}"
+                    =f.text_field :body
+                    %br
+                    =f.submit "Submit",
+
+
 
     %div{:class => 'col-2-3'}
       %div.flight_chart
@@ -47,15 +65,15 @@
       #gauge_1
       #gauge_4
 
-  =form_for :likes, html: {id: "like"} do |f|
-    =f.hidden_field :id, value: "#{params[:id]}"
-    =f.submit "LIKE: #{@flight.likes.length}" , class: 'like_button', id: "like_num"
-  %input{type: "submit", value: "COMMENT", id: "toggle_comment"}
-  #comment
-    =form_for :comments, html: {id: "post_comment"} do |f|
-      =f.hidden_field :id, value: "#{params[:id]}"
-      =f.text_field :body
-      %br
-      =f.submit "Submit"
+  / =form_for :likes, html: {id: "like"} do |f|
+  /   =f.hidden_field :id, value: "#{params[:id]}"
+  /   =f.submit "LIKE: #{@flight.likes.length}" , class: 'like_button', id: "like_num"
+  / %input{type: "submit", value: "COMMENT", id: "toggle_comment"}
+  / #comment
+  /   =form_for :comments, html: {id: "post_comment"} do |f|
+  /     =f.hidden_field :id, value: "#{params[:id]}"
+  /     =f.text_field :body
+  /     %br
+  /     =f.submit "Submit"
 
 
