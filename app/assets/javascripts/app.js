@@ -4,6 +4,7 @@ var flight_id;
 var flight_data;
 var seriesIndex = 0;
 var pause;
+var playSpeed;
 
 var resizeContainer = function(){
   var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -11,12 +12,13 @@ var resizeContainer = function(){
   $('.container').css('height', (window_height - 50))
 }
 
-var advanceIndex = function() {
-  if(seriesIndex < flight_data.length) {
-    seriesIndex++;
+var advanceIndex = function(resolution) {
+  if(seriesIndex < flight_data.length - 1) {
+    seriesIndex = seriesIndex + resolution;
   }
   else {
-    pause();
+    seriesIndex = seriesIndex[flight_data.length -1]
+    togglePlayPause();
   }
 }
 
@@ -37,13 +39,20 @@ var displayDataComment = function(data_point) {
 var togglePlayPause = function() {
   $("#button-play").toggle();
   $("#button-pause").toggle();
+  if (seriesIndex >= flight_data.length - 1){
+    seriesIndex = 0
+  }
+}
+
+var toggleMapChart = function() {
+  $("#chart_button").toggle();
+  $("#map_button").toggle();
 }
 
 var ready = function() {
   resizeContainer();
 
   full_path = window.location.pathname
-  domain = window.location.pathname.split('/')[0]
   flight_id = window.location.pathname.split('/')[2];
 
   if(full_path === "/"){
@@ -71,11 +80,24 @@ var ready = function() {
 
 
   var play = function(interval) {
-    indexInterval = setInterval(function() {
-      advanceIndex();
-      playChart();
+    console.log(interval);
+
+    if (playSpeed === 'superfast'){
+      resolution = 10;
+    }
+    else if (playSpeed === 'fast') {
+      resolution = 5
+    }
+    else {
+      resolution = 1
+    }
+
+    duration = (flight_data.length * interval) / resolution;
+
+    loadChart(flight_data, duration);
+    setInterval(function() {
+      advanceIndex(resolution);
       playAltimeter();
-      playThermometer();
       playThermometer2();
       playBarometer();
       playMap();
@@ -92,8 +114,7 @@ var ready = function() {
 
   $("#button-play").click(function(){
     togglePlayPause();
-    $display.show('slide', {direction: 'left'}, 400);
-    play(1);
+    play(200);
   });
 
   $("#map_button").click(function(){
