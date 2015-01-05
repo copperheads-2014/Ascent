@@ -13,13 +13,19 @@ var resizeContainer = function(){
   $('.container').css('height', (window_height - 50))
 }
 
+var resetPlayButton = function(){
+  $('#button-play').html("<i class='fa fa-play'></i>");
+}
+
 var advanceIndex = function(resolution) {
   if(seriesIndex < flight_data.length - 1) {
     seriesIndex = seriesIndex + resolution;
   }
   else {
     seriesIndex = seriesIndex[flight_data.length -1];
-    clearInterval(currentInterval)  }
+    clearInterval(currentInterval);
+    resetPlayButton();
+    }
 }
 
 var displayDataSubmit = function() {
@@ -44,13 +50,12 @@ var togglePlay = function(){
   // (playSpeed === 1)
   else {
     $('#button-play').html('Slower');
-    playSpeed = 5;
+    playSpeed = 20;
   };
 };
 
 var ready = function() {
   resizeContainer();
-
 
 
   full_path = window.location.pathname
@@ -137,6 +142,8 @@ var ready = function() {
       playMap();
     }, interval);
   }
+
+
 
   $(window).on('resize', function(){
     resizeContainer();
