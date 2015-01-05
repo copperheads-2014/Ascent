@@ -136,14 +136,14 @@ var ready = function() {
   $('#dropdown1').click(function(){
     $('.menu').toggleClass("active");
   });
-  $(".menu").hover(function() {
+  $(".menu").hover(function(){}, function() {
     $('.menu').removeClass("active");
   });
 
   $('.login').click(function(){
     $('.menu-login').toggleClass("active");
   });
-  $(".menu-login").hover(function() {
+  $(".menu-login").hover(function(){}, function() {
     $('.menu-login').removeClass("active");
   });
 
