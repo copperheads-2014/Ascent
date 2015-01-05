@@ -36,7 +36,7 @@ var loadAltimeter = function(seriesData){
       min: 0,
       max: 9999,
       lineColor: '#191919',
-      tickColor: 'purple',
+      tickColor: '#4d1eb3',
       minorTickColor: '#878787',
       offset: -25,
       labels: {
@@ -64,7 +64,7 @@ var loadAltimeter = function(seriesData){
         formatter: function () {
           var meters = this.y,
           feet = Math.round(meters * 3.28084);
-          return '<br><span style="color:#800080">'+ meters + ' m</span><br/>' +
+          return '<br><span style="color:#4d1eb3">'+ meters + ' m</span><br/>' +
           '<span style="color:#878787">' + feet + ' fT</span>';
         },
         backgroundColor: '#191919',

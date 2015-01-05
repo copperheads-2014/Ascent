@@ -78,16 +78,16 @@ var ready = function() {
     });
   };
 
-  var appendResult = function(entry){
-    console.log(entry)
-    var divForComment = "<div class = 'comment_body'>"
-    var commentBody = entry.body
-    var br = "</br>"
-    var commentAuthor = entry.author
-    var endOfDiv = "</div>"
-    var fullComment = divForComment + commentBody + br + commentAuthor + endOfDiv
-    $("#comment_roll").prepend(fullComment)
-  }
+  // var appendResult = function(entry){
+  //   console.log(entry)
+  //   var divForComment = "<div class = 'comment_body'>"
+  //   var commentBody = entry.body
+  //   var br = "</br>"
+  //   var commentAuthor = entry.author
+  //   var endOfDiv = "</div>"
+  //   var fullComment = divForComment + commentBody + br + commentAuthor + endOfDiv
+  //   $("#comment_roll").prepend(fullComment)
+  // }
 
 
   var play = function(interval) {
@@ -177,33 +177,33 @@ var ready = function() {
     $('#notification').removeClass("active");
   });
 
-  $("#post_comment").on("submit", function(e) {
-    e.preventDefault()
-    var request = $.ajax({
-      url: "/comments/flights.json",
-      type: "post",
-      data: $("#post_comment").serialize(),
-      dataType: "json"
-    })
-    request.done(appendResult)
-    $("#comment").slideUp("slow")
-    $("#toggle_comment").css("color", "black")
-    $("#comment input[type='text']").val("")
-    if ($("#comment_roll").is(":hidden")){
-      $("#show_comments").trigger("click")
-    }
-  })
+  // $("#post_comment").on("submit", function(e) {
+  //   e.preventDefault()
+  //   var request = $.ajax({
+  //     url: "/comments/flights.json",
+  //     type: "post",
+  //     data: $("#post_comment").serialize(),
+  //     dataType: "json"
+  //   })
+  //   request.done(appendResult)
+  //   $("#comment").slideUp("slow")
+  //   $("#toggle_comment").css("color", "black")
+  //   $("#comment input[type='text']").val("")
+  //   if ($("#comment_roll").is(":hidden")){
+  //     $("#show_comments").trigger("click")
+  //   }
+  // })
 
-  $("#datapoint_comment").on("submit", function(e) {
-    e.preventDefault()
-    var request = $.ajax({
-      url: "/comments/data",
-      method: "post",
-      data: $("#datapoint_comment").serialize()
-    })
-    $("#data_comment").slideUp("slow")
-    $("#data_comment input[type='text']").val("")
-  })
+  // $("#datapoint_comment").on("submit", function(e) {
+  //   e.preventDefault()
+  //   var request = $.ajax({
+  //     url: "/comments/data",
+  //     method: "post",
+  //     data: $("#datapoint_comment").serialize()
+  //   })
+  //   $("#data_comment").slideUp("slow")
+  //   $("#data_comment input[type='text']").val("")
+  // })
 
   $("#like").one("submit", function(e){
     e.preventDefault()
@@ -220,7 +220,7 @@ var ready = function() {
       $("#like_num").val(numWithLike)
     })
     console.log(this)
-    $('#like_num').css("color", "purple")
+    $('#like_num').css("color", "#4d1eb3")
     $(this).find('input[type="submit"]').attr('disabled','disabled');
   })
 
@@ -228,30 +228,27 @@ var ready = function() {
   //   $("#comment").toggle("display")
   // })
 
-  $("#toggle_comment").on("click", function(e){
-    e.preventDefault();
-    if ($("#comment").is(":hidden")) {
-      $("#comment").slideDown("slow")
-      $(this).css("color", "purple")
-    } else {
-      $("#comment").slideUp("slow")
-      $(this).css("color", "black")
-    }
-  })
+  // $("#toggle_comment").on("click", function(e){
+  //   e.preventDefault();
+  //   if ($("#comment").is(":hidden")) {
+  //     $("#comment").slideDown("slow")
+  //     $(this).css("color", "#4d1eb3")
+  //   } else {
+  //     $("#comment").slideUp("slow")
+  //     $(this).css("color", "black")
+  //   }
+  // })
 
-  $("body").on(".info_box", "click", function(){
-    console.log("sup")
-  })
+  // $("#show_comments").on("click", function(){
+  //   if ($("#comment_roll").is(":hidden")) {
+  //     $("#show_comments").val("hide comments")
+  //     $("#comment_roll").show('slide', {direction:'up'}, 1000)
+  //   } else {
+  //     $("#show_comments").val("show comments")
+  //     $("#comment_roll").hide("slide", {direction: 'up'}, 1000);
+  //   }
+  // })
 
-  $("#show_comments").on("click", function(){
-    if ($("#comment_roll").is(":hidden")) {
-      $("#show_comments").val("hide comments")
-      $("#comment_roll").show('slide', {direction:'up'}, 1000)
-    } else {
-      $("#show_comments").val("show comments")
-      $("#comment_roll").slideUp("slow");
-    }
-  })
   // $("#post_comment").on("submit", function(e){
   //   e.preventDefault()
   //   $.ajax({

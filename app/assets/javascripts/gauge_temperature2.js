@@ -43,7 +43,7 @@ var loadThermometer2 = function(seriesData){
         tickWidth: 0,
         labels: {
           y: 16,
-          style: {color: 'purple'}
+          style: {color: '#4d1eb3'}
         },
         min: -50,
         max: 50
