@@ -1,0 +1,6 @@
+#comment_roll
+  -@f_comments.each do |comment|
+    .comment_body
+      = comment.body
+      %br
+      = comment.author.username

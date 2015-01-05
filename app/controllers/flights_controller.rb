@@ -6,6 +6,7 @@ class FlightsController < ApplicationController
   def show
     @flight = Flight.find(params[:id])
     @data_points = @flight.data_points
+    @f_comments = @flight.comments.order(created_at: :desc)
   end
 
   def create

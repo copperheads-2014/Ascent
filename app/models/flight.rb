@@ -1,5 +1,6 @@
 require 'habhub'
 
+
 class Flight < ActiveRecord::Base
   has_many :data_points
   has_many :launches
@@ -11,7 +12,9 @@ class Flight < ActiveRecord::Base
 
   SEA_LEVEL_PRESSURE = 1013.25 #mbars
 
+  include FlightsHelper
 # INSTANCE METHODS
+
   def starting_point
     [self.data_points.first.data["latitude"], self.data_points.first.data["longitude"]]
   end

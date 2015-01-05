@@ -78,6 +78,17 @@ var ready = function() {
     });
   };
 
+  var appendResult = function(entry){
+    console.log(entry)
+    var divForComment = "<div class = 'comment_body'>"
+    var commentBody = entry.body
+    var br = "</br>"
+    var commentAuthor = entry.author
+    var endOfDiv = "</div>"
+    var fullComment = divForComment + commentBody + br + commentAuthor + endOfDiv
+    $("#comment_roll").prepend(fullComment)
+  }
+
 
   var play = function(interval) {
     console.log(interval);
@@ -169,13 +180,18 @@ var ready = function() {
   $("#post_comment").on("submit", function(e) {
     e.preventDefault()
     var request = $.ajax({
-      url: "/comments/flights",
-      method: "post",
-      data: $("#post_comment").serialize()
+      url: "/comments/flights.json",
+      type: "post",
+      data: $("#post_comment").serialize(),
+      dataType: "json"
     })
+    request.done(appendResult)
     $("#comment").slideUp("slow")
     $("#toggle_comment").css("color", "black")
     $("#comment input[type='text']").val("")
+    if ($("#comment_roll").is(":hidden")){
+      $("#show_comments").trigger("click")
+    }
   })
 
   $("#datapoint_comment").on("submit", function(e) {
@@ -196,7 +212,7 @@ var ready = function() {
       method: "post",
       data: $("#like").serialize()
     })
-    request.fail(function(response){
+    request.done(function(response){
       var string = $("#like_num").val()
       var splitText = string.split(" ")
       splitText[1] = (Number(splitText[1]) + 1)
@@ -225,6 +241,16 @@ var ready = function() {
 
   $("body").on(".info_box", "click", function(){
     console.log("sup")
+  })
+
+  $("#show_comments").on("click", function(){
+    if ($("#comment_roll").is(":hidden")) {
+      $("#show_comments").val("hide comments")
+      $("#comment_roll").show('slide', {direction:'up'}, 1000)
+    } else {
+      $("#show_comments").val("show comments")
+      $("#comment_roll").slideUp("slow");
+    }
   })
   // $("#post_comment").on("submit", function(e){
   //   e.preventDefault()

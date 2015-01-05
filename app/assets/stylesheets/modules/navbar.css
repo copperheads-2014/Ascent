@@ -59,9 +59,9 @@ nav a {
   background: lightgray;
 }
 /* Log-in ------------ */
-input {
+/*input {
   color: black;
-}
+}*/
 .menu {
   display: none;
 }
@@ -75,6 +75,7 @@ input {
   width: 146px;
   border: 2px solid lightgray;
   background: white;
+  z-index: 1;
 }
 #caret {
   padding-left: 15px;
@@ -95,6 +96,8 @@ hr {
   width: 246px;
   border: 2px solid lightgray;
   background: white;
+  z-index: 9;
+
 }
 .menu-login.active a {
   text-decoration: none;
@@ -190,6 +193,7 @@ form {
   border: 2px solid lightgray;
   background: white;
   overflow: scroll;
+  z-index: 1;
 }
 #notification.active a {
   font-family: 'Armata', sans-serif;
