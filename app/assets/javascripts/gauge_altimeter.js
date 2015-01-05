@@ -79,7 +79,7 @@ var loadAltimeter = function(seriesData){
       dial: {
         radius: '30%',
         baseWidth: 10,
-        baseLength: '30%',
+        baseLength: '50%',
         backgroundColor: '#777777'
       },
       dataLabels: {enabled: false},

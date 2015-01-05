@@ -15,6 +15,7 @@ var resizeContainer = function(){
 
 var resetPlayButton = function(){
   $('#button-play').html("<i class='fa fa-play'></i>");
+  playSpeed = 0;
 }
 
 var advanceIndex = function(resolution) {
@@ -50,7 +51,7 @@ var togglePlay = function(){
   // (playSpeed === 1)
   else {
     $('#button-play').html('Slower');
-    playSpeed = 20;
+    playSpeed = 5;
   };
 };
 
