@@ -101,4 +101,12 @@ class Flight < ActiveRecord::Base
       data_points.create!(data: HabHub.parse(point).to_json)
     end
   end
+
+  def album_cover
+    if pictures.any?
+      pictures.sample.image_url(:thumb)
+    else
+      "space_balloon_default.jpg"
+    end
+  end
 end
