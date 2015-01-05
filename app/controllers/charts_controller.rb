@@ -12,6 +12,7 @@ class ChartsController < ApplicationController
   					 temp: p[:data]['temperature'],
              latitude: p[:data]['latitude'],
              longitude: p[:data]['longitude'],
+             id: p.id,
              pressure: p[:data]['pressure']}
   	end
 

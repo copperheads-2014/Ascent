@@ -58,7 +58,7 @@ var loadChart = function(seriesData, duration) {
               loadAltimeter(this.y);
               loadThermometer2(this.temp);
               loadBarometer(this.pressure);
-              displayDataComment()
+              displayDataComment(this.id);
             }
 
           }

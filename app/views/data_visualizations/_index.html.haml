@@ -13,6 +13,7 @@
 #data_comment
   =form_for :comments do |f|
     =f.text_field :name
+    =f.hidden_field :data_point, id: "data_point"
     #submit_field
       =f.submit "comment", id: "data_submit"
 

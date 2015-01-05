@@ -24,9 +24,10 @@ var displayDataSubmit = function() {
   $("#data_submit").delay(500).show('slide', {direction:'left'}, 1000)
 }
 
-var displayDataComment = function() {
+var displayDataComment = function(data_point) {
   if ($("#data_comment").is(":hidden")) {
       $("#data_comment").slideDown("slow")
+      $("#data_point").val(data_point)
       displayDataSubmit()
     } else {
       $("#data_comment").slideUp("slow")
@@ -143,6 +144,18 @@ var ready = function() {
   $("#notification").hover(function(){}, function() {
     $('#notification').removeClass("active");
   });
+
+  $("#post_comment").on("submit", function(e) {
+    e.preventDefault()
+    var request = $.ajax({
+      url: "/comments/flights",
+      method: "post",
+      data: $("#post_comment").serialize()
+    })
+    $("#comment").slideUp("slow")
+    $("#toggle_comment").css("color", "black")
+    $("#comment input[type='text']").val("")
+  })
 
   $("#like").one("submit", function(e){
     e.preventDefault()
