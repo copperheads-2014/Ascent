@@ -1,16 +1,33 @@
 %h1
   ="#{@user.username}"
 
-%h3
-  ="My flights:"
+#profile_friends.col-1-3
+  %h3="friends"
+  %br
+  -@user.approved_friends.each do |friend|
+    =link_to friend.username, user_path(friend)
+
+  #profile_pending
+    -if current_user == @user
+      %h3="Pending"
+      %br
+      -@user.pending_friends.each do |friend|
+        =link_to friend.username, user_path(friend)
+
+  #profile_requests
+    -if current_user == @user
+      %h3="Friend requests"
+      %br
+      -@user.friend_requests.each do |friendship|
+        .friend.col-1-2
+          =link_to friendship.user.username, user_path(friendship.user)
+        =form_for :friendship, method: 'PUT', url: "/approve/#{friendship.id}", class: 'col-1-2' do |f|
+          =f.submit 'Add Friend' , class: 'button'
+
+#profile_flights.col-1-2
+  %h3="flights"
   %br
   -@user.flights.each do |flight|
     =link_to "#{flight.callsign}", flight_path(flight)
--if current_user == @user
-  -current_user.inverse_friendships.where("approved = false").each do |friendship|
-    - if friendship.user == current_user
-      %li= friendship.friend.username
-      =form_for :friendships, method: 'PUT', url: "/approve/#{friendship.id}" do |f|
-        =f.submit 'Add Friend' , class: 'button'
 
 
