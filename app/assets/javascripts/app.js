@@ -177,6 +177,10 @@ var ready = function() {
     $('#notification').removeClass("active");
   });
 
+  $("div#makeMeScrollable").smoothDivScroll({
+    autoScrollingMode: "onStart"
+  });
+
   $("#post_comment").on("submit", function(e) {
     e.preventDefault()
     var request = $.ajax({
@@ -204,6 +208,7 @@ var ready = function() {
     $("#data_comment").slideUp("slow")
     $("#data_comment input[type='text']").val("")
   })
+
 
   $("#like").one("submit", function(e){
     e.preventDefault()

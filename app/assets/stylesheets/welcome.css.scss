@@ -2,15 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-header {
+#welcome-header {
   margin: 5% 0;
 }
 
-header h1 {
+#welcome-header h1 {
+  font-family: 'Armata', sans-serif;
   color: white;
-  font-size: 100px;
+  font-size: 90px;
 }
 
 article {
   color: white;
+  font-family: 'Armata', sans-serif;
 }
