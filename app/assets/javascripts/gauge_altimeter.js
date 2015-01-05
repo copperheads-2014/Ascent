@@ -20,6 +20,9 @@ var loadAltimeter = function(seriesData){
       text: 'Altimeter'
     },
 
+    tooltip: {enabled: false},
+
+
     pane: {
       startAngle: 0,
       endAngle: 360,
@@ -70,9 +73,6 @@ var loadAltimeter = function(seriesData){
         backgroundColor: '#191919',
         borderWidth: 0
       },
-      tooltip: {
-        valueSuffix: ' m'
-      }
     },
     {
       data: [seriesData*100],
@@ -82,7 +82,7 @@ var loadAltimeter = function(seriesData){
         baseLength: '30%',
         backgroundColor: '#777777'
       },
-      dataLabels: {enabled: false}
+      dataLabels: {enabled: false},
     },
     {
       data: [seriesData*10],
@@ -92,7 +92,7 @@ var loadAltimeter = function(seriesData){
         baseLength: '50%',
         backgroundColor: '#777777'
       },
-      dataLabels: {enabled: false}
+      dataLabels: {enabled: false},
     }]
   });
 };
