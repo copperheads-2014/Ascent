@@ -189,6 +189,9 @@ var ready = function() {
     $("#comment").slideUp("slow")
     $("#toggle_comment").css("color", "black")
     $("#comment input[type='text']").val("")
+    if ($("#comment_roll").is(":hidden")){
+      $("#show_comments").trigger("click")
+    }
   })
 
   $("#datapoint_comment").on("submit", function(e) {
@@ -238,6 +241,16 @@ var ready = function() {
 
   $("body").on(".info_box", "click", function(){
     console.log("sup")
+  })
+
+  $("#show_comments").on("click", function(){
+    if ($("#comment_roll").is(":hidden")) {
+      $("#show_comments").val("hide comments")
+      $("#comment_roll").show('slide', {direction:'up'}, 1000)
+    } else {
+      $("#show_comments").val("show comments")
+      $("#comment_roll").slideUp("slow");
+    }
   })
   // $("#post_comment").on("submit", function(e){
   //   e.preventDefault()

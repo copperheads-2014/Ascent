@@ -183,7 +183,7 @@ input[type="submit"] {
   outline: none;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover, #toggle_comment:hover {
   background: lightgray;
 }
 
@@ -219,6 +219,20 @@ input[type="text"] {
   height: 25px;
 }
 
+#comment_roll {
+  display: none;
+  height: 320px;
+  overflow: scroll;
+  font-size: 15px;
+}
+
+#show_comments{
+  width: 125px;
+  height: 20px;
+  font-size: 10px;
+  font-weight: lighter;
+}
+
 .comment_body {
   margin: 0 auto;
   color: gray;
@@ -249,6 +263,7 @@ $highlight: #4d1eb3;
   background-color: $highlight;
 }
 
+
 // .comment_body:after {
 //   content: "";
 //   position: absolute;
@@ -274,6 +289,8 @@ $highlight: #4d1eb3;
 //   width: 0;
 //   z-index: 0;
 // }
+
+
 
 
 
