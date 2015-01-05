@@ -3,8 +3,8 @@ var index_of_digit;
 var flight_id;
 var flight_data;
 var seriesIndex = 0;
-var pause;
-var playSpeed;
+var currentInterval
+var playSpeed = 0;
 var currentView = 'chart';
 
 var resizeContainer = function(){
@@ -18,9 +18,8 @@ var advanceIndex = function(resolution) {
     seriesIndex = seriesIndex + resolution;
   }
   else {
-    seriesIndex = seriesIndex[flight_data.length -1]
-    togglePlayPause();
-  }
+    seriesIndex = seriesIndex[flight_data.length -1];
+    clearInterval(currentInterval)  }
 }
 
 var displayDataSubmit = function() {
@@ -37,13 +36,17 @@ var displayDataComment = function(data_point) {
     }
 }
 
-var togglePlayPause = function() {
-  $("#button-play").toggle();
-  $("#button-pause").toggle();
-  if (seriesIndex >= flight_data.length - 1){
-    seriesIndex = 0
+var togglePlay = function(){
+  if (playSpeed === 0 || playSpeed === 5){
+    $('#button-play').html('Faster');
+    playSpeed = 1;
   }
-}
+  // (playSpeed === 1)
+  else {
+    $('#button-play').html('Slower');
+    playSpeed = 5;
+  };
+};
 
 var ready = function() {
   resizeContainer();
@@ -51,6 +54,7 @@ var ready = function() {
 
 
   full_path = window.location.pathname
+  current_dir = window.location.pathname.split('/')[1]
   flight_id = window.location.pathname.split('/')[2];
 
   if(full_path === "/"){
@@ -61,11 +65,12 @@ var ready = function() {
   };
 
 
-  if(flight_id != 'undefined'){
+  if(current_dir === 'flights' && flight_id != 'undefined'){
     var request = $.ajax({
       url: "/charts/" + flight_id + ".json",
       method: "get"
     })
+
     request.done(function(response){
       flight_data = response;
       loadChart(flight_data);
@@ -74,6 +79,15 @@ var ready = function() {
       loadBarometer(flight_data[0].pressure);
       loadMap();
     });
+
+    // Check this out -matt
+    /* http://api.jquery.com/deferred.then/
+     * request
+     * .then(loadChart)
+     * .then(loadAltimeter)
+     * .then(loadThermometer2)
+     * ......
+     */
   };
 
   // var appendResult = function(entry){
@@ -107,23 +121,16 @@ var ready = function() {
 
 
   var play = function(interval) {
-    console.log(interval);
-
-    if (playSpeed === 'superfast'){
-      resolution = 10;
-    }
-    else if (playSpeed === 'fast') {
-      resolution = 5
-    }
-    else {
-      resolution = 1
+    if(currentInterval != 'undefined'){
+      clearInterval(currentInterval);
+      seriesIndex = 0;
     }
 
-    duration = (flight_data.length * interval) / resolution;
+    duration = (flight_data.length * interval) / playSpeed;
 
     loadChart(flight_data, duration);
-    setInterval(function() {
-      advanceIndex(resolution);
+    currentInterval = setInterval(function() {
+      advanceIndex(playSpeed);
       playAltimeter();
       playThermometer2();
       playBarometer();
@@ -131,16 +138,12 @@ var ready = function() {
     }, interval);
   }
 
-  pause = function() {
-    clearInterval(indexInterval);
-  }
-
   $(window).on('resize', function(){
     resizeContainer();
   })
 
   $("#button-play").click(function(){
-    togglePlayPause();
+    togglePlay();
     play(200);
   });
 
@@ -153,11 +156,6 @@ var ready = function() {
   $("#chart_button").click(function(){
     $("#map").hide();
     $("#chart").show();
-  });
-
-  $("#button-pause").click(function() {
-    pause();
-    togglePlayPause();
   });
 
   $('#dropdown1').click(function(){

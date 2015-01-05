@@ -47,13 +47,6 @@ button:active {
   display: inline-block;
 }
 
-#chart_button {
-  visibility: hidden;
-}
-
-#map_button {
-  visibility: hidden;
-}
 
 #button-play:hover, #button-pause:hover, #chart_map_button:hover {
   color: #191919;
