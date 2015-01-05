@@ -5,6 +5,7 @@ var flight_data;
 var seriesIndex = 0;
 var pause;
 var playSpeed;
+var currentView = 'chart';
 
 var resizeContainer = function(){
   var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -44,13 +45,9 @@ var togglePlayPause = function() {
   }
 }
 
-var toggleMapChart = function() {
-  $("#chart_button").toggle();
-  $("#map_button").toggle();
-}
-
 var ready = function() {
   resizeContainer();
+
 
   full_path = window.location.pathname
   flight_id = window.location.pathname.split('/')[2];
@@ -77,6 +74,35 @@ var ready = function() {
       // loadMap();
     });
   };
+
+  // var appendResult = function(entry){
+  //   console.log(entry)
+  //   var divForComment = "<div class = 'comment_body'>"
+  //   var commentBody = entry.body
+  //   var br = "</br>"
+  //   var commentAuthor = entry.author
+  //   var endOfDiv = "</div>"
+  //   var fullComment = divForComment + commentBody + br + commentAuthor + endOfDiv
+  //   $("#comment_roll").prepend(fullComment)
+  // }
+
+  var toggleMapChart = function (){
+    if (currentView === 'map'){
+      $('#chart_map_button').html('MAP');
+      currentView = 'chart';
+      $('#map').css('z-index', '-1');
+      $('#chart').css('z-index', '1');
+    }
+    else {
+      $('#chart_map_button').html('CHART')
+      currentView = 'map'
+      $('#chart').css('z-index', '-1');
+      $('#map').css('z-index', '1');
+    }
+  };
+
+  $('#chart_map_button').click(toggleMapChart);
+
   var play = function(interval) {
     console.log(interval);
 
