@@ -46,4 +46,11 @@
   </div>
 </div>
 
+<div class="flights-row-header">Greatest Distance Traveled</div>
+<div id="distance-traveled" class="flights-row-body">
+  <% @flights.each do |flight| %>
+  <div class="each-flight"><%= link_to flight.callsign, flight_path(flight) %></div>
+  <% end %>
+</div>
+
 <footer id="flights-footer"></footer>
