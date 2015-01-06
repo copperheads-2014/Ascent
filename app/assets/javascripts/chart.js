@@ -19,7 +19,7 @@ var loadChart = function(seriesData, duration) {
         enabled: false
     },
     title: {
-      text: 'The Journey',
+      text: null,
       style: {
         "color": 'gray',
         "fontFamily" : 'Codystar'}
@@ -59,6 +59,7 @@ var loadChart = function(seriesData, duration) {
               playAltimeter(this);
               playThermometer2(this);
               playBarometer(this);
+              playClock(this);
               displayDataComment(this);
             }
 

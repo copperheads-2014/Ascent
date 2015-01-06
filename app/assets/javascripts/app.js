@@ -121,6 +121,7 @@ var ready = function() {
       currentView = 'map'
       $('#chart').css('z-index', '-1');
       $('#map').css('z-index', '1');
+      $('#map').css('border', '2px solid #4d1eb3');
     }
   };
 
