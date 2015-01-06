@@ -34,6 +34,21 @@ class UsersController < ApplicationController
       }
     end
   end
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    user = User.find(params[:user][:id])
+    file = params[:user][:file]
+    if file
+      user.avatar = file
+    else
+      user.remote_avatar_url = params[:user][:remote_avatar_url]
+    end
+    user.save
+    redirect_to user_path(user)
+  end
 
   private
     def user_params
