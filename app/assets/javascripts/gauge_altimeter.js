@@ -1,7 +1,6 @@
 var altimeter;
 
 var loadAltimeter = function(seriesData){
-  console.log([seriesData*10])
   altimeter = new Highcharts.Chart({
     chart: {
       type: 'gauge',
