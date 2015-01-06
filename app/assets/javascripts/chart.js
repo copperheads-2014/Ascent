@@ -59,6 +59,7 @@ var loadChart = function(seriesData, duration) {
               playAltimeter(this);
               playThermometer2(this);
               playBarometer(this);
+              playClock(this);
               displayDataComment(this);
             }
 
