@@ -137,12 +137,32 @@ var ready = function() {
   $(".menu").hover(function(){}, function() {
     $('.menu').removeClass("active");
   });
+  $("nav").hover(function(){}, function() {
+    $('.menu').removeClass("active");
+    $('.menu-login').removeClass("active");
+    $('#notification').removeClass("active");
+  });
+  $('#dropdown1, #dropdown2, .login').bind('mousewheel DOMMouseScroll', function(){ $('.menu').removeClass("active");
+    $('.menu-login').removeClass("active");
+    $('#notification').removeClass("active");
+  });
 
   $('.login').click(function(){
     $('.menu-login').toggleClass("active");
   });
   $(".menu-login").hover(function(){}, function() {
     $('.menu-login').removeClass("active");
+  });
+
+  $('#dropdown2').click(function() {
+    $('#notification').toggleClass("active");
+  });
+  $("#notification").hover(function(){}, function() {
+    $('#notification').removeClass("active");
+  });
+
+  $(".flights-row-body").smoothDivScroll({
+    manualContinuousScrolling: true
   });
 
   $('.signup').click(function(){
@@ -157,16 +177,6 @@ var ready = function() {
     };
   });
 
-  $('#dropdown2').click(function() {
-    $('#notification').toggleClass("active");
-  });
-  $("#notification").hover(function(){}, function() {
-    $('#notification').removeClass("active");
-  });
-
-  $(".flights-row-body").smoothDivScroll({
-    manualContinuousScrolling: true
-  });
 
   $("#like").one("submit", function(e){
     e.preventDefault()
