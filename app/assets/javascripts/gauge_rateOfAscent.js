@@ -53,16 +53,22 @@ var loadAscent = function(seriesData){
          pointWidth: 50,
          data: [seriesData],
           dataLabels: {
-            enabled: false
+            verticalAlign: 'bottom',
+            useHTML: true,
+            enabled: true,
+            formatter: function() {
+              var rate = Math.round(this.y * 100) / 100;
+              console.log(rate)
+              return '<div style="text-align:center"><span style="font-size:25px;color:' +
+                  ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + rate + '</span><br/>' +
+                     '<span style="font-size:14px;color:silver">Meters / Second</span></div>'
+          }
         }
       }]
   })
 }
 
 var playAscent = function(rate) {
-  var balls = console.log(rate);
-  console.log(balls);
-  console.log(typeof rate);
   ascent.series[0].points[0].update(rate);
 };
 
