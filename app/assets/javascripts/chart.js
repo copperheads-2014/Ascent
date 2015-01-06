@@ -11,7 +11,7 @@ var loadChart = function(seriesData, duration) {
       zoomType: 'x',
       renderTo: 'chart',
       style: {
-        fontFamily: 'Arial',
+        fontFamily: 'Unica One ',
         fontSize: '12px'
       }
     },
@@ -56,10 +56,10 @@ var loadChart = function(seriesData, duration) {
               $('#time').html("Time: " + Highcharts.dateFormat('%H:%M:%S', this.x) + " (H:M:S)");
               $('#altitude').html("Altitude: " + this.y + " m");
               $('#temp').html("Temperature: " + this.temp + " °C");
-              loadAltimeter(this.y);
-              loadThermometer2(this.temp);
-              loadBarometer(this.pressure);
-              displayDataComment(this.id);
+              playAltimeter(this);
+              playThermometer2(this);
+              playBarometer(this);
+              displayDataComment(this);
             }
 
           }

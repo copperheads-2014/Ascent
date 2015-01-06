@@ -32,7 +32,6 @@ button:active {
   color: #999999;
   background: #191919;
   outline: none;
-
 }
 
 #button-play, #button-pause, #chart_button, #chart_map_button {
@@ -47,12 +46,10 @@ button:active {
   display: inline-block;
 }
 
-
 #button-play:hover, #button-pause:hover, #chart_map_button:hover {
   color: #191919;
   background-color: #B2B2C1;
 }
-
 
 #button-pause {
   display: none;
@@ -67,9 +64,11 @@ button:active {
   left: 40%;
   top: 5px;
 }
+
 #button-step-back:hover {
   background-color: #CC00CC;
 }
+
 #button-step-forw {
   height: 40px;
   width: 8%;
@@ -79,6 +78,7 @@ button:active {
   right: 40%;
   top: 5px;
 }
+
 #button-step-forw:hover {
   background-color: #CC00CC;
 }
