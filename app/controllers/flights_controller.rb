@@ -17,10 +17,10 @@ class FlightsController < ApplicationController
     liked_nested_array = likes_hash.sort_by {|k,v| v}.reverse
     @most_liked = liked_nested_array.map { |nested_array| nested_array[0] }
 
-    @latest = @flights.order(created_at: :desc).limit(100)
+    @latest = @flights.order(created_at: :desc).limit(10)
     @flights_near_you = Flight.all.limit(3)
-    @highest_altitude = @flights.order(max_altitude: :desc).limit(100)
-    @longest_duration = @flights.order(duration: :desc).limit(100)
+    @highest_altitude = @flights.order(max_altitude: :desc).limit(10)
+    @longest_duration = @flights.order(duration: :desc).limit(10)
   end
 
   def show
