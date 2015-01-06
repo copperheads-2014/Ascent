@@ -1,16 +1,21 @@
-#profile_user.col-1-4
-  =image_tag @user.avatar_url
-  .username= "#{@user.username}"
+.profile_user.col-1-4
+  .username
+    %h1= "#{@user.username}"
+  #avatar{:style => "background-image: url('#{image_path @user.avatar_url}')"}
+    .edit= link_to "Edit Photo", edit_user_path(@user)
+  #avatar_form
+    = render :partial => 'users/edit', :locals => { :user => @user }
 
-#profile_friends.col-1-3
+.profile_friends.col-1-3
   %h3="#{@user.username}'s friends"
   %br
   %table#friends
     -@user.approved_friends.each do |friend|
-      %tr
+      %tr{id: "#{Friendship.find_by(user: @user, friend: friend).id}"}
         %td= link_to image_tag(friend.avatar_url(:avatar_thumb)), user_path(friend)
         %td.username= link_to friend.username, user_path(friend)
-        %td.approved= link_to "unfriend", "/friendships/#{Friendship.find_by(user: @user, friend: friend).id}", method: :delete
+        %td.unfriend
+          %a{href: "#", value: "/friendships/#{Friendship.find_by(user: @user, friend: friend).id}"} unfriend
     -if current_user == @user
       -@user.pending_friends.each do |friend|
         %tr
@@ -18,18 +23,22 @@
           %td.username= link_to friend.username, user_path(friend)
           %td.pending= "pending"
 
-#profile_flights.col-1-3
+.profile_flights.col-1-3
   %h3="#{@user.username}'s flights"
   %br
   -@user.flights.each do |flight|
     .flight{:style => "background-image: url(#{image_path flight.album_cover})"}
-      %p="#{flight.callsign}"
-- if current_user == @user
-  = form_for Launch.new do |f|
-    %p
-      %select{ name: "flight_id"}
-        - @user.flights.each do |flight|
-          %option{value: flight.id} "#{flight.callsign}"
-    %input{name: 'username', id: 'autocomplete_username'}
-    %p
-      = f.submit "Add to flight!"
+      %a{:href => "#{flight_path(flight)}"}
+        .callsign="#{flight.callsign}"
+
+#add_users_to_flight
+  - if current_user == @user
+    = form_for Launch.new do |f|
+      %p
+        %select{ name: "flight_id"}
+          - @user.flights.each do |flight|
+            %option{value: flight.id} "#{flight.callsign}"
+      %input{name: 'username', id: 'autocomplete_username'}
+      %p
+        = f.submit "Add to flight!"
+
