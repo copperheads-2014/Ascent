@@ -3,9 +3,10 @@ var index_of_digit;
 var flight_id;
 var flight_data;
 var seriesIndex = 0;
-var currentInterval
+var currentInterval;
 var playSpeed = 0;
 var currentView = 'chart';
+var reverseIndex;
 
 var resizeContainer = function(){
   var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -27,6 +28,15 @@ var advanceIndex = function(resolution) {
     clearInterval(currentInterval);
     resetPlayButton();
     }
+}
+
+var decrementIndex = function(resolution){
+  if(reverseIndex > 1){
+    reverseIndex = reverseIndex - resolution;
+  }
+  else {
+    reverseIndex = reverseIndex[0];
+  }
 }
 
 var displayDataSubmit = function() {
@@ -83,12 +93,14 @@ var ready = function() {
 
     request.done(function(response){
       flight_data = response;
+      reverseIndex = flight_data.length -1
+      point = flight_data[seriesIndex]
+      reversePoint = flight_data[reverseIndex]
       loadChart(flight_data);
-      loadAltimeter(flight_data[0].y);
-      loadThermometer2(flight_data[0].temp);
-      loadBarometer(flight_data[0].pressure);
-      loadClock((flight_data[0].x), (flight_data[flight_data.length - 1].x));
-      console.log((flight_data[0].x), (flight_data[flight_data.length - 1].x))
+      loadAltimeter(point.y);
+      loadThermometer2(point.temp);
+      loadBarometer(point.pressure);
+      loadClock(reversePoint.x, reversePoint.x);
       loadMap();
     });
 
@@ -142,14 +154,16 @@ var ready = function() {
     loadChart(flight_data.slice(0, seriesIndex));
     currentInterval = setInterval(function() {
       advanceIndex(playSpeed);
-      point = flight_data[seriesIndex]
+      decrementIndex(playSpeed);
+      point = flight_data[seriesIndex];
+      reversePoint = flight_data[reverseIndex];
 
       playChart(point);
       playAltimeter(point);
       playThermometer2(point);
       playBarometer(point);
       playMap();
-      playClock(point);
+      playClock(reversePoint);
     }, interval);
   }
 

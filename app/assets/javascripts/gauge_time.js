@@ -16,10 +16,9 @@ var loadClock = function(seriesData, maxValue){
         text: 'Clock'
       },
       pane: {
-        center: ['50%', '85%'],
         size: '100%',
-        startAngle: -90,
-        endAngle: 90,
+        startAngle: 0,
+        endAngle: 360,
         background: {
           backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
           innerRadius: '60%',
@@ -64,10 +63,11 @@ var loadClock = function(seriesData, maxValue){
         name: 'Time',
         data: [seriesData],
         dataLabels: {
+          y: -40,
           formatter: function() {
             var time = (this.y)
-            return '<div style="text-align:center"><span style="font-size:25px;color:' +
-                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + Highcharts.dateFormat('%H:%M:%S', time) + '</span><br/>' +
+            return '<div style="text-align:center"><span style="font-size:14px;color:silver">Time</span><br><span style="font-size:14px;color:silver">Remaining</span><br><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'silver') + '">' + Highcharts.dateFormat('%H:%M:%S', time) + '</span><br/>' +
                    '<span style="font-size:14px;color:silver">h:m:s</span></div>'
           }
         }
@@ -76,6 +76,7 @@ var loadClock = function(seriesData, maxValue){
 };
 
 var playClock = function(point) {
-  console.log(point.x);
+  console.log(clock.series[0].points[0].update(point.x));
   clock.series[0].points[0].update(point.x);
+  barometer.series[0].points[0].update(point.pressure)
 };
