@@ -206,6 +206,11 @@ var ready = function() {
     manualContinuousScrolling: true
   });
 
+  $("#picture-carousel").smoothDivScroll({
+    manualContinuousScrolling: true,
+    visibleHotSpotBackgrounds: "always"
+  });
+
   $('.signup').click(function(){
     var container_height = $('.container').height();
     if (full_path == '/'){
@@ -217,7 +222,6 @@ var ready = function() {
       window.location.href = '/';
     };
   });
-
 
   $("#like").one("submit", function(e){
     e.preventDefault()
