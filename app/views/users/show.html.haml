@@ -1,16 +1,29 @@
-%h1
-  ="#{@user.username}"
+#profile_user.col-1-4
+  =image_tag @user.avatar_url
+  .username= "#{@user.username}"
 
-%h3
-  ="My flights:"
+#profile_friends.col-1-3
+  %h3="#{@user.username}'s friends"
+  %br
+  %table#friends
+    -@user.approved_friends.each do |friend|
+      %tr
+        %td= link_to image_tag(friend.avatar_url(:avatar_thumb)), user_path(friend)
+        %td.username= link_to friend.username, user_path(friend)
+        %td.approved= link_to "unfriend", "/friendships/#{Friendship.find_by(user: @user, friend: friend).id}", method: :delete
+    -if current_user == @user
+      -@user.pending_friends.each do |friend|
+        %tr
+          %td= link_to image_tag(friend.avatar_url(:avatar_thumb)), user_path(friend)
+          %td.username= link_to friend.username, user_path(friend)
+          %td.pending= "pending"
+
+#profile_flights.col-1-3
+  %h3="#{@user.username}'s flights"
   %br
   -@user.flights.each do |flight|
-    =link_to "#{flight.callsign}", flight_path(flight)
--if current_user == @user
-  -current_user.inverse_friendships.where("approved = false").each do |friendship|
-    - if friendship.user == current_user
-      %li= friendship.friend.username
-      =form_for :friendships, method: 'PUT', url: "/approve/#{friendship.id}" do |f|
-        =f.submit 'Add Friend' , class: 'button'
+    .flight{:style => "background-image: url(#{image_path flight.album_cover})"}
+      %p="#{flight.callsign}"
+
 
 

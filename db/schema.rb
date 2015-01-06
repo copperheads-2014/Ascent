@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20150104044628) do
 
   create_table "users", force: true do |t|
     t.string "username"
+    t.string "avatar"
     t.string "password_digest"
   end
 

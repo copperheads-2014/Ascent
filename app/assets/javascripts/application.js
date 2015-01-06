@@ -5,4 +5,5 @@
 //= require_tree .
 //= require turbolinks
 //= require jquery_ujs
+//= require jquery.autocomplete.js
 
