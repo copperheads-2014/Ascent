@@ -132,12 +132,15 @@ var ready = function() {
 
     duration = (flight_data.length * interval) / playSpeed;
 
-    loadChart(flight_data, duration);
+    loadChart(flight_data.slice(0, seriesIndex));
     currentInterval = setInterval(function() {
       advanceIndex(playSpeed);
-      playAltimeter();
-      playThermometer2();
-      playBarometer();
+      point = flight_data[seriesIndex]
+
+      playChart(point);
+      playAltimeter(point);
+      playThermometer2(point);
+      playBarometer(point);
       playMap();
     }, interval);
   }
