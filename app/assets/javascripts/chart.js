@@ -19,7 +19,7 @@ var loadChart = function(seriesData, duration) {
         enabled: false
     },
     title: {
-      text: 'The Journey',
+      text: null,
       style: {
         "color": 'gray',
         "fontFamily" : 'Codystar'}
