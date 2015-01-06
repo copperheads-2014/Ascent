@@ -160,6 +160,11 @@ var ready = function() {
   $("#notification").hover(function(){}, function() {
     $('#notification').removeClass("active");
   });
+  $("#notification, .menu-login, .menu").hover(function(){
+    $('body').css("overflow", "hidden");
+  }, function() {
+    $('body').css("overflow", "auto");
+  });
 
   $(".flights-row-body").smoothDivScroll({
     manualContinuousScrolling: true
