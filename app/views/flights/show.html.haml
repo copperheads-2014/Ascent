@@ -8,17 +8,26 @@
           The Data
         %table
           %tr
-            %td.tdleft Max Altitude
+            %td.tdleft Burst Altitude
             %td.tdright
               ="#{@flight.max_altitude} m"
             / %td
             /   ="#{to_feet(@flight.max_altitude)} ft"
           %tr
-            %td.tdleft Distance Traveled
+            %td.tdleft Time to Burst
             %td.tdright
-              ="#{@flight.distance_traveled.round} km"
-            / %td
-            /   ="#{to_miles(@flight.distance_traveled.round)} miles"
+              ="#{@flight.time_to_burst}"
+          / %tr
+          /   %td.tdleft Time of Descent
+          /   %td.tdright
+          /     ="#{@flight.time_of_descent}"
+          / %tr
+          /   %
+          / %tr
+          /   %td.tdleft Distance Traveled
+          /   %td.tdright
+          /     ="#{@flight.distance_traveled.round} km"
+
           %tr
             %td.tdleft Trip Duration
             %td.tdright
@@ -52,8 +61,7 @@
                 = comment.author.username
 
     %div{:class => 'col-2-3'}
-      %h2
-        The Journey
+
       %div.flight_chart
         = render :partial => 'data_visualizations/index'
 
