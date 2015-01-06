@@ -38,6 +38,9 @@ var loadAscent = function(seriesData){
          tickLength: 0
      },
      plotOptions: {
+      series: {
+        animation: {duration: 500}
+      }
 
      },
      tooltip: {endabled: false},
