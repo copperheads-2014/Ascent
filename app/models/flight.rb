@@ -92,6 +92,7 @@ class Flight < ActiveRecord::Base
     sentence = flight_data.first["_sentence"]
     self.update(callsign: self.class.callsign(sentence))
     create_data_points(flight_data)
+    self.update(max_altitude: self.max_altitude, duration: self.duration, distance_traveled: self.distance_traveled)
     self
   end
 
