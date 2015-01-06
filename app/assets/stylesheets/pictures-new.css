@@ -1,0 +1,54 @@
+#pictures-header {
+  margin: 3% 0;
+}
+#flights-header h1 {
+  color: white;
+  font-size: 48px;
+}
+#photo-form div {
+  display: block;
+  width: 60%;
+  margin: 20px auto;
+  font-family: 'Armata', sans-serif;
+}
+#photo-form p {
+  height: 50px;
+  width: 50px;
+  color: white;
+  border-radius: 50%;
+  border: 3px solid white;
+  margin: 40px auto 0;
+  font-size: 30px;
+  padding-top: 4px;
+  padding-left: 1px;
+}
+#photo-form label {
+  color: white;
+  font-size: 22px;
+}
+#url-input {
+  width: 350px;
+  padding: 0 10px;
+}
+#or-div {
+  margin: 90px auto 20px;
+  color: white;
+  font-size: 24px;
+}
+#photo-save {
+  border: 2px solid white;
+  font-family: 'Armata', sans-serif;
+  color: white;
+  width: 200px;
+  height: 45px;
+}
+#photo-save:hover {
+  color: lightgray;
+  color: black;
+}
+#picture_files {
+  width: 177px;
+  margin-bottom: 25px;
+  color: white;
+  font-size: 12px;
+}
