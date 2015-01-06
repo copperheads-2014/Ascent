@@ -19,7 +19,7 @@
 
   <div class="flights-row-header">Latest</div>
   <div id="latest" class="flights-row-body">
-    <% @flights.each do |flight| %>
+    <% @latest.each do |flight| %>
     <div class="each-flight"><%= link_to flight.callsign, flight_path(flight) %></div>
     <% end %>
   </div>
@@ -33,14 +33,14 @@
 
   <div class="flights-row-header">Highest Altitude</div>
   <div id="highest-altitude" class="flights-row-body">
-    <% @flights.each do |flight| %>
+    <% @highest_altitude.each do |flight| %>
     <div class="each-flight"><%= link_to flight.callsign, flight_path(flight) %></div>
     <% end %>
   </div>
 
   <div class="flights-row-header">Longest Duration</div>
   <div id="longest-duration" class="flights-row-body option">
-    <% @flights.each do |flight| %>
+    <% @longest_duration.each do |flight| %>
     <div class="each-flight"><%= link_to flight.callsign, flight_path(flight) %></div>
     <% end %>
   </div>
