@@ -53,16 +53,18 @@ html,body {
 
 #chart {
   height: 400px;
-  width: 90%;
+  width: 65%;
   margin: 0 auto;
-  left: 50%;
+  position: absolute;
 }
 
 #map {
   clear: both;
   height: 400px;
-  width: 90%;
+  width: 65%;
   margin: 0 auto;
+  z-index: -1;
+  position: absolute;
 }
 
 table {
@@ -93,7 +95,7 @@ table {
   padding: 2%;
 }
 
-#gauge_1, #gauge_3, #gauge_4 {
+#gauge_1, #gauge_3, #gauge_4, #gauge_5 {
   display: inline-block;
   width: 30%;
   max-width: 300px;

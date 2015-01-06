@@ -3,8 +3,9 @@ var index_of_digit;
 var flight_id;
 var flight_data;
 var seriesIndex = 0;
-var pause;
-var playSpeed;
+var currentInterval
+var playSpeed = 0;
+var currentView = 'chart';
 
 var resizeContainer = function(){
   var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -12,14 +13,20 @@ var resizeContainer = function(){
   $('.container').css('height', (window_height - 50))
 }
 
+var resetPlayButton = function(){
+  $('#button-play').html("<i class='fa fa-play'></i>");
+  playSpeed = 0;
+}
+
 var advanceIndex = function(resolution) {
   if(seriesIndex < flight_data.length - 1) {
     seriesIndex = seriesIndex + resolution;
   }
   else {
-    seriesIndex = seriesIndex[flight_data.length -1]
-    togglePlayPause();
-  }
+    seriesIndex = seriesIndex[flight_data.length -1];
+    clearInterval(currentInterval);
+    resetPlayButton();
+    }
 }
 
 var displayDataSubmit = function() {
@@ -36,23 +43,24 @@ var displayDataComment = function(data_point) {
     }
 }
 
-var togglePlayPause = function() {
-  $("#button-play").toggle();
-  $("#button-pause").toggle();
-  if (seriesIndex >= flight_data.length - 1){
-    seriesIndex = 0
+var togglePlay = function(){
+  if (playSpeed === 0 || playSpeed === 5){
+    $('#button-play').html('Faster');
+    playSpeed = 1;
   }
-}
-
-var toggleMapChart = function() {
-  $("#chart_button").toggle();
-  $("#map_button").toggle();
-}
+  // (playSpeed === 1)
+  else {
+    $('#button-play').html('Slower');
+    playSpeed = 5;
+  };
+};
 
 var ready = function() {
   resizeContainer();
 
+
   full_path = window.location.pathname
+  current_dir = window.location.pathname.split('/')[1]
   flight_id = window.location.pathname.split('/')[2];
 
   if(full_path === "/"){
@@ -63,55 +71,88 @@ var ready = function() {
   };
 
 
-  if(flight_id != 'undefined'){
+  if(current_dir === 'flights' && flight_id != 'undefined'){
     var request = $.ajax({
       url: "/charts/" + flight_id + ".json",
       method: "get"
     })
+
     request.done(function(response){
       flight_data = response;
       loadChart(flight_data);
       loadAltimeter(flight_data[0].y);
       loadThermometer2(flight_data[0].temp);
       loadBarometer(flight_data[0].pressure);
-      // loadMap();
+      loadMap();
     });
-  };
-  var play = function(interval) {
-    console.log(interval);
 
-    if (playSpeed === 'superfast'){
-      resolution = 10;
-    }
-    else if (playSpeed === 'fast') {
-      resolution = 5
+    // Check this out -matt
+    /* http://api.jquery.com/deferred.then/
+     * request
+     * .then(loadChart)
+     * .then(loadAltimeter)
+     * .then(loadThermometer2)
+     * ......
+     */
+  };
+
+  // var appendResult = function(entry){
+  //   console.log(entry)
+  //   var divForComment = "<div class = 'comment_body'>"
+  //   var commentBody = entry.body
+  //   var br = "</br>"
+  //   var commentAuthor = entry.author
+  //   var endOfDiv = "</div>"
+  //   var fullComment = divForComment + commentBody + br + commentAuthor + endOfDiv
+  //   $("#comment_roll").prepend(fullComment)
+  // }
+
+  var toggleMapChart = function (){
+    if (currentView === 'map'){
+      $('#chart_map_button').html('MAP');
+      currentView = 'chart';
+      $('#map').css('z-index', '-1');
+      $('#chart').css('z-index', '1');
     }
     else {
-      resolution = 1
+      $('#chart_map_button').html('CHART')
+      currentView = 'map'
+      $('#chart').css('z-index', '-1');
+      $('#map').css('z-index', '1');
+    }
+  };
+
+  $('#chart_map_button').click(toggleMapChart);
+
+  var play = function(interval) {
+    if(currentInterval != 'undefined'){
+      clearInterval(currentInterval);
+      seriesIndex = 0;
     }
 
-    duration = (flight_data.length * interval) / resolution;
+    duration = (flight_data.length * interval) / playSpeed;
 
-    loadChart(flight_data, duration);
-    setInterval(function() {
-      advanceIndex(resolution);
-      playAltimeter();
-      playThermometer2();
-      playBarometer();
+    loadChart(flight_data.slice(0, seriesIndex));
+    currentInterval = setInterval(function() {
+      advanceIndex(playSpeed);
+      point = flight_data[seriesIndex]
+
+      playChart(point);
+      playAltimeter(point);
+      playThermometer2(point);
+      playBarometer(point);
       playMap();
     }, interval);
   }
 
-  pause = function() {
-    clearInterval(indexInterval);
-  }
+
 
   $(window).on('resize', function(){
     resizeContainer();
   })
 
   $("#button-play").click(function(){
-    togglePlayPause();
+    togglePlay();
     play(200);
   });
 
@@ -124,11 +165,6 @@ var ready = function() {
   $("#chart_button").click(function(){
     $("#map").hide();
     $("#chart").show();
-  });
-
-  $("#button-pause").click(function() {
-    pause();
-    togglePlayPause();
   });
 
   $('#dropdown1').click(function(){
