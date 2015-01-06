@@ -24,17 +24,12 @@
   -@user.flights.each do |flight|
     .flight{:style => "background-image: url(#{image_path flight.album_cover})"}
       %p="#{flight.callsign}"
--if current_user == @user
-  =form_for Launch.new do |f|
+- if current_user == @user
+  = form_for Launch.new do |f|
     %p
       %select{ name: "flight_id"}
-        -@user.flights.each do |flight|
+        - @user.flights.each do |flight|
           %option{value: flight.id} "#{flight.callsign}"
-      %select{ name: "friend_id"}
-        -@user.friends.each do |friend|
-          %option{value: friend.id} "#{friend.username}"
+    %input{name: 'username', id: 'autocomplete_username'}
     %p
       = f.submit "Add to flight!"
-
-
-
