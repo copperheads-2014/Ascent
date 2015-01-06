@@ -5,7 +5,7 @@
   <div class="flights-row-header">Friends' Flights</div>
   <div id="friends-flights" class="flights-row-body">
     <% @flights.each do |flight| %>
-    <div class="each-flight"><%= link_to flight.callsign, flight_path(flight) %></div>
+    <div class="each-flight" <% if flight.pictures.present? %> style="background: url(<%= flight.pictures.sample.image_url(:thumb).to_s %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
     <% end %>
   </div>
   <% end %>
