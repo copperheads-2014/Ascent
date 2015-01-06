@@ -27,10 +27,10 @@
 -if current_user == @user
   =form_for Launch.new do |f|
     %p
-      %select{ name: "flights[flight_id]"}
+      %select{ name: "flight_id"}
         -@user.flights.each do |flight|
           %option{value: flight.id} "#{flight.callsign}"
-      %select{ name: "friends[friend_id]"}
+      %select{ name: "friend_id"}
         -@user.friends.each do |friend|
           %option{value: friend.id} "#{friend.username}"
     %p
