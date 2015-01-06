@@ -32,13 +32,11 @@ var loadChart = function(seriesData, duration) {
       min: 1,
       max: flight_data[flight_data.length -1].x,
       type: 'datetime',
-      // title: {text: 'Time'},
       dateTimeLabelFormats: {second: '%H:%M:%S'}
     },
     yAxis: {
       min: 0,
       max: 40000,
-      title: {text: 'Altitude'}
     },
     series: [{
       name: "Altitude",
@@ -53,14 +51,13 @@ var loadChart = function(seriesData, duration) {
         point: {
           events: {
             click: function() {
-              $('#time').html("Time: " + Highcharts.dateFormat('%H:%M:%S', this.x) + " (H:M:S)");
-              $('#altitude').html("Altitude: " + this.y + " m");
-              $('#temp').html("Temperature: " + this.temp + " °C");
               playAltimeter(this);
               playThermometer2(this);
               playBarometer(this);
               playClock(this);
-              displayDataComment(this);
+              playAscent(this);
+              ascentOnClick(this);
+              // displayDataComment(this);
             }
 
           }
@@ -86,8 +83,6 @@ var loadChart = function(seriesData, duration) {
         backgroundColor: '#E6E6FA'
       },
       tooltip: {
-        // dateTimeLabelFormats: {second: '%H:%M:%S'},
-
          formatter: function() {
              return  '<b>' + 'Altitude: ' + this.y + 'm / ' + (Math.round(this.y * 3.28084)) + 'ft</b><br/>' + 'Elapsed Time: ' +
                  Highcharts.dateFormat('%H:%M:%S', new Date(this.x));

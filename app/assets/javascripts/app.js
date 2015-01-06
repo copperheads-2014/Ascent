@@ -3,9 +3,66 @@ var index_of_digit;
 var flight_id;
 var flight_data;
 var seriesIndex = 0;
-var currentInterval
+var currentInterval;
 var playSpeed = 0;
 var currentView = 'chart';
+var reverseIndex;
+
+var rateOfAscent = function(currentPoint, lastPoint){
+  meters = (currentPoint.y - lastPoint.y)
+  seconds = ((currentPoint.x - lastPoint.x) / 1000)
+  return (meters / seconds)
+}
+
+var ascentOnClick = function(pointClicked){
+  var i = findWithAttr(flight_data, 'x', pointClicked.x );
+  var point = flight_data[i];
+  var previousPoint = flight_data[(i - 1)];
+  loadAscent(rateOfAscent(point, previousPoint));
+}
+
+var findWithAttr = function(array, attr, value) {
+    for(var i = 0; i < array.length; i += 1) {
+        if(array[i][attr] === value) {
+            return i;
+        }
+    }
+}
+
+var play = function(interval) {
+  if(currentInterval != 'undefined'){
+    clearInterval(currentInterval);
+    seriesIndex = 0;
+  }
+
+  loadChart(flight_data.slice(0, seriesIndex));
+  currentInterval = setInterval(function() {
+    advanceIndex(playSpeed);
+    decrementIndex(playSpeed);
+    var point = flight_data[seriesIndex];
+    var previousPoint = flight_data[seriesIndex - 1];
+    reversePoint = flight_data[reverseIndex];
+    playChart(point);
+    playAltimeter(point);
+    playThermometer2(point);
+    playBarometer(point);
+    playMap();
+    playClock(reversePoint);
+    playAscent(rateOfAscent(point, previousPoint))
+  }, interval);
+}
+
+// var convertPointClickObject = function(pointClicked){
+//   new_obj = {
+//     x: pointClicked.x,
+//     y: pointClicked.y,
+//     temp: pointClicked.temp,
+//     latitude: pointClicked.latitude,
+//     longitude: pointClicked.longitude
+//   };
+//   return new_obj
+// }
+
 
 var resizeContainer = function(){
   var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -27,6 +84,15 @@ var advanceIndex = function(resolution) {
     clearInterval(currentInterval);
     resetPlayButton();
     }
+}
+
+var decrementIndex = function(resolution){
+  if(reverseIndex > 1){
+    reverseIndex = reverseIndex - resolution;
+  }
+  else {
+    reverseIndex = reverseIndex[0];
+  }
 }
 
 var displayDataSubmit = function() {
@@ -83,13 +149,17 @@ var ready = function() {
 
     request.done(function(response){
       flight_data = response;
+      reverseIndex = flight_data.length -1
+      point = flight_data[seriesIndex]
+      nextPoint = flight_data[seriesIndex + 1]
+      reversePoint = flight_data[reverseIndex]
       loadChart(flight_data);
-      loadAltimeter(flight_data[0].y);
-      loadThermometer2(flight_data[0].temp);
-      loadBarometer(flight_data[0].pressure);
-      loadClock((flight_data[0].x), (flight_data[flight_data.length - 1].x));
-      console.log((flight_data[0].x), (flight_data[flight_data.length - 1].x))
+      loadAltimeter(point.y);
+      loadThermometer2(point.temp);
+      loadBarometer(point.pressure);
+      loadClock(reversePoint.x, reversePoint.x);
       loadMap();
+      loadAscent(rateOfAscent(nextPoint, point));
     });
 
     // Check this out -matt
@@ -103,7 +173,6 @@ var ready = function() {
   };
 
   // var appendResult = function(entry){
-  //   console.log(entry)
   //   var divForComment = "<div class = 'comment_body'>"
   //   var commentBody = entry.body
   //   var br = "</br>"
@@ -112,6 +181,8 @@ var ready = function() {
   //   var fullComment = divForComment + commentBody + br + commentAuthor + endOfDiv
   //   $("#comment_roll").prepend(fullComment)
   // }
+
+
 
   var toggleMapChart = function (){
     if (currentView === 'map'){
@@ -131,27 +202,6 @@ var ready = function() {
 
   $('#chart_map_button').click(toggleMapChart);
 
-  var play = function(interval) {
-    if(currentInterval != 'undefined'){
-      clearInterval(currentInterval);
-      seriesIndex = 0;
-    }
-
-    duration = (flight_data.length * interval) / playSpeed;
-
-    loadChart(flight_data.slice(0, seriesIndex));
-    currentInterval = setInterval(function() {
-      advanceIndex(playSpeed);
-      point = flight_data[seriesIndex]
-
-      playChart(point);
-      playAltimeter(point);
-      playThermometer2(point);
-      playBarometer(point);
-      playMap();
-      playClock(point);
-    }, interval);
-  }
 
 
 
@@ -222,11 +272,9 @@ var ready = function() {
   $('.signup').click(function(){
     var container_height = $('.container').height();
     if (full_path == '/'){
-      console.log('full path is index')
       $('body').animate({ scrollTop: container_height }, 200);
     }
     else {
-      console.log('something other than root')
       window.location.href = '/';
     };
   });
@@ -245,7 +293,6 @@ var ready = function() {
       var numWithLike = splitText.join(" ")
       $("#like_num").val(numWithLike)
     })
-    console.log(this)
     $('#like_num').css("color", "#4d1eb3")
     $(this).find('input[type="submit"]').attr('disabled','disabled');
   })

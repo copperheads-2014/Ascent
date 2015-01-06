@@ -1,5 +1,4 @@
 var appendResult = function(entry){
-  console.log(entry)
   var divForComment = "<div class = 'comment_body'>"
   var commentBody = entry.body
   var br = "</br>"
