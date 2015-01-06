@@ -165,6 +165,7 @@ var ready = function() {
   });
 
   $(".flights-row-body").smoothDivScroll({
+    manualContinuousScrolling: true
   });
 
   $("#like").one("submit", function(e){
