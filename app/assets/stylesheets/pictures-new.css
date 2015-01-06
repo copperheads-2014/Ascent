@@ -31,21 +31,22 @@
   padding: 0 10px;
 }
 #or-div {
+  margin: 90px auto 20px;
   color: white;
   font-size: 24px;
 }
-#photo-save {
+#photo-save, #avatar-save, .edit {
   border: 2px solid white;
   font-family: 'Armata', sans-serif;
   color: white;
   width: 200px;
   height: 45px;
 }
-#photo-save:hover {
+#photo-save:hover, #avatar-save:hover, .edit:hover {
   color: lightgray;
   color: black;
 }
-#picture_files {
+#picture_files, #user_file {
   width: 177px;
   margin-bottom: 25px;
   color: white;
