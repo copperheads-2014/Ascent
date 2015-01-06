@@ -107,6 +107,7 @@ GEM
     net-ssh (2.9.1)
     netrc (0.10.2)
     nokogiri (1.5.11)
+    nprogress-rails (0.1.6.5)
     pg (0.17.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -215,6 +216,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   json
+  nprogress-rails
   pg
   pry
   rails (= 4.1.8)
