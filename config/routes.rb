@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :friendships
   resources :likes, only: :create
+  resources :launches, only: :create
 
   resources :users do
     get :autocomplete_username, :on => :collection
