@@ -75,6 +75,6 @@ var loadThermometer2 = function(seriesData){
 };
 
 
-var playThermometer2 = function() {
-  thermometer2.series[0].points[0].update(flight_data[seriesIndex].temp);
+var playThermometer2 = function(point) {
+  thermometer2.series[0].points[0].update(point.temp);
 };

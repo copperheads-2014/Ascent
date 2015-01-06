@@ -102,9 +102,9 @@ var loadAltimeter = function(seriesData){
 
 
 
-var playAltimeter = function() {
-  altimeter.series[0].points[0].update(flight_data[seriesIndex].y);
-  altimeter.series[1].points[0].update(flight_data[seriesIndex].y*100);
-  altimeter.series[2].points[0].update(flight_data[seriesIndex].y*10);
+var playAltimeter = function(point) {
+  altimeter.series[0].points[0].update(point.y);
+  altimeter.series[1].points[0].update(point.y*100);
+  altimeter.series[2].points[0].update(point.y*10);
 };
 

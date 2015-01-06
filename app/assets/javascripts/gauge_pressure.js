@@ -76,6 +76,6 @@ var loadBarometer = function(seriesData){
   });
 };
 
-var playBarometer = function() {
-  barometer.series[0].points[0].update(flight_data[seriesIndex].pressure);
+var playBarometer = function(point) {
+  barometer.series[0].points[0].update(point.pressure);
 };

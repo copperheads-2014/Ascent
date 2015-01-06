@@ -48,6 +48,7 @@ var loadChart = function(seriesData, duration) {
     }],
     plotOptions: {
       series: {
+        marker: {enabled: false},
         allowPointSelect: true,
         point: {
           events: {
@@ -96,7 +97,6 @@ var loadChart = function(seriesData, duration) {
 
 };
 
-var playChart = function() {
-  loadChart(flight_data.slice(0, seriesIndex));
-  chart.series[0].addPoint(flight_data[seriesIndex]);
+var playChart = function(point) {
+  chart.series[0].addPoint(point);
 }
