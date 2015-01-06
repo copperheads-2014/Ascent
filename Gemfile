@@ -25,6 +25,7 @@ gem 'crack'
 gem 'rest-client'
 
 gem 'pry'
+gem 'nprogress-rails'
 
 gem 'turbolinks'
 
