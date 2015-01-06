@@ -57,5 +57,10 @@ var loadAscent = function(seriesData){
 }
 
 var playAscent = function(rate) {
+  var balls = console.log(rate);
+  console.log(balls);
+  console.log(typeof rate);
   ascent.series[0].points[0].update(rate);
 };
+
+

@@ -8,6 +8,62 @@ var playSpeed = 0;
 var currentView = 'chart';
 var reverseIndex;
 
+var rateOfAscent = function(currentPoint, lastPoint){
+  meters = (currentPoint.y - lastPoint.y)
+  seconds = ((currentPoint.x - lastPoint.x) / 1000)
+  return (meters / seconds)
+}
+
+var ascentOnClick = function(pointClicked){
+  var i = findWithAttr(flight_data, 'x', pointClicked.x );
+  var point = flight_data[i];
+  var previousPoint = flight_data[(i - 1)];
+  loadAscent(rateOfAscent(point, previousPoint));
+}
+
+var findWithAttr = function(array, attr, value) {
+    for(var i = 0; i < array.length; i += 1) {
+        if(array[i][attr] === value) {
+            return i;
+        }
+    }
+}
+
+var play = function(interval) {
+  if(currentInterval != 'undefined'){
+    clearInterval(currentInterval);
+    seriesIndex = 0;
+  }
+
+  loadChart(flight_data.slice(0, seriesIndex));
+  currentInterval = setInterval(function() {
+    advanceIndex(playSpeed);
+    decrementIndex(playSpeed);
+    var point = flight_data[seriesIndex];
+    var previousPoint = flight_data[seriesIndex - 1];
+    reversePoint = flight_data[reverseIndex];
+    playChart(point);
+    playAltimeter(point);
+    playThermometer2(point);
+    playBarometer(point);
+    playMap();
+    playClock(reversePoint);
+    playAscent(rateOfAscent(point, previousPoint))
+  }, interval);
+}
+
+// var convertPointClickObject = function(pointClicked){
+//   new_obj = {
+//     x: pointClicked.x,
+//     y: pointClicked.y,
+//     temp: pointClicked.temp,
+//     latitude: pointClicked.latitude,
+//     longitude: pointClicked.longitude
+//   };
+//   return new_obj
+// }
+
+
 var resizeContainer = function(){
   var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
   var window_height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
@@ -95,7 +151,7 @@ var ready = function() {
       flight_data = response;
       reverseIndex = flight_data.length -1
       point = flight_data[seriesIndex]
-      nextPoint = flight_data[seriesIndex + playSpeed]
+      nextPoint = flight_data[seriesIndex + 1]
       reversePoint = flight_data[reverseIndex]
       loadChart(flight_data);
       loadAltimeter(point.y);
@@ -126,11 +182,7 @@ var ready = function() {
   //   $("#comment_roll").prepend(fullComment)
   // }
 
-  var rateOfAscent = function(currentPoint, lastPoint){
-    meters = (currentPoint.y - lastPoint.y)
-    seconds = ((currentPoint.x - lastPoint.x) / 1000)
-    return (meters / seconds)
-  }
+
 
   var toggleMapChart = function (){
     if (currentView === 'map'){
@@ -150,29 +202,6 @@ var ready = function() {
 
   $('#chart_map_button').click(toggleMapChart);
 
-  var play = function(interval) {
-    if(currentInterval != 'undefined'){
-      clearInterval(currentInterval);
-      seriesIndex = 0;
-    }
-
-    loadChart(flight_data.slice(0, seriesIndex));
-    currentInterval = setInterval(function() {
-      advanceIndex(playSpeed);
-      decrementIndex(playSpeed);
-      point = flight_data[seriesIndex];
-      previousPoint = flight_data[seriesIndex - playSpeed];
-      reversePoint = flight_data[reverseIndex];
-
-      playChart(point);
-      playAltimeter(point);
-      playThermometer2(point);
-      playBarometer(point);
-      playMap();
-      playClock(reversePoint);
-      playAscent(rateOfAscent(point, previousPoint))
-    }, interval);
-  }
 
 
 

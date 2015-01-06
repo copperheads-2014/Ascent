@@ -32,13 +32,11 @@ var loadChart = function(seriesData, duration) {
       min: 1,
       max: flight_data[flight_data.length -1].x,
       type: 'datetime',
-      // title: {text: 'Time'},
       dateTimeLabelFormats: {second: '%H:%M:%S'}
     },
     yAxis: {
       min: 0,
       max: 40000,
-      title: {text: 'Altitude'}
     },
     series: [{
       name: "Altitude",
@@ -58,6 +56,7 @@ var loadChart = function(seriesData, duration) {
               playBarometer(this);
               playClock(this);
               playAscent(this);
+              ascentOnClick(this);
               // displayDataComment(this);
             }
 
