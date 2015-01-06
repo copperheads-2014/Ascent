@@ -27,6 +27,7 @@
   width: 260px;
   background: white;
   margin: 10px;
+  border: 3px;
 }
 .each-flight a {
   font-family: 'Armata', sans-serif;
@@ -44,12 +45,6 @@
   overflow: auto;
   white-space: nowrap;
   margin-bottom: 30px;
-}
-.flights-row-body div.scrollableArea img {
-  position: relative;
-  float: left;
-  margin: 0;
-  padding: 0;
 }
 #flights-footer {
   width: 100%;
