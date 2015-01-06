@@ -40,7 +40,7 @@ var loadClock = function(seriesData, maxValue){
         minorTickInterval: null,
         tickWidth: 0,
         labels: {
-          y: 16,
+          enabled: false,
           style: {color: '#4d1eb3'}
         },
         min: .001,
@@ -76,7 +76,5 @@ var loadClock = function(seriesData, maxValue){
 };
 
 var playClock = function(point) {
-  console.log(clock.series[0].points[0].update(point.x));
   clock.series[0].points[0].update(point.x);
-  barometer.series[0].points[0].update(point.pressure)
 };

@@ -95,6 +95,7 @@ var ready = function() {
       flight_data = response;
       reverseIndex = flight_data.length -1
       point = flight_data[seriesIndex]
+      nextPoint = flight_data[seriesIndex + playSpeed]
       reversePoint = flight_data[reverseIndex]
       loadChart(flight_data);
       loadAltimeter(point.y);
@@ -102,6 +103,7 @@ var ready = function() {
       loadBarometer(point.pressure);
       loadClock(reversePoint.x, reversePoint.x);
       loadMap();
+      loadAscent(rateOfAscent(nextPoint, point));
     });
 
     // Check this out -matt
@@ -115,7 +117,6 @@ var ready = function() {
   };
 
   // var appendResult = function(entry){
-  //   console.log(entry)
   //   var divForComment = "<div class = 'comment_body'>"
   //   var commentBody = entry.body
   //   var br = "</br>"
@@ -124,6 +125,12 @@ var ready = function() {
   //   var fullComment = divForComment + commentBody + br + commentAuthor + endOfDiv
   //   $("#comment_roll").prepend(fullComment)
   // }
+
+  var rateOfAscent = function(currentPoint, lastPoint){
+    meters = (currentPoint.y - lastPoint.y)
+    seconds = ((currentPoint.x - lastPoint.x) / 1000)
+    return (meters / seconds)
+  }
 
   var toggleMapChart = function (){
     if (currentView === 'map'){
@@ -149,13 +156,12 @@ var ready = function() {
       seriesIndex = 0;
     }
 
-    duration = (flight_data.length * interval) / playSpeed;
-
     loadChart(flight_data.slice(0, seriesIndex));
     currentInterval = setInterval(function() {
       advanceIndex(playSpeed);
       decrementIndex(playSpeed);
       point = flight_data[seriesIndex];
+      previousPoint = flight_data[seriesIndex - playSpeed];
       reversePoint = flight_data[reverseIndex];
 
       playChart(point);
@@ -164,6 +170,7 @@ var ready = function() {
       playBarometer(point);
       playMap();
       playClock(reversePoint);
+      playAscent(rateOfAscent(point, previousPoint))
     }, interval);
   }
 
@@ -236,11 +243,9 @@ var ready = function() {
   $('.signup').click(function(){
     var container_height = $('.container').height();
     if (full_path == '/'){
-      console.log('full path is index')
       $('body').animate({ scrollTop: container_height }, 200);
     }
     else {
-      console.log('something other than root')
       window.location.href = '/';
     };
   });
@@ -259,7 +264,6 @@ var ready = function() {
       var numWithLike = splitText.join(" ")
       $("#like_num").val(numWithLike)
     })
-    console.log(this)
     $('#like_num').css("color", "#4d1eb3")
     $(this).find('input[type="submit"]').attr('disabled','disabled');
   })
