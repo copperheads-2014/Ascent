@@ -93,18 +93,25 @@ var loadAltimeter = function(seriesData){
         backgroundColor: '#777777'
       },
       dataLabels: {enabled: false},
+    },
+    {
+      data: [seriesData / 10],
+      dial: {
+        radius: '90%',
+        rearLength: '-90%',
+        baseWidth: 1,
+        baseLength: '50%',
+        backgroundColor: '#777777'
+      },
+      dataLabels: {enabled: false},
     }]
   });
 };
 
-
-
-
-
-
 var playAltimeter = function(point) {
   altimeter.series[0].points[0].update(point.y);
   altimeter.series[1].points[0].update(point.y*100);
-  altimeter.series[2].points[0].update(point.y*10);
+  altimeter.series[2].points[0].update(point.y*10)
+  altimeter.series[3].points[0].update(point.y/10);
 };
 
