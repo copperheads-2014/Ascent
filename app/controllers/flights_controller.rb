@@ -47,8 +47,12 @@ class FlightsController < ApplicationController
   end
 
   def import
-    flight = new_user_flight.import_from_csv(params[:file])
-    redirect_to new_flight_picture_path(flight), notice: "Your flight has been imported."
+    if params[:file]
+      flight = new_user_flight.import_from_csv(params[:file])
+      redirect_to new_flight_picture_path(flight), notice: "Your flight has been imported."
+    else
+      redirect_to new_flight_path flash: {error: "Please select a file before uploading"}
+    end
   end
 
   def feed
