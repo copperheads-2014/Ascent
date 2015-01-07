@@ -101,7 +101,15 @@ var loadChart = function(seriesData, duration) {
     });
 
 };
+var displayComment = function(point) {
+  $('#comment_display p').text(point.comment.body);
+  $('#comment_display p').fadeIn(3000).fadeOut(3000);
+};
 
 var playChart = function(point) {
+  if (point.comment !== null) {
+    displayComment(point);
+  }
+
   chart.series[0].addPoint(point);
-}
+};
