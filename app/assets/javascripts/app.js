@@ -29,6 +29,23 @@ var findWithAttr = function(array, attr, value) {
     }
 }
 
+var loadFinalPoint = function(finalPoint){
+  loadChart(flight_data.slice(0, seriesIndex));
+  advanceIndex(playSpeed);
+  decrementIndex(playSpeed);
+  var previousPoint = flight_data[finalPoint - 1];
+  reversePoint = flight_data[0];
+  playChart(finalPoint);
+  playAltimeter(finalPoint);
+  playThermometer2(finalPoint);
+  playBarometer(finalPoint);
+  playMap();
+  playClock(reversePoint);
+  playAscent(rateOfAscent(finalPoint, previousPoint));
+  playBattery(finalPoint.battery);
+  console.log('last point')
+}
+
 var play = function(interval) {
 
   loadChart(flight_data.slice(0, seriesIndex));
@@ -46,6 +63,7 @@ var play = function(interval) {
     playClock(reversePoint);
     playAscent(rateOfAscent(point, previousPoint));
     playBattery(point.battery);
+    console.log('iterating')
   }, interval);
 }
 
@@ -77,10 +95,10 @@ var advanceIndex = function(resolution) {
     seriesIndex = seriesIndex + resolution;
   }
   else {
-    seriesIndex = seriesIndex[flight_data.length -1];
-    clearInterval(currentInterval);
+    seriesIndex = flight_data.length - 1;
     resetPlayButton();
-    playSpeed = 0
+    playSpeed = 0;
+    clearInterval(currentInterval);
     }
 }
 
