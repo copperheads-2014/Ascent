@@ -26,14 +26,6 @@ button:active {
   width: 45%;
 }
 
-.like_button, #toggle_comment {
-  font-family: 'Unica One';
-  font-weight: bold;
-  color: #999999;
-  background: #191919;
-  outline: none;
-}
-
 #button-play, #button-pause, #chart_button, #chart_map_button {
   width: 45%;
   height: 35px;

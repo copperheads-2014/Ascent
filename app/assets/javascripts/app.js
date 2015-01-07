@@ -100,14 +100,10 @@ var displayDataSubmit = function() {
 }
 
 var displayDataComment = function(data_point) {
-  if ($("#data_comment").is(":hidden")) {
-      $("#data_comment").slideDown("slow")
-      $("#data_point").val(data_point)
-      displayDataSubmit()
-    } else {
-      $("#data_comment").slideUp("slow")
-    }
-}
+  $("#data_point").val(data_point.id)
+  console.log(data_point.id)
+  // displayDataSubmit()
+};
 
 var togglePlay = function(){
   if (playSpeed === 0 || playSpeed === 5){
