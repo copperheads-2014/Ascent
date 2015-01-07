@@ -135,11 +135,10 @@ var togglePlay = function(){
 
 var ready = function() {
   resizeContainer();
-
-     $(".flight-save").on('click', function() {
-      NProgress.inc(0.25);
-      NProgress.start();
-    })
+   $(".flight-save").on('click', function() {
+    NProgress.inc(0.25);
+    NProgress.start();
+  })
 
   full_path = window.location.pathname
   current_dir = window.location.pathname.split('/')[1]
