@@ -42,4 +42,10 @@ $(document).ready(function() {
     $('#avatar_form').slideDown('slow');
   });
 
+  $('#avatar-cancel').click(function(e) {
+    event.preventDefault();
+    $('#avatar_form').slideUp('slow');
+    $('#avatar').slideDown('slow');
+  });
+
 });
