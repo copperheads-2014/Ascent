@@ -9,7 +9,7 @@
     <div><p>2</p></div>
     <div><%= f.label :remote_image_url, "Load Image URL" %></div>
     <div><%= f.text_field :remote_image_url, id: "url-input",placeholder: "Image URL" %></div>
-    <div><%= f.link_to "Skip picture upload", flights_path(flight) %>
     <div><%= f.submit "Save Image", id: "photo-save" %></div>
 <% end %>
+<%= link_to "Skip picture upload", controller: "flights", action: "show", id: @flight  %>
 
