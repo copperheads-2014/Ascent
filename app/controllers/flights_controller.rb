@@ -30,6 +30,9 @@ class FlightsController < ApplicationController
 
     # 6) Longest Duration Flights:
     @longest_duration = @flights.order(duration: :desc)
+
+    # 7) Greatest Distance Flights:
+    @greatest_distance = @flights.order(distance_traveled: :desc)
   end
 
   def show
