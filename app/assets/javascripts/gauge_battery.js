@@ -9,10 +9,11 @@ var loadBattery = function(seriesData){
   battery = new Highcharts.Chart({
     chart: {
       type: 'column',
-      renderTo: 'gauge_7'
+      renderTo: 'gauge_7',
+      width: 100
     },
     title: {
-      text: 'Battery Level'
+      text: 'Battery'
     },
     legend: {enabled: false},
     yAxis: {
@@ -20,7 +21,7 @@ var loadBattery = function(seriesData){
              text: null
          },
          labels: {
-             y: 5
+             enabled: false
          },
          min: .01,
          max: fullBattery,
@@ -56,7 +57,7 @@ var loadBattery = function(seriesData){
           dataLabels: {
             verticalAlign: 'bottom',
             useHTML: true,
-            enabled: true,
+            enabled: false,
             formatter: function() {
               var batLevel = (this.y);
               var pct = calculatePct(batLevel)

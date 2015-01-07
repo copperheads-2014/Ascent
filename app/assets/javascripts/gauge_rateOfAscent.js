@@ -3,10 +3,11 @@ var loadAscent = function(seriesData){
   ascent = new Highcharts.Chart({
     chart: {
       type: 'column',
-      renderTo: 'gauge_6'
+      renderTo: 'gauge_6',
+      width: 100
     },
     title: {
-      text: 'Rate of Ascent'
+      text: 'Ascent'
     },
     legend: {enabled: false},
     yAxis: {
@@ -50,7 +51,7 @@ var loadAscent = function(seriesData){
           dataLabels: {
             verticalAlign: 'bottom',
             useHTML: true,
-            enabled: true,
+            enabled: false,
             formatter: function() {
               var rate = Math.round(this.y * 100) / 100;
               return '<div style="text-align:center"><span style="font-size:25px;color:' +
