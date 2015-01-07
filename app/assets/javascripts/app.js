@@ -77,13 +77,14 @@ var resetPlayButton = function(){
 }
 
 var advanceIndex = function(resolution) {
-  if(seriesIndex < flight_data.length - 1) {
+  if(seriesIndex < flight_data.length - resolution - 1) {
     seriesIndex = seriesIndex + resolution;
   }
   else {
     seriesIndex = seriesIndex[flight_data.length -1];
     clearInterval(currentInterval);
     resetPlayButton();
+    playSpeed = 0
     }
 }
 
