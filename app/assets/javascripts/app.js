@@ -293,6 +293,21 @@ var ready = function() {
     };
   });
 
+  $(".friend-list form").on('submit', function(e) {
+    e.preventDefault();
+    var form = $(this);
+    $.ajax({
+      method: form.attr('method'),
+      url: form.attr('action'),
+      success: function(response) {
+        $("#friend-list-" + response.id).remove();
+      },
+      fail: function(response) {
+
+      }
+    })
+  });
+
   $("#like").one("submit", function(e){
     e.preventDefault()
     var request = $.ajax({

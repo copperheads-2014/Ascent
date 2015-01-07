@@ -24,21 +24,20 @@
         <div id="dropdown2" class="flexbox box-right"><i class="fa fa-users fa-2x"></i></div>
 
         <div id="notification">
-        <div id="friend-request">Friend Requests</div>
-        <hr>
-        <% current_user.inverse_friendships.where("approved = false").each do |friendship| %>
-            <% if friendship.friend == current_user %>
-              <div class="friend-list">
-                <%= link_to friendship.user.username, user_path(friendship.user), class: "flex-2" %>
-                <%= form_for :friendships, method: 'PUT', url: "/approve/#{friendship.id}", html: {class: "flex-1"} do |f| %>
-                  <%= f.submit 'Y', id: "yes" %>
-                <% end %>
-                <%= form_for :friendships, method: 'DELETE', url: "/friendships/#{friendship.id}", html: {class: "flex-1"} do |f| %>
-                  <%= f.submit 'N', id: "nope" %>
-                <% end %>
-              </div>
-              <hr>
-            <% end %>
+          <div id="friend-request">Friend Requests</div>
+          <hr>
+          <% current_user.inverse_friendships.unapproved.each do |friendship| %>
+            <div class="friend-list" id="<%= "friend-list-#{friendship.id}" %>">
+              <%= link_to friendship.user.username, user_path(friendship.user), class: "flex-2", id: "flex-#{friendship.id}" %>
+
+              <%= form_for :friendships, id: "form-#{friendship.id}", url: approve_friendship_path(friendship), html: {class: "flex-1"} do |f| %>
+                <%= f.submit 'Y', id: "yes" %>
+              <% end %>
+
+              <%= form_for :friendships, method: 'DELETE', url: friendship_path(friendship), html: {class: "flex-1"} do |f| %>
+                <%= f.submit 'N', id: "nope" %>
+              <% end %>
+            </div>
           <% end %>
         </div>
 

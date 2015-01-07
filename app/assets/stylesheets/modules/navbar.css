@@ -119,10 +119,6 @@ nav a {
 #caret {
   padding-left: 15px;
 }
-hr {
-  background: lightgray;
-  margin: 0 5px;
-}
 .menu-login {
   display: none;
 }
@@ -244,8 +240,12 @@ form {
   color: black;
 }
 .friend-list {
+  /* sane */
   width: 100%;
   height: 55px;
+  border-bottom: 1px solid #ccc;
+
+  /* insane */
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -298,7 +298,6 @@ form {
   flex: 3;
   padding: 0 5px;
 }
-#notification hr:last-child { display: none; }
 #notification.active input {
   color: #D1DBDD;
 }

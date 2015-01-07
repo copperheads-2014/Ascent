@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "logout" => "sessions#destroy"
   get "login" => "sessions#new"
   get "signup" => "users#new"
-  put "approve/:id" => "friendships#approve"
+  # put "approve/:id" => "friendships#approve"
   post "comments" => "comments#create"
 
   # resources :comments, only: [:show] # do
@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   #   end
   # end
 
-  resources :friendships
+  resources :friendships, only: [:create, :destroy] do
+    member do
+      post 'approve'
+    end
+  end
   resources :likes, only: :create
   resources :launches, only: :create
 
