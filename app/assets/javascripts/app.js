@@ -30,10 +30,6 @@ var findWithAttr = function(array, attr, value) {
 }
 
 var play = function(interval) {
-  if(currentInterval != 'undefined'){
-    clearInterval(currentInterval);
-    seriesIndex = 0;
-  }
 
   loadChart(flight_data.slice(0, seriesIndex));
   currentInterval = setInterval(function() {
