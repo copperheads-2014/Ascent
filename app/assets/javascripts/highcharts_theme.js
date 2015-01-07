@@ -11,7 +11,7 @@ Highcharts.theme = {
    chart: {
       backgroundColor: '#191919',
       style: {
-         fontFamily: "'Unica One', sans-serif"
+         fontFamily: "'Armata', sans-serif"
       },
       plotBorderColor: '#606063'
    },

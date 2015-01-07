@@ -11,7 +11,7 @@ var loadChart = function(seriesData, duration) {
       zoomType: 'x',
       renderTo: 'chart',
       style: {
-        fontFamily: 'Unica One ',
+        fontFamily: 'Armata ',
         fontSize: '12px'
       }
     },
@@ -26,7 +26,7 @@ var loadChart = function(seriesData, duration) {
     },
     subtitle: {
       text: 'Drag over chart to zoom in',
-      style: {"fontFamily" : "Unica One"}
+      style: {"fontFamily" : "Armata"}
     },
     xAxis: {
       min: 1,

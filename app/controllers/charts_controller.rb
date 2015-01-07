@@ -9,11 +9,12 @@ class ChartsController < ApplicationController
   	data_points.each do |p|
       @points << { x: (time_from_first_point(p, data_points[0])),
   					 y: p[:data]['altitude'],
-  					 temp: p[:data]['temperature'],
+  					 temp: p[:data]['temperature'] || p[:data]['temperature_external'] || p[:data]['external_temperature'] || p[:data]['temperature_ext'] || p[:data]['ext_termperature'],
              latitude: p[:data]['latitude'],
              longitude: p[:data]['longitude'],
              id: p.id,
-             pressure: p[:data]['pressure']}
+             pressure: p[:data]['pressure'],
+             battery: p[:data]['battery']}
   	end
 
   	respond_to do |format|

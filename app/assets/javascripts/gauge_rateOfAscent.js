@@ -43,7 +43,7 @@ var loadAscent = function(seriesData){
       }
 
      },
-     tooltip: {endabled: false},
+     tooltip: {enabled: false},
      credits: {enabled: false},
      series: [{
          borderColor: '#BBBBBB',
