@@ -100,7 +100,10 @@ tr input[type="submit"]:hover {
   margin-left: 5%;
 }
 #comment_display p {
-  display: none;
+  width: 80%;
+}
+#comment_display p, a {
+  /*display: none;*/
   margin: 0;
   font-family: 'Armata', sans-serif;
 }
