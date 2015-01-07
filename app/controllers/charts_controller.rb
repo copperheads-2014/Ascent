@@ -14,9 +14,9 @@ class ChartsController < ApplicationController
              longitude: p[:data]['longitude'],
              id: p.id,
              pressure: p[:data]['pressure'],
-             battery: p[:data]['battery']}
+             battery: p[:data]['battery'],
+             comment: p.comment}
   	end
-
   	respond_to do |format|
   	  format.json { render json: @points, status: :ok}
   	end
