@@ -16,7 +16,7 @@ var loadThermometer2 = function(seriesData){
         text: 'Thermometer'
       },
       pane: {
-        center: ['50%', '85%'],
+        center: ['50%', '65%'],
         size: '100%',
         startAngle: -90,
         endAngle: 90,
@@ -42,7 +42,7 @@ var loadThermometer2 = function(seriesData){
         tickWidth: 0,
         labels: {
           y: 16,
-          style: {color: '#4d1eb3'}
+          style: {color: '#ffffff'}
         },
         min: -50,
         max: 50

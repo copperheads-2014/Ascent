@@ -25,7 +25,8 @@ var loadAltimeter = function(seriesData){
     pane: {
       startAngle: 0,
       endAngle: 360,
-      size: '90%',
+      size: '100%',
+      center: ['50%', '50%'],
       background: {
         backgroundColor: '#191919',
         borderWidth: 0,
@@ -38,7 +39,7 @@ var loadAltimeter = function(seriesData){
       min: 0,
       max: 9999,
       lineColor: '#191919',
-      tickColor: '#4d1eb3',
+      tickColor: '#ffffff',
       minorTickColor: '#878787',
       offset: -25,
       labels: {
@@ -66,8 +67,8 @@ var loadAltimeter = function(seriesData){
         formatter: function () {
           var meters = this.y,
           feet = Math.round(meters * 3.28084);
-          return '<br><span style="color:#4d1eb3">'+ meters + ' m</span><br/>' +
-          '<span style="color:#878787">' + feet + ' fT</span>';
+          return '<br><span style="color:#ffffff">'+ meters + ' m</span><br/>' +
+          '<span style="color:#ffffff">' + feet + ' fT</span>';
         },
         backgroundColor: '#191919',
         borderWidth: 0

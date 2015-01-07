@@ -13,7 +13,7 @@ var loadClock = function(seriesData, maxValue){
       },
 
       title: {
-        text: 'Clock'
+        text: null
       },
       pane: {
         size: '100%',
@@ -41,7 +41,7 @@ var loadClock = function(seriesData, maxValue){
         tickWidth: 0,
         labels: {
           enabled: false,
-          style: {color: '#4d1eb3'}
+          style: {color: '#ffffff'}
         },
         min: .001,
         max: maxValue,
