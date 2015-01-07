@@ -48,7 +48,8 @@ var play = function(interval) {
     playBarometer(point);
     playMap();
     playClock(reversePoint);
-    playAscent(rateOfAscent(point, previousPoint))
+    playAscent(rateOfAscent(point, previousPoint));
+    playBattery(point.battery);
   }, interval);
 }
 
@@ -91,7 +92,7 @@ var decrementIndex = function(resolution){
     reverseIndex = reverseIndex - resolution;
   }
   else {
-    reverseIndex = reverseIndex[0];
+    reverseIndex = 0;
   }
 }
 
@@ -160,6 +161,8 @@ var ready = function() {
       loadClock(reversePoint.x, reversePoint.x);
       loadMap();
       loadAscent(rateOfAscent(nextPoint, point));
+      setFullBattery(point.battery);
+      loadBattery(point.battery);
     });
 
     // Check this out -matt

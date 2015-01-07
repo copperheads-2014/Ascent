@@ -1,12 +1,18 @@
+var fullBattery
 
-var loadAscent = function(seriesData){
-  ascent = new Highcharts.Chart({
+var setFullBattery = function(point){
+  fullBattery = point
+}
+
+var loadBattery = function(seriesData){
+
+  battery = new Highcharts.Chart({
     chart: {
       type: 'column',
-      renderTo: 'gauge_6'
+      renderTo: 'gauge_7'
     },
     title: {
-      text: 'Rate of Ascent'
+      text: 'Battery Level'
     },
     legend: {enabled: false},
     yAxis: {
@@ -16,10 +22,10 @@ var loadAscent = function(seriesData){
          labels: {
              y: 5
          },
-         min: -19.9,
-         max: 19.9,
-         tickInterval: 20,
-         minorTickInterval: 5,
+         min: .01,
+         max: fullBattery,
+         tickInterval: fullBattery/2,
+         minorTickInterval: fullBattery/8,
          tickWidth: 1,
          tickLength: 8,
          minorTickLength: 10,
@@ -52,18 +58,26 @@ var loadAscent = function(seriesData){
             useHTML: true,
             enabled: true,
             formatter: function() {
-              var rate = Math.round(this.y * 100) / 100;
+              var batLevel = (this.y);
+              var pct = calculatePct(batLevel)
               return '<div style="text-align:center"><span style="font-size:25px;color:' +
-                  ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + rate + '</span><br/>' +
-                     '<span style="font-size:14px;color:silver">Meters / Second</span></div>'
+                  ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + pct + '%</span><br/>' +
+                     '<span style="font-size:14px;color:silver"of starting power</span></div>'
           }
         }
       }]
   })
 }
 
-var playAscent = function(rate) {
-  ascent.series[0].points[0].update(rate);
+var calculatePct = function(currentValue){
+  console.log(currentValue)
+  return Math.round((currentValue / fullBattery) * 100)
+}
+
+var playBattery = function(bat) {
+  console.log(bat)
+  battery.series[0].points[0].update(bat);
 };
+
 
 

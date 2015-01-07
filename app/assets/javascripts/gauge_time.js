@@ -64,6 +64,7 @@ var loadClock = function(seriesData, maxValue){
         data: [seriesData],
         dataLabels: {
           y: -40,
+          useHTML: true,
           formatter: function() {
             var time = (this.y)
             return '<div style="text-align:center"><span style="font-size:14px;color:silver">Time</span><br><span style="font-size:14px;color:silver">Remaining</span><br><span style="font-size:25px;color:' +
