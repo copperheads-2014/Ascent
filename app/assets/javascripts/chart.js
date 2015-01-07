@@ -58,6 +58,7 @@ var loadChart = function(seriesData, duration) {
               playAscent(this);
               ascentOnClick(this);
               displayDataComment(this);
+              playBattery(this);
             }
 
           }

@@ -75,9 +75,9 @@ var calculatePct = function(currentValue){
   return Math.round((currentValue / fullBattery) * 100)
 }
 
-var playBattery = function(bat) {
-  console.log(bat)
-  battery.series[0].points[0].update(bat);
+var playBattery = function(point) {
+  console.log(point)
+  battery.series[0].points[0].update(point.battery);
 };
 
 
