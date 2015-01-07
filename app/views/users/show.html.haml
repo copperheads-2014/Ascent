@@ -15,7 +15,8 @@
         %td= link_to image_tag(friend.avatar_url(:avatar_thumb)), user_path(friend)
         %td.username= link_to friend.username, user_path(friend)
         %td.unfriend
-          %a{href: "#", value: "/friendships/#{Friendship.find_id(@user, friend)}"} unfriend
+          -if current_user == @user
+            %a{href: "#", value: "/friendships/#{Friendship.find_id(@user, friend)}"} unfriend
     -if current_user == @user
       -@user.pending_friends.each do |friend|
         %tr
