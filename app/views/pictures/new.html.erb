@@ -11,3 +11,5 @@
     <div><%= f.text_field :remote_image_url, id: "url-input",placeholder: "Image URL" %></div>
     <div><%= f.submit "Save Image", id: "photo-save" %></div>
 <% end %>
+<%= link_to "Skip picture upload", controller: "flights", action: "show", id: @flight  %>
+

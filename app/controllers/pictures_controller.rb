@@ -1,15 +1,21 @@
 class PicturesController < ApplicationController
-
-  def index
+  def new
     @flight = Flight.find(params[:flight_id])
   end
 
+  def index
+    @flight = Flight.find(params[:flight_id])
+    puts 'xxxxxxxxxxx'
+    puts @flight
+    puts 'xxxxxxxxxx'
+  end
+
   def create
-    flight = Flight.find(params[:flight_id])
+    @flight = Flight.find(params[:flight_id])
     files = params[:picture][:files]
     if files
       files.each do |file|
-        picture = Picture.new(flight_id: flight.id, caption: params[:picture][:caption])
+        picture = Picture.new(flight_id: @flight.id, caption: params[:picture][:caption])
         picture.image = file
         picture.save!
       end
