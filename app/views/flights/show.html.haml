@@ -50,7 +50,8 @@
       #below_chart
         %grid
           %grid{:class => 'col-3-4'}
-            #comment-display
+            #comment_display
+              %p
             =form_for :comment, method: 'POST', url: "/comments" do |f|
               =f.hidden_field :data_point_id, id: "data_point"
               =f.hidden_field :flight_id, value: "#{params[:id]}"

@@ -80,7 +80,7 @@ var play = function(interval) {
     playClock(reversePoint);
     playAscent(rateOfAscent(point, previousPoint));
     playBattery(point.battery);
-    console.log('iterating')
+    // console.log('iterating')
   }, interval);
 }
 

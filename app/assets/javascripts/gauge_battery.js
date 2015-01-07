@@ -71,7 +71,7 @@ var loadBattery = function(seriesData){
 }
 
 var calculatePct = function(currentValue){
-  console.log(currentValue)
+  // console.log(currentValue)
   return Math.round((currentValue / fullBattery) * 100)
 }
 

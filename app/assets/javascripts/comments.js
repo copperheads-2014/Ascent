@@ -15,67 +15,35 @@ var ready = function() {
   //   e.preventDefault();
   //   if ($("#comment").is(":hidden")) {
   //     $("#comment").slideDown("slow")
-  //     $(this).css("color", "#4d1eb3")
+  //     $(this).css("color", "#ffffff")
   //   } else {
   //     $("#comment").slideUp("slow")
   //     $(this).css("color", "black")
   //   }
   // })
 
-  $("#toggle_comment").on("click", function(e){
-    e.preventDefault();
-    if ($("#comment").is(":hidden")) {
-      $("#comment").slideDown("slow")
-      $(this).css("color", "#ffffff")
-    } else {
-      $("#comment").slideUp("slow")
-      $(this).css("color", "black")
-    }
-  })
-
-
-  // $("#show_comments").on("click", function(){
-  //   if ($("#comment_roll").is(":hidden")) {
-  //     $("#show_comments").val("hide comments")
-  //     $("#comment_roll").show('slide', {direction:'up'}, 1000)
-  //   } else {
-  //     $("#show_comments").val("show comments")
-  //     $("#comment_roll").hide("slide", {direction: 'up'}, 1000);
-  //   }
-  // })
-
   $('#show_comment').click(function(){
-    var container_height = $('.container').height();
+    var container_height = $('.container').height() + 100;
     $('body').animate({ scrollTop: container_height }, 200);
   });
 
-  $("#datapoint_comment").on("submit", function(e) {
-    e.preventDefault()
-    var request = $.ajax({
-      url: "/comments/data",
-      method: "post",
-      data: $("#datapoint_comment").serialize()
-    })
-    $("#data_comment").slideUp("slow")
-    $("#data_comment input[type='text']").val("")
-  })
 
-  $("#post_comment").on("submit", function(e) {
-    e.preventDefault()
-    var request = $.ajax({
-      url: "/comments/flights.json",
-      type: "post",
-      data: $("#post_comment").serialize(),
-      dataType: "json"
-    })
-    request.done(appendResult)
-    $("#comment").slideUp("slow")
-    $("#toggle_comment").css("color", "black")
-    $("#comment input[type='text']").val("")
-    if ($("#comment_roll").is(":hidden")){
-      $("#show_comments").trigger("click")
-    }
-  })
+  // $("#post_comment").on("submit", function(e) {
+  //   e.preventDefault()
+  //   var request = $.ajax({
+  //     url: "/comments/flights.json",
+  //     type: "post",
+  //     data: $("#post_comment").serialize(),
+  //     dataType: "json"
+  //   })
+  //   request.done(appendResult)
+  //   $("#comment").slideUp("slow")
+  //   $("#toggle_comment").css("color", "black")
+  //   $("#comment input[type='text']").val("")
+  //   if ($("#comment_roll").is(":hidden")){
+  //     $("#show_comments").trigger("click")
+  //   }
+  // })
 }
 
 $(document).ready(ready);

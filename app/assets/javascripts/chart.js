@@ -101,7 +101,17 @@ var loadChart = function(seriesData, duration) {
     });
 
 };
+var displayComment = function(point) {
+  var comment = point.comments[0]
+  url = "/users/" + comment.author_id
+  $('#comment_display p').text(comment.author + ": " + comment.body);
+  $('#comment_display p').fadeIn(3000).fadeOut(3000);
+};
 
 var playChart = function(point) {
+  if (point.comments[0] !== undefined) {
+    displayComment(point);
+  }
+
   chart.series[0].addPoint(point);
-}
+};
