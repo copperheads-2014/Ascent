@@ -1,0 +1,15 @@
+<header id="pictures-header"><h1>Import Photos</h1></header>
+
+<%= form_for :picture, method: 'POST', url: {action: 'createtoalbum'}, :html => {:multipart => true, id: "photo-form"} do |f| %>
+  <%= f.hidden_field :flight_id %>
+    <div><p>1</p></div>
+    <div><%= f.label :remote_image_url, "Load From Computer" %></div>
+    <div><%= f.file_field :files, multiple: true %></div>
+    <div id="or-div">-OR-</div>
+    <div><p>2</p></div>
+    <div><%= f.label :remote_image_url, "Load Image URL" %></div>
+    <div><%= f.text_field :remote_image_url, id: "url-input",placeholder: "Image URL" %></div>
+    <div><%= f.submit "Save Image", id: "photo-save" %></div>
+<% end %>
+<div id="contain1"><%= link_to "See Flight", flight_path(@flight), class: "links_bottom" %></div>
+<div id="contain2"><%= link_to "See Flight Photos", flight_pictures_path(@flight), class: "links_bottom" %></div>

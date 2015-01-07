@@ -282,6 +282,26 @@ var ready = function() {
     visibleHotSpotBackgrounds: "always"
   });
 
+  $('.img-container').hover(function(){
+    $(this).find("button").show();
+  },function() {
+    $(this).find("button").hide();
+  });
+
+  $('.remove-pic').click(function(){
+    var flightId = window.location.pathname.split("/")[2];
+    var imageContainer = $(this).parent();
+    var imageId = $(this).data().id;
+    var request = $.ajax({
+      url: "/flights/" + flightId + "/pictures/" + imageId,
+      method: "DELETE"
+    });
+    request.done(function(response){
+      imageContainer.next(".helper").remove();
+      imageContainer.remove();
+    });
+  });
+
   $('.signup').click(function(){
     var container_height = $('.container').height();
     if (full_path == '/'){
@@ -302,7 +322,6 @@ var ready = function() {
         $("#friend-list-" + response.id).remove();
       },
       fail: function(response) {
-
       }
     })
   });
