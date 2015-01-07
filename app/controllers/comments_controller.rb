@@ -5,16 +5,15 @@ class CommentsController < ApplicationController
     respond_with @comment
   end
 
-  def create_for_flight
-    @comment = Comment.create(flight_id: params[:comments][:id], body: params[:comments][:body], user_id: current_user.id, status: 0)
-    @json_comment = {body: @comment.body, author: @comment.author.username}
-
-    respond_to do |format|
-      format.json { render json: @json_comment, status: :ok}
+  def create
+    p params[:comment]
+    flight = Flight.find(params[:comment][:flight_id])
+    @comment = Comment.new(flight_id: flight.id, data_point_id: params[:comment][:data_point_id], body: params[:comment][:body], user_id: current_user.id)
+    if params[:comment][:data_point_id].present?
+      @comment.update(status: 1)
     end
+    @comment.save
+    redirect_to flight_path(flight)
   end
 
-  def create_for_datapoint
-    Comment.create(data_point_id: params[:comments][:data_point], body: params[:comments][:body], user_id: current_user.id, status: 1)
-  end
 end

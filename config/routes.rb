@@ -7,8 +7,7 @@ Rails.application.routes.draw do
   get "login" => "sessions#new"
   get "signup" => "users#new"
   put "approve/:id" => "friendships#approve"
-  post "comments/flights" => "comments#create_for_flight"
-  post "comments/data" => "comments#create_for_datapoint"
+  post "comments" => "comments#create"
 
   # resources :comments, only: [:show] # do
   #   collection do

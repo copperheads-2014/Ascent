@@ -11,26 +11,31 @@ var appendResult = function(entry){
 
 var ready = function() {
 
-  $("#toggle_comment").on("click", function(e){
-    e.preventDefault();
-    if ($("#comment").is(":hidden")) {
-      $("#comment").slideDown("slow")
-      $(this).css("color", "#4d1eb3")
-    } else {
-      $("#comment").slideUp("slow")
-      $(this).css("color", "black")
-    }
-  })
+  // $("#toggle_comment").on("click", function(e){
+  //   e.preventDefault();
+  //   if ($("#comment").is(":hidden")) {
+  //     $("#comment").slideDown("slow")
+  //     $(this).css("color", "#4d1eb3")
+  //   } else {
+  //     $("#comment").slideUp("slow")
+  //     $(this).css("color", "black")
+  //   }
+  // })
 
-  $("#show_comments").on("click", function(){
-    if ($("#comment_roll").is(":hidden")) {
-      $("#show_comments").val("hide comments")
-      $("#comment_roll").show('slide', {direction:'up'}, 1000)
-    } else {
-      $("#show_comments").val("show comments")
-      $("#comment_roll").hide("slide", {direction: 'up'}, 1000);
-    }
-  })
+  // $("#show_comments").on("click", function(){
+  //   if ($("#comment_roll").is(":hidden")) {
+  //     $("#show_comments").val("hide comments")
+  //     $("#comment_roll").show('slide', {direction:'up'}, 1000)
+  //   } else {
+  //     $("#show_comments").val("show comments")
+  //     $("#comment_roll").hide("slide", {direction: 'up'}, 1000);
+  //   }
+  // })
+
+  $('#show_comment').click(function(){
+    var container_height = $('.container').height();
+    $('body').animate({ scrollTop: container_height }, 200);
+  });
 
   $("#datapoint_comment").on("submit", function(e) {
     e.preventDefault()
