@@ -3,10 +3,10 @@ class DataPoint < ActiveRecord::Base
   has_many :comments
 
   def comment
-    comments.first
+    comments.includes(:author).first
   end
 
   def comment_author
-    comment.author
+    comment.author.username
   end
 end
