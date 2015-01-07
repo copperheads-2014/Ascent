@@ -22,10 +22,10 @@ var ready = function() {
   //   }
   // })
 
-  // $('#show_comment').click(function(){
-  //   var container_height = $('.container').height();
-  //   $('body').animate({ scrollTop: container_height }, 200);
-  // });
+  $('#show_comment').click(function(){
+    var container_height = $('.container').height() + 100;
+    $('body').animate({ scrollTop: container_height }, 200);
+  });
 
 
   // $("#post_comment").on("submit", function(e) {
