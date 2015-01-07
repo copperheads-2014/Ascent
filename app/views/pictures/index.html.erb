@@ -3,6 +3,16 @@
 <div id="picture-carousel">
   <% @flight.pictures.each do |picture| %>
   <span class="helper"></span>
-  <%= image_tag picture.image_url.to_s %>
+  <div class="img-container">
+    <span class="helper"></span>
+    <%= image_tag picture.image_url.to_s %>
+    <button class="remove-pic" data-id="<%= picture.id %>">X</button>
+  </div>
+  <% end %>
+</div>
+
+<div id="below-carousel">
+  <%= form_for :picture, method: 'get', url: "/flights/#{@flight.id}/pictures/newtoalbum", html: {class: "photo-submit"} do |f| %>
+  <%= f.submit "Add Photos"%>
   <% end %>
 </div>

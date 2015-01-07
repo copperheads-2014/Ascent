@@ -29,13 +29,15 @@ Rails.application.routes.draw do
   end
   resources :sessions
 
+  get "flights/:flight_id/pictures/newtoalbum" => "pictures#newtoalbum"
+  post "flights/:flight_id/picturestoalbum" => "pictures#createtoalbum"
 
   get "flights/feed" => "flights#feed"
 
   resources :flights do
     collection { post :import }
     resources :data_points
-    resources :pictures
+    resources :pictures, except: :show
   end
 
 
