@@ -14,11 +14,28 @@ var rateOfAscent = function(currentPoint, lastPoint){
   return (meters / seconds)
 }
 
+var updateBatteryInfo = function(point){
+  var batLevel = (point.battery);
+  var pct = calculatePct(batLevel);
+  $("#gauge_7_info").html('<p>' + pct + '%</p>');
+}
+
+var updateAscentInfo = function(point){
+  var i = 1;
+  var point = flight_data[i];
+  var previousPoint = flight_data[(i - 1)];
+  var rate = Math.round(rateOfAscent(point, previousPoint) * 100) / 100;
+  $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>')
+}
+
+
 var ascentOnClick = function(pointClicked){
   var i = findWithAttr(flight_data, 'x', pointClicked.x );
   var point = flight_data[i];
   var previousPoint = flight_data[(i - 1)];
-  loadAscent(rateOfAscent(point, previousPoint));
+  var rate = Math.round(rateOfAscent(point, previousPoint) * 100) / 100;
+  loadAscent(rate);
+  $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
 }
 
 var findWithAttr = function(array, attr, value) {
@@ -163,16 +180,18 @@ var ready = function() {
       reverseIndex = flight_data.length -1
       point = flight_data[seriesIndex]
       nextPoint = flight_data[seriesIndex + 1]
-      reversePoint = flight_data[reverseIndex]
+      reversePoint = flight_data[reverseIndex];
       loadChart(flight_data);
       loadAltimeter(point.y);
       loadThermometer2(point.temp);
       loadBarometer(point.pressure);
       loadClock(reversePoint.x, reversePoint.x);
       loadMap();
+      updateAscentInfo(point);
       loadAscent(rateOfAscent(nextPoint, point));
       setFullBattery(point.battery);
       loadBattery(point.battery);
+      updateBatteryInfo(point)
     });
 
     // Check this out -matt

@@ -63,6 +63,7 @@ var loadThermometer2 = function(seriesData){
         name: 'Temperature',
         data: [seriesData],
         dataLabels: {
+          verticalAlign: 'middle',
           formatter: function() {
             var degrees = Math.round(this.y)
             return '<div style="text-align:center"><span style="font-size:25px;color:' +

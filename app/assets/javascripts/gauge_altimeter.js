@@ -64,6 +64,7 @@ var loadAltimeter = function(seriesData){
         style: {
             fontSize: '18px'
         },
+        y: 5,
         formatter: function () {
           var meters = this.y,
           feet = Math.round(meters * 3.28084);

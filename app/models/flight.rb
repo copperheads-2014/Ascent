@@ -47,6 +47,19 @@ class Flight < ActiveRecord::Base
     max_altitude_data_point.data["altitude"]
   end
 
+  def max_altitude_time
+    max_altitude_data_point.data['time']
+  end
+
+  def time_to_burst
+    Flight.travel_time(self.start_time, self.max_altitude_time)
+  end
+
+  def time_of_descent
+    Flight.travel_time(self.max_altitude_time, self.end_time)
+  end
+
+
 # CLASS METHODS
   def self.travel_time(start_time, end_time)
     total_seconds = Time.parse(end_time) - Time.parse(start_time)

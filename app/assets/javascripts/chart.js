@@ -1,6 +1,13 @@
 var chart;
 var clickDetected = false;
 
+// var renderAscentInfo = function(rate){
+//   $('#gauge_6_info').html('<div style="text-align:center"><span style="font-size:25px;color:' +
+//                   ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">' + rate + '</span><br/>' +
+//                      '<span style="font-size:14px;color:silver">Meters / Second</span></div>')
+
+// }
+
 var loadChart = function(seriesData, duration) {
   if (typeof seriesData === 'undefined') { seriesData = [0,0]; }
   if (typeof duration === 'undefined') { duration = 1000; }
@@ -58,6 +65,8 @@ var loadChart = function(seriesData, duration) {
               playAscent(this);
               ascentOnClick(this);
               displayDataComment(this);
+              playBattery(this);
+              updateBatteryInfo(this);
             }
 
           }
