@@ -22,6 +22,18 @@ var ready = function() {
   //   }
   // })
 
+  $("#toggle_comment").on("click", function(e){
+    e.preventDefault();
+    if ($("#comment").is(":hidden")) {
+      $("#comment").slideDown("slow")
+      $(this).css("color", "#ffffff")
+    } else {
+      $("#comment").slideUp("slow")
+      $(this).css("color", "black")
+    }
+  })
+
+
   // $("#show_comments").on("click", function(){
   //   if ($("#comment_roll").is(":hidden")) {
   //     $("#show_comments").val("hide comments")
