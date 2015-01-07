@@ -15,7 +15,7 @@ var ready = function() {
     e.preventDefault();
     if ($("#comment").is(":hidden")) {
       $("#comment").slideDown("slow")
-      $(this).css("color", "#4d1eb3")
+      $(this).css("color", "#ffffff")
     } else {
       $("#comment").slideUp("slow")
       $(this).css("color", "black")
