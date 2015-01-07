@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   end
 
   def approved_friends
-    friendships.where("approved = true").map(&:friend)
+    inverse_friendships.where("approved = true").map(&:user)
   end
 
   def pending_friends
