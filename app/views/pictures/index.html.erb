@@ -6,3 +6,9 @@
   <%= image_tag picture.image_url.to_s %>
   <% end %>
 </div>
+
+<div id="below-carousel">
+  <%= form_for :picture, method: 'get', url: "/flights/#{@flight.id}/pictures/new", html: {class: "photo-submit"} do |f| %>
+  <%= f.submit "Add Photos"%>
+  <% end %>
+</div>

@@ -38,7 +38,6 @@ Rails.application.routes.draw do
     resources :pictures
   end
 
-
   resources :charts, only: [:index, :show]
 
   root 'welcome#index'
