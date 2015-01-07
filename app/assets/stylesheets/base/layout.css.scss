@@ -87,11 +87,26 @@ table {
 }
 
 .gauges {
+  clear: both;
   display: block;
   width: 100%;
-  margin: -50px auto;
+  margin: 0 auto;
   padding: 20px;
 }
+
+#gauge_6_info, #gauge_7_info {
+  width: 150px;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  font-family: 'Unica One';
+  font-size: 22px;
+  color: white;
+  vertical-align: middle;
+}
+
+
 
 #gauge_5 {
   dispay: block;
@@ -100,13 +115,20 @@ table {
   height: 200px;
 }
 
-
 #gauge_6, #gauge_7 {
   display: inline-block;
   width: 100px;
   height: 400px;
-  margin: 0 100px;
+}
 
+#gauge_6 {
+  margin-right: 100px;
+  display: inline-block
+}
+
+#gauge_7 {
+  margin-left: 100px;
+  display: inline block
 }
 
 #gauge_1, #gauge_3, #gauge_4 {
@@ -121,6 +143,7 @@ table {
     margin: 10px auto;
   }
 }
+
 
 desc {
   display: none;

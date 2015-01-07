@@ -65,6 +65,7 @@ var loadBarometer = function(seriesData){
         name: 'Pressure',
         data: [seriesData],
         dataLabels: {
+          verticalAlign: 'middle',
           formatter: function() {
             var mbar = Math.round(this.y)
             return '<div style="text-align:center"><span style="font-size:25px;color:' +
