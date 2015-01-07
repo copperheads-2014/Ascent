@@ -42,36 +42,25 @@
                 =f.hidden_field :id, value: "#{params[:id]}"
                 =f.submit "LIKE: #{@flight.likes.length}" , class: 'like_button', id: "like_num"
             %td.tdright
-              %input{type: "submit", value: "COMMENT", id: "toggle_comment"}
+              %input{type: "submit", value: "Show Comments", id: "show_comment"}
           %tr
-            %td.tdleft
-            %td.tdright
-              #comment
-                =form_for :comments, html: {id: "post_comment"} do |f|
-                  =f.hidden_field :id, value: "#{params[:id]}"
-                  =f.text_field :body
-                  %br
-                  =f.submit "Submit"
-        #gauge_5
-
-        / %input{type: "submit", value: "show comments", id: "show_comments"}
-        /   #comment_roll
-        /     -@f_comments.each do |comment|
-        /       .comment_body
-        /         = comment.body
-        /         %br
-        /         = comment.author.username
+            %td
+              %h3
+                =tweet_button(via: "Ascent", text: "Tweet this shit!", count: "horizontal")
 
     %div{:class => 'col-2-3'}
-
       %div.flight_chart
         = render :partial => 'data_visualizations/index'
 
       #below_chart
         %grid
           %grid{:class => 'col-3-4'}
-            %h3
-              =tweet_button(via: "Ascent", text: "Tweet this shit!", count: "horizontal")
+            #comment-display
+            =form_for :comment, method: 'POST', url: "/comments" do |f|
+              =f.hidden_field :data_point_id, id: "data_point"
+              =f.hidden_field :flight_id, value: "#{params[:id]}"
+              =f.text_field :body, id: "comment_body"
+              =f.submit "Add Comment", id: "comment-submit"
           %grid{:class => 'col-1-4'}
             %button#chart_map_button MAP
             %button#button-play
@@ -84,12 +73,18 @@
       #gauge_4
       #gauge_7
 
-  / #comment_roll
-  /   -@f_comments.each do |comment|
-  /     .comment_body
-  /       = comment.body
-  /       %br
-  /       = comment.author.username
+#comment_container
+  %header
+    %h1 Comments
+  #comment_roll
+    -if @flight.comments.present?
+      -@flight.comments.each do |comment|
+        .comment_body
+          %p.head
+            =link_to comment.author.username, user_path(comment.author)
+          %p.body= comment.body
+    -else
+      %p{id: "no-comment"} No Comments Yet
 
 
 

@@ -57,7 +57,7 @@ var loadChart = function(seriesData, duration) {
               playClock(this);
               playAscent(this);
               ascentOnClick(this);
-              // displayDataComment(this);
+              displayDataComment(this);
             }
 
           }
