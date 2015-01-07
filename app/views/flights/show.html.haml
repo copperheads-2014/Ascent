@@ -52,13 +52,15 @@
                   =f.text_field :body
                   %br
                   =f.submit "Submit"
-        %input{type: "submit", value: "show comments", id: "show_comments"}
-          #comment_roll
-            -@f_comments.each do |comment|
-              .comment_body
-                = comment.body
-                %br
-                = comment.author.username
+        #gauge_5
+
+        / %input{type: "submit", value: "show comments", id: "show_comments"}
+        /   #comment_roll
+        /     -@f_comments.each do |comment|
+        /       .comment_body
+        /         = comment.body
+        /         %br
+        /         = comment.author.username
 
     %div{:class => 'col-2-3'}
 
@@ -80,7 +82,7 @@
       #gauge_3
       #gauge_1
       #gauge_4
-      #gauge_5
+      #gauge_7
 
   / #comment_roll
   /   -@f_comments.each do |comment|
