@@ -10,9 +10,9 @@ $(document).ready(function() {
       type: "DELETE"
     });
 
-    request.done(function() {
+    request.fail(function() {
       console.log(request);
-      $('tr#'+rowID).remove();
+      $(".remove-"+rowID).remove();
     });
   });
 
