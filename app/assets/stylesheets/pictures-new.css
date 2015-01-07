@@ -66,3 +66,17 @@
   width: 139px;
   margin: 0 auto;
 }
+#below-carousel {
+  margin-top: 30px;
+}
+.photo-submit {
+  display: inline-block;
+}
+.photo-submit input {
+  border: 2px solid white;
+  color: white;
+}
+.photo-submit input:hover {
+  color: black;
+  background-color: lightgray;
+}
