@@ -59,6 +59,8 @@
 #show_comment {
   font-family: 'Armata', sans-serif;
   font-weight: bold;
+  border: 2px solid #999999;
+  color: #999999;
 }
 #show_comment:hover {
   color: black;
@@ -69,17 +71,19 @@
 .like_button {
   font-family: 'Armata', sans-serif;
   font-weight: bold;
-  color: white;
   outline: none;
-  border: 2px solid white;
   border-right: none;
+}
+#like_num {
+  color: #999999;
+  border: 2px solid #999999;
 }
 .like_button:hover {
   color: black;
 }
 tr input[type="submit"] {
   width: 200px;
-  height: 45px;
+  height: 40px;
   border: 2px solid white;
   background: rgba(0,0,0,0);
   outline: none;
@@ -98,6 +102,7 @@ tr input[type="submit"]:hover {
 #comment_display p {
   display: none;
   margin: 0;
+  font-family: 'Armata', sans-serif;
 }
 #comment_box form {
   height: 40px;
@@ -107,9 +112,20 @@ tr input[type="submit"]:hover {
 }
 #comment_body {
   width: 80%;
+  border: none;
+  height: 35px;
+  margin-top: 7px;
 }
 #comment-submit {
+  padding: 0;
   width: 15%;
   margin-right: -5%;
+  border: 2px solid #999999;
+  color: #999999;
+  font-size: 0.8em;
+  height: 35px;
+}
+#chart_map_button, #button_play {
+  margin-top: 38px;
 }
 
