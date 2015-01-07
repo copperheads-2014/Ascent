@@ -24,6 +24,6 @@ class PicturesController < ApplicationController
       picture.remote_image_url = params[:picture][:remote_image_url]
       picture.save!
     end
-    redirect_to flight_pictures_path(flight)
+    redirect_to controller: "flights", action: "show", id: @flight
   end
 end
