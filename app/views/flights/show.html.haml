@@ -43,10 +43,7 @@
                 =f.submit "LIKE: #{@flight.likes.length}" , class: 'like_button', id: "like_num"
             %td.tdright
               %input{type: "submit", value: "Show Comments", id: "show_comment"}
-          %tr
-            %td
-              %h3
-                =tweet_button(via: "Ascent", text: "Tweet this shit!", count: "horizontal")
+        #gauge_5
 
     %div{:class => 'col-2-3'}
       %div.flight_chart
