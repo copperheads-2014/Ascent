@@ -3,6 +3,7 @@ $(document).ready(function() {
   $('.unfriend a').click(function(event) {
     event.preventDefault();
     var pathUrl = $(this).attr("value")
+    console.log(pathUrl)
     var rowID = pathUrl.split("/")[2]
 
     var request = $.ajax({
@@ -10,14 +11,9 @@ $(document).ready(function() {
       type: "DELETE"
     });
 
-
-    request.fail(function() {
+    request.done(function() {
       console.log(request);
       $(".remove-"+rowID).remove();
-
-    // request.done(function() {
-    //   $('tr#'+rowID).remove();
-
     });
   });
 
