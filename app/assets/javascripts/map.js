@@ -23,6 +23,10 @@ var loadMap = function() {
   playMap();
 };
 
+var removeMapMarker = function(){
+   map.removeLayer(marker);
+}
+
 // function renderPoint(point) {
 //   return "<dl><dt>latitude:</dt><dd>"+point.latitude+"</dd>"+
 //   "<dt>longitude:</dt><dd>"+point.longitude+"</dd>"+
