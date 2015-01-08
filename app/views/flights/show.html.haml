@@ -57,11 +57,13 @@
             =f.submit "Add", id: "comment-submit"
         #vertical-gauges
           #vg-top
-            #gauge_6
             #gauge_7
+            #gauge_6
           #vg-bottom
-            #gauge_6_info
-            #gauge_7_info
+            #bat-info
+              #gauge_7_info
+            #asc-info
+              #gauge_6_info
 
     %div{:class => 'col-2-3'}
       %div{:class => 'col-3-4'}
@@ -69,15 +71,17 @@
           = render :partial => 'data_visualizations/index'
         %br
         #below_chart
-          %div{:id => 'under-chart'}
+          %grid{:id => 'under-chart'}
             %div{:class => 'col-3-4'}
               #comment_display
                 %p
             %div{:class => 'col-1-4'}
               %button#button-play
                 %i.fa.fa-play
-            #gauge_3{:class => 'col-1-2'}
-            #gauge_4{:class => 'col-1-2'}
+            %div{:class => 'col-1-2'}
+              #gauge_3
+            %div{:class => 'col-1-2'}
+              #gauge_4
       %div{:class => 'col-1-4'}
         #gauge_1
         #gauge_5

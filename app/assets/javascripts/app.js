@@ -37,7 +37,7 @@ var updateAscentInfo = function(point){
   else{
     previousPoint = flight_data[(i - 1)];
   };
-  var rate = Math.round(rateOfAscent(point, previousPoint) * 100) / 100;
+  var rate = Math.round(rateOfAscent(point, previousPoint) * 10) / 10;
   $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
 }
 
@@ -53,7 +53,7 @@ var ascentOnClick = function(pointClicked){
   var i = findWithAttr(flight_data, 'x', pointClicked.x );
   var point = flight_data[i];
   var previousPoint = flight_data[(i - 1)];
-  var rate = Math.round(rateOfAscent(point, previousPoint) * 100) / 100;
+  var rate = Math.round(rateOfAscent(point, previousPoint) * 10) / 10;
   ascentFormatAndSendPoint(point, rate)
   $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
 
