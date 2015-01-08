@@ -20,7 +20,6 @@
   margin: 40px auto 0;
   font-size: 30px;
   padding-top: 4px;
-  padding-left: 1px;
 }
 #photo-form label {
   color: white;
@@ -59,11 +58,7 @@
   padding: 0;
 }
 #contain1 {
-  width: 83px;
-  margin: 0 auto;
-}
-#contain2 {
-  width: 139px;
+  width: 180px;
   margin: 0 auto;
 }
 #below-carousel {

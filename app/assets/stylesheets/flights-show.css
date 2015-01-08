@@ -42,7 +42,7 @@
   color: white;
   font-size:16px;
 }*/
-#comment-input-box {
+/*#comment-input-box {
   display: none;
   width: 90%;
   border: 3px solid white;
@@ -99,28 +99,140 @@
   padding: 15px;
   overflow: auto;
 }*/
-/* Main Area -------------------------*/
-/*#main {
-  width: 60%;
-  float: right;
+#main-container {
+  overflow: hidden;
+}
+#photos-div {
+  width: 65%;
+  border: 3px solid rgb(190,190,190);
+  margin: 20px auto 5px;
+  background: #D1DBDD;
+  height: 55px;
+}
+#write-comments {
+  width: 65%;
+  border: 3px solid rgb(190,190,190);
+  margin: 5px auto 10px;
+  background: #D1DBDD;
+  height: 55px;
+}
+#photos-div i {
+  width: 25%;
   height: auto;
-  margin-right: 2%;
+  margin: 0 auto;
+  border-left: 4px solid rgb(190,190,190);
+  border-right: 4px solid rgb(190,190,190);
+  vertical-align: middle;
 }
-#top {
-  display: block;
+#photo-add, #comment-add {
+  width: 36%;
+  height: 100%;
+  outline: none;
+  background: none;
+  margin: 0 auto;
+  border: none;
+  font-family: 'Armata', sans-serif;
+  font-size: 20px;
+}
+#photo-view, #comment-view {
+  width: 36%;
+  height: 100%;
+  outline: none;
+  background: none;
+  margin: 0 auto;
+  border: none;
+  font-family: 'Armata', sans-serif;
+  font-size: 20px;
+}
+#write-comments i {
+  width: 25%;
+  height: auto;
+  margin: 0 auto;
+  vertical-align: middle;
+  border-left: 4px solid rgb(190,190,190);
+  border-right: 4px solid rgb(190,190,190);
+}
+#comment-input-box {
+  display: none;
+  width: 80%;
+  height: 100px;
+  border: 2px solid rgb(190,190,190);
+  margin: 0 auto;
+  background: #D1DBDD;
+}
+#comment-input-box textarea {
+  width: 80%;
+  height: 80px;
+  padding: 5px;
+  outline: none;
+  vertical-align: middle;
+  margin: 9px auto;
+}
+#comment-input-box #comment-submit {
+  vertical-align: middle;
+  width: 10%;
+  padding: 0 0 0 6px;
+  font-size:16px;
+  color: black;
+  border: none;
+}
+#comment-input-box #comment-submit:hover {
+  color: white;
+  background: none;
+}
+#photo-container {
+  height: 800px;
   width: 100%;
+  background: #6C7B8B;
 }
-.flight_chart {
-  display: inline-block;
-  width: 72%;
+#photo-header {
+  padding: 70px 0 55px;
+  margin: 0;
+}
+#photo-header h1 {
+  font-size: 48px;
+  text-align: center;
+  color: rgb(250,250,250);
+  font-family: 'Armata', sans-serif;
+}
+#photo-carousel {
+  position: relative;
+  width: 100%;
   height: 500px;
+  padding: 0 25px;
+  overflow: auto;
+  white-space: nowrap;
+  background: #778899;
 }
-#side-area {
-  display: inline-block;
-  width: 23%;
-  height: 500px;
+/* Vertical Gauges ---------------------- */
+#vertical-gauges {
+  width: 80%;
+  margin: 50px auto 0;
 }
-#below_chart {
+#vg-top {
+  width: 100%;
+  height: 400px;
   display: block;
 }
-*/
+#gauge_6, #gauge_7 {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  height: 400px;
+  margin: 0 auto;
+}
+#vg-bottom {
+  width: 100%;
+  height: 70px;
+  display: block;
+  margin: 0 auto;
+}
+#gauge_6_info, #gauge_7_info {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  font-family: 'Unica One';
+  font-size: 22px;
+  color: white;
+  width: 48%;
+}

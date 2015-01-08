@@ -1,4 +1,4 @@
-%container
+#main-container
   %h1.chart_header
     %a
       #star
@@ -30,17 +30,27 @@
             %td.tdleft Trip Duration
             %td.tdright
               ="#{@flight.duration}"
+        #photos-div
+          %button#photo-add Add
+          %i.fa.fa-picture-o.fa-2x
+          %button#photo-view View
         #write-comments
-          #show-comment-box
-            %button#add-comment-button Add Comment
-            #comment-input-box
-              =form_for :comment, method: 'POST', url: "/comments" do |f|
-                =f.hidden_field :data_point_id, id: "data_point"
-                =f.hidden_field :flight_id, value: "#{params[:id]}"
-                =f.text_area :body, id: "comment_body"
-                =f.submit "Add", id: "comment-submit"
-        #gauge_5
-
+          %button#comment-add Add
+          %i.fa.fa-comment-o.fa-2x
+          %button#comment-view View
+        #comment-input-box
+          =form_for :comment, method: 'POST', url: "/comments" do |f|
+            =f.hidden_field :data_point_id, id: "data_point"
+            =f.hidden_field :flight_id, value: "#{params[:id]}"
+            =f.text_area :body, id: "comment_body"
+            =f.submit "Add", id: "comment-submit"
+        #vertical-gauges
+          #vg-top
+            #gauge_6
+            #gauge_7
+          #vg-bottom
+            #gauge_6_info
+            #gauge_7_info
 
     %div{:class => 'col-2-3'}
       %div.flight_chart
@@ -55,16 +65,21 @@
             %button#chart_map_button MAP
             %button#button-play
               %i.fa.fa-play
-
-    .gauges{:class => 'grid grid-pad'}
-      #gauge_6_info
-      #gauge_6
       #gauge_3
       #gauge_1
       #gauge_4
-      #gauge_7
-      #gauge_7_info
+      #gauge_5
 
+#photo-container
+  %header#photo-header
+    %h1 Photos
+  #photo-carousel
+    - @flight.pictures.each do |picture|
+      %span.helper
+      .img-container
+        %span.helper
+        = image_tag picture.image_url.to_s
+        %button.remove-pic X
 
 #comment_container
   %header

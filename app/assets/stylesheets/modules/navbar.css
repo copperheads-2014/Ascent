@@ -5,6 +5,8 @@ nav {
   background: linear-gradient(to left, black 50%, white 50%);
   background-position: right bottom;
   transition:all 0.5s ease;
+  -webkit-transition-delay: 0.2s; /* Safari */
+  transition-delay: 0.2s;
   background-size: 200% 100%;
 }
 nav:hover {
@@ -14,7 +16,7 @@ nav:hover a, nav:hover .signup, nav:hover .login, nav:hover #dropdown1, nav:hove
 .login, .signup {
   color: white;
   -webkit-transition-property:color, text;
-  -webkit-transition-duration: 0.5s, 0.5s;
+  -webkit-transition-duration: 0.7s, 0.7s;
   -webkit-transition-timing-function: linear, ease-in;
   font-family: 'Armata', sans-serif;
 }
