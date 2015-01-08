@@ -15,7 +15,7 @@ var loadAscent = function(seriesData){
              text: null
          },
          labels: {
-             y: 5
+             enabled: false
          },
          min: -19.9,
          max: 19.9,
