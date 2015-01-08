@@ -14,5 +14,18 @@ $(document).ready(function() {
       });
     }
     });
-
+  $("#autocomplete_username2").autocomplete({
+    source: function(request, response) {
+      $.ajax({
+        url: "/users/autocomplete_username",
+        dataType: "json",
+        data: {
+          q: request.term
+        },
+        success: function(data) {
+          response(data);
+        }
+      });
+    }
+    });
 });
