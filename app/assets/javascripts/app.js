@@ -41,7 +41,10 @@ var ascentOnClick = function(pointClicked){
   var point = flight_data[i];
   var previousPoint = flight_data[(i - 1)];
   var rate = Math.round(rateOfAscent(point, previousPoint) * 100) / 100;
-  loadAscent(rate);
+  var ratePoint = jQuery.extend({}, point);
+  ratePoint.x = point.x;
+  ratePoint.y = rate;
+  playAscent(ratePoint);
   $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
 }
 

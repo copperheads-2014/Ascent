@@ -63,8 +63,8 @@ var loadAscent = function(seriesData){
   })
 }
 
-var playAscent = function(rate) {
-  ascent.series[0].points[0].update(rate);
+var playAscent = function(point) {
+  ascent.series[0].points[0].update(point.y);
 };
 
 
