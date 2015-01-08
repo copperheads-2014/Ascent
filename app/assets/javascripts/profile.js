@@ -4,15 +4,16 @@ $(document).ready(function() {
   });
 
   var changeButtonColor = function(form, response, message) {
-    var button = form.children(".button");
-    var autocomplete = form.children(".ui-autocomplete-input");
+    var button = form.find(".button");
+    var autocomplete = form.find(".ui-autocomplete-input");
 
     var previousButtonValue = button.val();
+    var previousBackgroundColor = button.css("background-color")
     button.css("background-color", "#5cb85c");
 
     var woop = button.val(message);
     button.fadeOut(1000, function() {
-      button.css("background-color", "#191919");
+      button.css("background-color", previousBackgroundColor);
       button.val(previousButtonValue);
       button.fadeIn(1000);
     });
@@ -33,14 +34,14 @@ $(document).ready(function() {
     })
   }
 
-  $('.friendship_form form').on("submit", function(e) {
+  $('#find-friends form').on("submit", function(e) {
     e.preventDefault();
     submitRequest($(this), function(r) {
       changeButtonColor($(this), r, 'Sent!')
     }.bind(this));
   });
 
-  $('.add_friend_to_flight_form form').on("submit", function(e) {
+  $('#add_users_to_flight form').on("submit", function(e) {
     e.preventDefault();
     var form = $(this);
     submitRequest(form, function(r) {
