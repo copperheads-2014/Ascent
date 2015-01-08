@@ -258,6 +258,18 @@ input[type="text"] {
   font-size: 10px;
   font-weight: lighter;
 }
+h1.chart_header{
+  position: relative;
+}
+#star{
+  display: inline-block;
+  font-size: medium;
+  width: 1%;
+  i {
+    position: absolute;
+    top: 40%;
+  }
+}
 
 // $primary: ;
 // $secondary: ;
