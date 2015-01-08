@@ -1,5 +1,8 @@
 %container
-  %h1
+  %h1.chart_header
+    %a
+      #star
+        %i.fa.fa-star{:id => @flight.liked?(current_user) ? 'liked' : 'not_liked'}
     ="#{@flight.callsign}"
   %grid{:class => 'grid-pad'}
     %div{:class => 'col-1-3'}
@@ -35,10 +38,10 @@
               %br
               %br
           %tr
-            %td.tdleft
-              =form_for :likes, html: {id: "like"} do |f|
-                =f.hidden_field :id, value: "#{params[:id]}"
-                =f.submit "LIKE: #{@flight.likes.length}" , class: 'like_button', id: "like_num"
+            / %td.tdleft
+            /   =form_for :likes, html: {id: "like"} do |f|
+            /     =f.hidden_field :id, value: "#{params[:id]}"
+            /     =f.submit "LIKE: #{@flight.likes.length}" , class: 'like_button', id: "like_num"
             %td.tdright
               %input{type: "submit", value: "Show Comments", id: "show_comment"}
         #gauge_5
