@@ -7,7 +7,7 @@
     = render :partial => 'users/edit', :locals => { :user => @user }
 
 .profile_friends.col-1-3
-  %h3="#{@user.username}'s friends"
+  %h2="#{@user.username}'s friends"
   %br
   %table#friends
     -@user.approved_friends.each do |friend|
@@ -25,21 +25,20 @@
           %td.pending= "pending"
 
 .profile_flights.col-1-3
-  %h3="#{@user.username}'s flights"
+  %h2="#{@user.username}'s flights"
   %br
   -@user.flights.each do |flight|
     .flight{:style => "background-image: url(#{image_path flight.album_cover})"}
       %a{:href => "#{flight_path(flight)}"}
         .callsign="#{flight.callsign}"
 
-#add_users_to_flight
-  - if current_user == @user
-    = form_for Launch.new do |f|
-      %p
-        %select{ name: "flight_id"}
-          - @user.flights.each do |flight|
-            %option{value: flight.id} "#{flight.callsign}"
-      %input{name: 'username', id: 'autocomplete_username'}
-      %p
-        = f.submit "Add to flight!"
+.profile_forms
+  .col-1-4
+  .col-1-3.friendship_form
+    %h3 Add a friend
+    = render :partial => 'friendships/new'
+  .col-1-3.add_friend_to_flight_form
+    %h3 Add a flight collaborator
+    = render :partial => 'users/add_to_flight', :locals => { :user => @user }
+
 

@@ -1,0 +1,12 @@
+#add_users_to_flight
+  - if current_user == user
+    = form_for Launch.new do |f|
+      %p Select a flight
+      %p
+        %select{ name: "flight_id"}
+          - user.flights.each do |flight|
+            %option{value: flight.id} "#{flight.callsign}"
+      %br
+      %input{name: 'username', id: 'autocomplete_username', placeholder: 'username'}
+      %p
+        = f.submit "Add to flight"
