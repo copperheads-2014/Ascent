@@ -366,7 +366,7 @@ var ready = function() {
       success: function(response) {
         var $thing = $("#friend-list-" + response.id)
         $thing.css("background-color", "palegreen")
-        $thing.fadeOut(2000);
+        $thing.fadeOut(1000);
       },
       fail: function(response) {
       }
@@ -382,7 +382,9 @@ var ready = function() {
       method: "delete",
       url: form.attr('action'),
       success: function(response) {
-
+        var $thing = $("#friend-list-" + response.id)
+        $thing.css("background-color", "#EE6A50");
+        $thing.fadeOut(1000);
       },
       fail: function(response) {
       }
