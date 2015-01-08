@@ -42,6 +42,7 @@ var loadChart = function(seriesData, duration) {
       dateTimeLabelFormats: {second: '%H:%M:%S'}
     },
     yAxis: {
+      title: {text: 'Altitude'},
       min: 0,
       max: 40000,
     },
