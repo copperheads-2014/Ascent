@@ -30,6 +30,7 @@
             %td.tdleft Trip Duration
             %td.tdright
               ="#{@flight.duration}"
+        =tweet_button(via: "Ascent", text: "Check out this flight! ##{@flight.callsign}", count: "horizontal")
         #photos-div
           %button#photo-add Add
           %i.fa.fa-picture-o.fa-2x
