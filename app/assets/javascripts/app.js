@@ -8,6 +8,11 @@ var playSpeed = 0;
 var currentView = 'chart';
 var reverseIndex;
 
+var invertIndex = function(point){
+  var currentIndex = findWithAttr(flight_data, 'x', point.x);
+  return flight_data.length - 1 - currentIndex
+}
+
 var rateOfAscent = function(currentPoint, lastPoint){
   meters = (currentPoint.y - lastPoint.y)
   seconds = ((currentPoint.x - lastPoint.x) / 1000)
