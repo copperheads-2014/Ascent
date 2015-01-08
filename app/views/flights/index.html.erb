@@ -1,7 +1,7 @@
 <header id="flights-header"><h1>Flights</h1></header>
 
 <div id="flights-body">
-  <% if current_user && @friends_flights %>
+  <% if current_user && !@friends_flights.empty? %>
   <div class="flights-row-header">Friends' Flights</div>
   <div id="friends-flights" class="flights-row-body">
     <% @friends_flights.each do |flight| %>

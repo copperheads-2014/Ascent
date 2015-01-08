@@ -5,12 +5,7 @@ class FlightsController < ApplicationController
     # 1) Friends' Flights:
     if current_user
       friends_array = []
-      current_user.friends.each do |friend|
-        friend.flights.each do |flight|
-          friends_array << flight
-        end
-      end
-      current_user.inverse_friends.each do |friend|
+      current_user.all_friends.each do |friend|
         friend.flights.each do |flight|
           friends_array << flight
         end
