@@ -1,0 +1,126 @@
+/*#flights-header {
+  margin: 3% 0;
+}
+#flights-header h1 {
+  font-family: 'Armata', sans-serif;
+  color: white;
+  font-size: 48px;
+}*/
+/* Side Bar --------------------------*/
+/*#sidebar {
+  width: 30%;
+  float: left;
+  height: auto;
+  margin-left: 2%;
+}
+#stats {
+  width: 80%;
+  border: 3px solid white;
+  background: rgb(55,55,55);
+  margin: 0 auto;
+  padding: 30px;
+}
+#stats h3 {
+  font-family: 'Armata', sans-serif;
+  color: white;
+  font-size: 20px;
+  margin-top: 0;
+}
+.stats-row {
+  width: 100%;
+  overflow: hidden;
+}
+.stat-property {
+  display: inline-block;
+  width: 55%;
+  color: rgb(190,190,190);
+  font-size:16px;
+}
+.stat-value {
+  display: inline-block;
+  width: 40%;
+  color: white;
+  font-size:16px;
+}*/
+#comment-input-box {
+  display: none;
+  width: 90%;
+  border: 3px solid white;
+  margin: 20px auto;
+  padding: 15px;
+  background: rgb(55,55,55);
+}
+#comment-input-box textarea {
+  margin-top: 0;
+  border-radius: 5px;
+  height: 80px;
+  vertical-align: middle;
+}
+#add-comment-button {
+  display: block;
+  width: 200px;
+  height: 45px;
+  border: 2px solid white;
+  background: rgb(19,19,19);
+  outline: none;
+  margin: 16px auto 0;
+  color: rgb(190,190,190);
+}
+#comment-submit {
+  padding: 0;
+  width: 12%;
+  border: 3px solid rgb(190,190,190);
+  color: #999999;
+  font-size: 14px;
+  height: 35px;
+  vertical-align: middle;
+  margin: 0 0 0 10px;
+}
+/*#show-comments-button {
+  display: block;
+  width: 200px;
+  height: 45px;
+  border: 2px solid white;
+  background: rgb(19,19,19);
+  outline: none;
+  margin: 20px auto 0;
+  color: rgb(190,190,190);
+}
+#comment_container {
+  width: 100%;
+  height: auto;
+}
+#comment_roll {
+  margin: 20px auto;
+  display: none;
+  width: 95%;
+  height: 70%;
+  background: white;
+  padding: 15px;
+  overflow: auto;
+}*/
+/* Main Area -------------------------*/
+/*#main {
+  width: 60%;
+  float: right;
+  height: auto;
+  margin-right: 2%;
+}
+#top {
+  display: block;
+  width: 100%;
+}
+.flight_chart {
+  display: inline-block;
+  width: 72%;
+  height: 500px;
+}
+#side-area {
+  display: inline-block;
+  width: 23%;
+  height: 500px;
+}
+#below_chart {
+  display: block;
+}
+*/

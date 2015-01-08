@@ -8,14 +8,12 @@
     %div{:class => 'col-1-3'}
       %centered
         %h2
-          The Data
+          Data
         %table
           %tr
             %td.tdleft Burst Altitude
             %td.tdright
               ="#{@flight.max_altitude} m"
-            / %td
-            /   ="#{to_feet(@flight.max_altitude)} ft"
           %tr
             %td.tdleft Distance Traveled
             %td.tdright
@@ -28,23 +26,21 @@
             %td.tdleft Time of Descent
             %td.tdright
               ="#{@flight.time_of_descent}"
-
           %tr
             %td.tdleft Trip Duration
             %td.tdright
               ="#{@flight.duration}"
-          %tr
-            %td
-              %br
-              %br
-          %tr
-            / %td.tdleft
-            /   =form_for :likes, html: {id: "like"} do |f|
-            /     =f.hidden_field :id, value: "#{params[:id]}"
-            /     =f.submit "LIKE: #{@flight.likes.length}" , class: 'like_button', id: "like_num"
-            %td.tdright
-              %input{type: "submit", value: "Show Comments", id: "show_comment"}
+        #write-comments
+          #show-comment-box
+            %button#add-comment-button Add Comment
+            #comment-input-box
+              =form_for :comment, method: 'POST', url: "/comments" do |f|
+                =f.hidden_field :data_point_id, id: "data_point"
+                =f.hidden_field :flight_id, value: "#{params[:id]}"
+                =f.text_area :body, id: "comment_body"
+                =f.submit "Add", id: "comment-submit"
         #gauge_5
+
 
     %div{:class => 'col-2-3'}
       %div.flight_chart
@@ -55,11 +51,6 @@
           %grid{:class => 'col-3-4'}
             #comment_display
               %p
-            =form_for :comment, method: 'POST', url: "/comments" do |f|
-              =f.hidden_field :data_point_id, id: "data_point"
-              =f.hidden_field :flight_id, value: "#{params[:id]}"
-              =f.text_field :body, id: "comment_body"
-              =f.submit "Add Comment", id: "comment-submit"
           %grid{:class => 'col-1-4'}
             %button#chart_map_button MAP
             %button#button-play
@@ -74,18 +65,16 @@
       #gauge_7
       #gauge_7_info
 
+
 #comment_container
   %header
     %h1 Comments
   #comment_roll
     -if @flight.comments.present?
-      -@flight.comments.each do |comment|
+      -@flight.comments.order(created_at: :desc).each do |comment|
         .comment_body
           %p.head
             =link_to comment.author.username, user_path(comment.author)
           %p.body= comment.body
     -else
       %p{id: "no-comment"} No Comments Yet
-
-
-
