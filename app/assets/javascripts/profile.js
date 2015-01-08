@@ -27,9 +27,7 @@ $(document).ready(function() {
       method: form.attr('method'),
       url: form.attr("action"),
       data: form.serialize(),
-      success: function(response) {
-        callback(response);
-      },
+      success: callback,
       fail: function(response) {
       }
     })
@@ -38,15 +36,16 @@ $(document).ready(function() {
   $('.friendship_form form').on("submit", function(e) {
     e.preventDefault();
     submitRequest($(this), function(r) {
-      changeButtonColor($(this), response, 'Sent!')
-    });
+      changeButtonColor($(this), r, 'Sent!')
+    }.bind(this));
   });
 
   $('.add_friend_to_flight_form form').on("submit", function(e) {
     e.preventDefault();
-    submitRequest($(this), function(r) {
-      changeButtonColor($(this), response, 'Added!')
-    });
+    var form = $(this);
+    submitRequest(form, function(r) {
+      changeButtonColor(form, r, 'Added!')
+    }.bind(this));
   });
 
   $('.unfriend a').click(function(event) {
