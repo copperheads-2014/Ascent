@@ -184,6 +184,8 @@ var ready = function() {
   full_path = window.location.pathname
   current_dir = window.location.pathname.split('/')[1]
   flight_id = window.location.pathname.split('/')[2];
+  var onFlightShowPage = (/\d/).test(flight_id)
+
 
   if(full_path === "/"){
     $('#signup').css('visibility', 'initial')
@@ -193,7 +195,7 @@ var ready = function() {
   };
 
 
-  if(current_dir === 'flights' && flight_id != 'undefined'){
+  if(current_dir === 'flights' && onFlightShowPage){
     var request = $.ajax({
       url: "/charts/" + flight_id + ".json",
       method: "get"
