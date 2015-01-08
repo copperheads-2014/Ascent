@@ -21,11 +21,18 @@ var updateBatteryInfo = function(point){
 }
 
 var updateAscentInfo = function(point){
-  var i = 1;
+  var i = findWithAttr(flight_data, 'x', point.x );
   var point = flight_data[i];
-  var previousPoint = flight_data[(i - 1)];
+  var previousPoint;
+  if(i === 0){
+    previousPoint = flight_data[i];
+    point = flight_data[i+1]
+  }
+  else{
+    previousPoint = flight_data[(i - 1)];
+  };
   var rate = Math.round(rateOfAscent(point, previousPoint) * 100) / 100;
-  $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>')
+  $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
 }
 
 
@@ -79,7 +86,9 @@ var play = function(interval) {
     playMap();
     playClock(reversePoint);
     playAscent(rateOfAscent(point, previousPoint));
+    updateAscentInfo(point);
     playBattery(point.battery);
+    updateBatteryInfo(point);
     // console.log('iterating')
   }, interval);
 }
