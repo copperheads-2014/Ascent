@@ -24,13 +24,6 @@
     <% end %>
   </div>
 
-  <div class="flights-row-header">Flights Near You</div>
-  <div id="flights-near-you" class="flights-row-body option">
-    <% @flights_near_you.each do |flight| %>
-    <div class="each-flight"><%= link_to flight.callsign, flight_path(flight) %></div>
-    <% end %>
-  </div>
-
   <div class="flights-row-header">Highest Altitude</div>
   <div id="highest-altitude" class="flights-row-body">
     <% @highest_altitude.each do |flight| %>
