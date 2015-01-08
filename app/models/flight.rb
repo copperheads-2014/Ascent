@@ -123,4 +123,8 @@ class Flight < ActiveRecord::Base
       "space_balloon_default.jpg"
     end
   end
+
+  def liked?(user)
+    Like.find_by(user: user, flight: self).present?
+  end
 end
