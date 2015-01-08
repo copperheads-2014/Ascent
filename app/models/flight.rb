@@ -15,6 +15,11 @@ class Flight < ActiveRecord::Base
   include FlightsHelper
 # INSTANCE METHODS
 
+  def self.with_complete_data(headers=nil)
+    headers ||= ["altitude", "temperature", "pressure", "battery"]
+    all.select {|f| data = f.data_points.first.data; headers.all? {|h| data[h] != nil }}
+  end
+
   def starting_point
     [self.data_points.first.data["latitude"], self.data_points.first.data["longitude"]]
   end
