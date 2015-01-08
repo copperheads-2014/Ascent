@@ -22,6 +22,7 @@ var rateOfAscent = function(currentPoint, lastPoint){
 var updateBatteryInfo = function(point){
   var batLevel = (point.battery);
   var pct = calculatePct(batLevel);
+  pct > 100 ? pct = 100 : pct
   $("#gauge_7_info").html('<p>' + pct + '%</p>');
 }
 
