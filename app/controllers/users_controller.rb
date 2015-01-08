@@ -20,6 +20,8 @@ class UsersController < ApplicationController
       user_path(@user)
     elsif current_user.friends.include?(@user) && @friendship.approved
       user_path(@user)
+    elsif current_user.inverse_friends.include?(@user) && @friendship.approved
+      user_path(@user)
     else
       render "private"
     end
