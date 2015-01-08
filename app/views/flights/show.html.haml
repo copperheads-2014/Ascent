@@ -14,8 +14,6 @@
             %td.tdleft Burst Altitude
             %td.tdright
               ="#{@flight.max_altitude} m"
-            / %td
-            /   ="#{to_feet(@flight.max_altitude)} ft"
           %tr
             %td.tdleft Distance Traveled
             %td.tdright
@@ -86,6 +84,3 @@
           %p.body= comment.body
     -else
       %p{id: "no-comment"} No Comments Yet
-
-
-
