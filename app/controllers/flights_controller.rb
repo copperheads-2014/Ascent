@@ -16,7 +16,6 @@ class FlightsController < ApplicationController
         end
       end
       @friends_flights = friends_array.sort_by { |flight| flight.created_at }.reverse
-      binding.pry
     end
 
     # 2) Most Liked Flights:
