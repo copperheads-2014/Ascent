@@ -25,6 +25,6 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
     flash[:notice] = "Removed friend!"
-    redirect_to root_path
+    render json: @friendship
   end
 end

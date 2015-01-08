@@ -345,6 +345,22 @@ var ready = function() {
     })
   });
 
+  $(".friend-list form").on('submit', function(e) {
+    e.preventDefault();
+    var form = $(this);
+    console.log(this);
+    console.log(form.attr('action'));
+    $.ajax({
+      method: "delete",
+      url: form.attr('action'),
+      success: function(response) {
+        $("#friend-list-" + response.id).remove();
+      },
+      fail: function(response) {
+      }
+    })
+  });
+
   $("#like").one("submit", function(e){
     e.preventDefault()
     var request = $.ajax({

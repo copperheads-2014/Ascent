@@ -34,7 +34,7 @@
                 <%= f.submit 'Y', id: "yes" %>
               <% end %>
 
-              <%= form_for :friendships, method: 'DELETE', url: friendship_path(friendship), html: {class: "flex-1"} do |f| %>
+              <%= form_for :friendships, id: "form-#{friendship.id}", method: 'DELETE', url: friendship_path(friendship), html: {class: "flex-1"} do |f| %>
                 <%= f.submit 'N', id: "nope" %>
               <% end %>
             </div>
