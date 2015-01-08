@@ -20,6 +20,7 @@ var loadMap = function() {
         'marker-color': '#fff'
       })
   });
+  playMap();
 };
 
 // function renderPoint(point) {
