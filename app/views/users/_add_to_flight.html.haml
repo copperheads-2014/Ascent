@@ -8,5 +8,4 @@
             %option{value: flight.id} "#{flight.callsign}"
       %br
       %input{name: 'username2', id: 'autocomplete_username2', placeholder: 'username'}
-      %p
-        = c.submit "Add to flight", id: "add-to-flight"
+      = c.submit "Add to Flight", id: "add-to-flight", class: 'button'
