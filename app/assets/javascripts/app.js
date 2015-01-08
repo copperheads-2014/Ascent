@@ -148,14 +148,14 @@ var displayDataComment = function(data_point) {
 };
 
 var togglePlay = function(){
-  if (playSpeed === 0 || playSpeed === 5){
+  if (playSpeed === 0 || playSpeed === 2){
     $('#button-play').html('Faster');
     playSpeed = 1;
   }
   // (playSpeed === 1)
   else {
     $('#button-play').html('Slower');
-    playSpeed = 5;
+    playSpeed = 2;
   };
 };
 
