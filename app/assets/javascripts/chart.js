@@ -112,6 +112,6 @@ var playChart = function(point) {
   if (point.comments[0] !== undefined) {
     displayComment(point);
   }
-  chart.series[0].points[0].update(point);
-  // chart.series[0].addPoint(point);
+
+  chart.series[0].addPoint(point);
 };
