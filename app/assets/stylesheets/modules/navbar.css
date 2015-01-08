@@ -61,7 +61,7 @@ nav:hover a, nav:hover .signup, nav:hover .login, nav:hover #dropdown1, nav:hove
 }
 nav a {
   text-decoration: none;
-  color: black;
+  color: white;
   font-family: 'Armata', sans-serif;
   -webkit-transition-property:color, text;
   -webkit-transition-duration: 0.5s, 0.5s;
