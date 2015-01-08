@@ -24,7 +24,7 @@ nav:hover a, nav:hover .signup, nav:hover .login, nav:hover #dropdown1, nav:hove
   display: -webkit-flex;
   display: -moz-box;
   display: flex;
-  -webkit-flex-flow: row
+  -webkit-flex-flow: row;
   -moz-flex-flow: row;
   -ms-flex-direction: row;
   -ms-flex-flow: row;
@@ -251,7 +251,7 @@ form {
   display: -webkit-flex;
   display: -moz-box;
   display: flex;
-  -webkit-flex-flow: row
+  -webkit-flex-flow: row;
   -moz-flex-flow: row;
   -ms-flex-direction: row;
   -ms-flex-flow: row;
