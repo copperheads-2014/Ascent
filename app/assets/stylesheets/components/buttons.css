@@ -37,9 +37,27 @@ button:active {
   display: inline-block;
 }
 
+#button-play {
+  width: 75%;
+  color: cyan;
+  border: 2px solid cyan;
+}
+
+#chart_map_button {
+  width: 75px;
+  float: right;
+  border: 1px solid border;
+}
+
+
 #button-play:hover, #button-pause:hover, #chart_map_button:hover {
   color: #191919;
   background-color: #B2B2C1;
+}
+
+#button-play:hover {
+  background-color: cyan;
+  color: black;
 }
 
 #button-pause {
