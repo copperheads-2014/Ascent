@@ -41,7 +41,7 @@
   width: 40%;
   color: white;
   font-size:16px;
-}
+}*/
 #comment-input-box {
   display: none;
   width: 90%;
@@ -53,6 +53,8 @@
 #comment-input-box textarea {
   margin-top: 0;
   border-radius: 5px;
+  height: 80px;
+  vertical-align: middle;
 }
 #add-comment-button {
   display: block;
@@ -74,7 +76,7 @@
   vertical-align: middle;
   margin: 0 0 0 10px;
 }
-#show-comments-button {
+/*#show-comments-button {
   display: block;
   width: 200px;
   height: 45px;
@@ -90,7 +92,7 @@
 }
 #comment_roll {
   margin: 20px auto;
-  display: block;
+  display: none;
   width: 95%;
   height: 70%;
   background: white;
