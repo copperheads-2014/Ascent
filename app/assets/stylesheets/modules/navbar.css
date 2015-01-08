@@ -68,23 +68,13 @@ nav a {
   -webkit-transition-timing-function: linear, ease-in;
 }
 .flexbox-col {
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: center;
-  -ms-flex-pack: justify;
-  justify-content: center;
-  -webkit-box-flex: 1;
-  -moz-box-flex:  1;
-  -webkit-flex:  1;
-  -ms-flex:  1;
-  flex: 1;
+  display: table-cell;
+  vertical-align: middle;
+  height: 31px;
+  width: 142px;
+}
+.flexbox-col p {
+  margin: 0;
 }
 .flexbox-col:hover {
   background: lightgray;
@@ -93,20 +83,12 @@ nav a {
 /*input {
   color: black;
 }*/
+hr { margin: 0 }
 .menu {
   display: none;
 }
 .menu.active {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: flex;
-  -webkit-flex-flow: column;
-  -moz-flex-flow: column;
-  -ms-flex-direction: column;
-  -ms-flex-flow: column;
-  flex-flow: column;
+  display: block;
   position: fixed;
   top: 50px;
   right: 0px;
@@ -132,33 +114,32 @@ nav a {
   border: 2px solid lightgray;
   background: white;
   z-index: 9;
-
 }
 .menu-login.active a {
   text-decoration: none;
   font-size: 12px;
-  color: gray;
+  color: #A8A8A8;
 }
 .menu-login.active a:hover {
   color: #CC6699;
 }
 #username {
-  width: 70%;
-  height: 24px;
+  width: 80%;
+  height: 35px;
   margin: 20px auto 6px;
-  border: 2px solid gray;
+  border: 3px solid gray;
   padding: 0 5px;
 }
 #password {
-  width: 70%;
-  height: 24px;
+  width: 80%;
+  height: 35px;
   margin: 0 auto 12px;
-  border: 2px solid gray;
+  border: 3px solid gray;
   padding: 0 5px;
 }
 #login-button {
-  width: 40%;
-  margin-bottom: 12px;
+  width: 50%;
+  margin-bottom: 20px;
   border: 2px solid black;
   background: white;
   outline: none;
@@ -240,12 +221,9 @@ form {
   color: black;
 }
 .friend-list {
-  /* sane */
   width: 100%;
   height: 55px;
   border-bottom: 1px solid #ccc;
-
-  /* insane */
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;

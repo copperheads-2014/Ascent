@@ -22,14 +22,12 @@
         <div class="flexbox"><%= link_to "Create Flight", current_user ? new_flight_path : new_user_path %></div>
       <% if current_user %>
         <div id="dropdown2" class="flexbox box-right"><i class="fa fa-users fa-2x"></i></div>
-
         <div id="notification">
           <div id="friend-request">Friend Requests</div>
           <hr>
           <% current_user.inverse_friendships.unapproved.each do |friendship| %>
             <div class="friend-list" id="<%= "friend-list-#{friendship.id}" %>">
               <%= link_to friendship.user.username, user_path(friendship.user), class: "flex-2", id: "flex-#{friendship.id}" %>
-
               <%= form_for :friendships, id: "form-#{friendship.id}", url: approve_friendship_path(friendship), html: {class: "flex-1"} do |f| %>
                 <%= f.submit 'Y', id: "yes" %>
               <% end %>
@@ -43,7 +41,7 @@
 
         <div id="dropdown1" class="flexbox"><%= current_user.username %><i id="caret" class="fa fa-caret-down"></i></div>
         <div class="menu">
-          <div class="flexbox-col"><%= link_to "Profile", user_path(current_user) %></div>
+          <div class="flexbox-col"><p><%= link_to "Profile", user_path(current_user) %></p></div>
           <hr>
           <div id="logout" class="flexbox-col"><%= link_to "Log Out", logout_path %></div>
         </div>
@@ -56,8 +54,6 @@
             <%= password_field_tag :password_digest, "", id: "password", placeholder: "Password" %>
             <%= submit_tag "Log In", id: "login-button" %>
           <% end %>
-          <hr>
-          <a href="#">Forgot Your Password?</a>
         </div>
       <% end %>
     </nav>
