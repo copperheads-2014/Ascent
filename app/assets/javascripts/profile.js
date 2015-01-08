@@ -4,15 +4,16 @@ $(document).ready(function() {
   });
 
   var changeButtonColor = function(form, response, message) {
-    var button = form.children(".button");
-    var autocomplete = form.children(".ui-autocomplete-input");
+    var button = form.find(".button");
+    var autocomplete = form.find(".ui-autocomplete-input");
 
     var previousButtonValue = button.val();
+    var previousBackgroundColor = button.css("background-color")
     button.css("background-color", "#5cb85c");
 
     var woop = button.val(message);
     button.fadeOut(1000, function() {
-      button.css("background-color", "#191919");
+      button.css("background-color", previousBackgroundColor);
       button.val(previousButtonValue);
       button.fadeIn(1000);
     });
@@ -33,14 +34,14 @@ $(document).ready(function() {
     })
   }
 
-  $('.friendship_form form').on("submit", function(e) {
+  $('#find-friends form').on("submit", function(e) {
     e.preventDefault();
     submitRequest($(this), function(r) {
       changeButtonColor($(this), r, 'Sent!')
     }.bind(this));
   });
 
-  $('.add_friend_to_flight_form form').on("submit", function(e) {
+  $('#add_users_to_flight form').on("submit", function(e) {
     e.preventDefault();
     var form = $(this);
     submitRequest(form, function(r) {
@@ -65,27 +66,7 @@ $(document).ready(function() {
     });
   });
 
-  $('#avatar').mouseenter(function() {
-    $('.edit').show();
-  });
-
-  $('.edit').mouseenter(function() {
-    $(this).css('background', 'white');
-    $('.edit a').css('color', 'black');
-    $(this).css('border', '1px solid black');
-  });
-
-  $('.edit').mouseleave(function() {
-    $(this).css('background', 'none');
-    $('.edit a').css('color', 'white');
-    $(this).css('border', '1px solid white');
-  });
-
-  $('#avatar').mouseleave(function() {
-    $('.edit').hide();
-  });
-
-  $('.edit').click(function(event) {
+  $('#edit').click(function(event) {
     event.preventDefault();
     $('#avatar').slideUp('slow');
     $('#avatar_form').slideDown('slow');
@@ -96,5 +77,4 @@ $(document).ready(function() {
     $('#avatar_form').slideUp('slow');
     $('#avatar').slideDown('slow');
   });
-
 });
