@@ -122,6 +122,7 @@ var resizeContainer = function(){
 var resetPlayButton = function(){
   $('#button-play').html("<i class='fa fa-play'></i>");
   playSpeed = 0;
+  seriesIndex = 0;
 }
 
 var advanceIndex = function(resolution) {
