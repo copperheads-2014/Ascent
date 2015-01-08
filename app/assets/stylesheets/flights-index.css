@@ -1,3 +1,13 @@
+.each-flight {
+  display: inline-block;
+  position: relative;
+  height: 160px;
+  width: 260px;
+  /*background: white;*/
+  margin: 10px;
+  border: 3px;
+}
+
 #flights-header {
   margin: 3% 0;
 }
@@ -19,15 +29,6 @@
   font-family: 'Armata', sans-serif;
   color: white;
   font-size: 18px;
-}
-.each-flight {
-  display: inline-block;
-  position: relative;
-  height: 160px;
-  width: 260px;
-  background: white;
-  margin: 10px;
-  border: 3px;
 }
 .each-flight a {
   font-family: 'Armata', sans-serif;
