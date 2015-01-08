@@ -10,8 +10,12 @@ class FlightsController < ApplicationController
           friends_array << flight
         end
       end
+      current_user.inverse_friends.each do |friend|
+        friend.flights.each do |flight|
+          friends_array << flight
+        end
+      end
       @friends_flights = friends_array.sort_by { |flight| flight.created_at }.reverse
-      binding.pry
     end
 
     # 2) Most Liked Flights:

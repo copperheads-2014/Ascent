@@ -11,6 +11,4 @@
     <div><%= f.text_field :remote_image_url, id: "url-input",placeholder: "Image URL" %></div>
     <div><%= f.submit "Save Image", id: "photo-save" %></div>
 <% end %>
-<div id="contain1"><%= link_to "See Flight", flight_path(@flight), class: "links_bottom" %></div>
-<div id="contain2"><%= link_to "See Flight Photos", flight_pictures_path(@flight), class: "links_bottom" %></div>
-
+<div id="contain1"><%= link_to "Skip photo upload", flight_path(@flight), class: "links_bottom" %></div>
