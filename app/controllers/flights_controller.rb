@@ -22,16 +22,13 @@ class FlightsController < ApplicationController
     # 3) Latest Flights:
     @latest = @flights.order(created_at: :desc)
 
-    # 4) Flights Near You:
-    @flights_near_you = Flight.all.limit(3)
-
-    # 5) Highest Altitude Flights:
+    # 4) Highest Altitude Flights:
     @highest_altitude = @flights.order(max_altitude: :desc)
 
-    # 6) Longest Duration Flights:
+    # 5) Longest Duration Flights:
     @longest_duration = @flights.order(duration: :desc)
 
-    # 7) Greatest Distance Flights:
+    # 6) Greatest Distance Flights:
     @greatest_distance = @flights.order(distance_traveled: :desc)
   end
 
