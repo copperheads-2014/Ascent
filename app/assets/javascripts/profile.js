@@ -65,27 +65,7 @@ $(document).ready(function() {
     });
   });
 
-  $('#avatar').mouseenter(function() {
-    $('.edit').show();
-  });
-
-  $('.edit').mouseenter(function() {
-    $(this).css('background', 'white');
-    $('.edit a').css('color', 'black');
-    $(this).css('border', '1px solid black');
-  });
-
-  $('.edit').mouseleave(function() {
-    $(this).css('background', 'none');
-    $('.edit a').css('color', 'white');
-    $(this).css('border', '1px solid white');
-  });
-
-  $('#avatar').mouseleave(function() {
-    $('.edit').hide();
-  });
-
-  $('.edit').click(function(event) {
+  $('#edit').click(function(event) {
     event.preventDefault();
     $('#avatar').slideUp('slow');
     $('#avatar_form').slideDown('slow');
@@ -96,5 +76,4 @@ $(document).ready(function() {
     $('#avatar_form').slideUp('slow');
     $('#avatar').slideDown('slow');
   });
-
 });

@@ -1,0 +1,210 @@
+#profile-container {
+  width: 70%;
+  height: 880px;
+  margin: 0 auto;
+  background: rgba(49,49,49, 0.7);
+}
+#avatar-side {
+  float: left;
+  width: 35%;
+}
+#profile {
+  padding: 70px 0 25px;
+  margin: 0;
+  display: block;
+}
+#profile h1 {
+  font-size: 30px;
+}
+#avatar {
+  width: 260px;
+  height: 260px;
+  margin: 0 auto;
+  border: 5px solid #D1DBDD;
+  position: relative;
+}
+#edit {
+  width: 250px;
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: table-cell;
+  vertical-align: middle;
+}
+#edit p {
+  display: none;
+  margin: 0;
+}
+#edit i {
+  padding-top: 6px;
+  display: none;
+  color: white;
+}
+#edit:hover {
+  background: rgba(190,190,190,0.4);
+}
+#edit:hover p, #edit:hover i {
+  display: block;
+}
+#edit a {
+  display: block;
+  text-decoration: none;
+  color: white;
+}
+#avatar_form {
+  display: none;
+  margin: 0 auto;
+}
+#url-input2 {
+  width: 100%;
+}
+#avatar-cancel {
+  border: none;
+  color: white;
+  margin-top: -10px;
+}
+
+/* Tabbed Interface ---------- */
+#tabbed-interface {
+  float: right;
+  width: 60%;
+  margin: 70px 5% 0 0;
+}
+#tabbed-interface ul {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+#tabbed-interface li {
+  display: inline-block;
+  text-decoration: none;
+  height: 60px;
+  width: 120px;
+  margin: 0px;
+  text-align: center;
+}
+#tabbed-interface li:first-child {
+  margin-right: 3px;
+}
+#friend-toggle.active2, #flight-toggle.active2 {
+  background: #D1DBDD;
+}
+#friend-toggle, #flight-toggle {
+  background: gray;
+}
+#tabbed-interface p {
+  font-family: 'Armata', sans-serif;
+  font-size: 22px;
+  color: rgb(250,250,250);
+  margin: 8px 0;
+}
+#tabs-1, #tabs-2 { display: none }
+#tabs-1.active1, #tabs-2.active1 {
+  max-height: 700px;
+  height: auto;
+  margin: 0;
+  background: #D1DBDD;
+  padding-bottom: 50px;
+  overflow: auto;
+  display: block;
+}
+#find-friends, #tag-friends {
+  margin: 30px 0;
+  width: 40%;
+  float: left;
+}
+#friends, #flights {
+  margin: 30px 0;
+  width: 60%;
+  float: right;
+}
+#find-friends p, #tag-friends p {
+  font-family: 'Armata', sans-serif;
+  color: gray;
+}
+#autocomplete_username, #autocomplete_username2 {
+  padding: 0 5px;
+  width: 80%;
+  border: 3px solid gray;
+  height: 45px;
+}
+#fr-request, #fl-request {
+  background: lightgray;
+  color: black;
+  font-size: 16px;
+  border: 1px solid black;
+  width: 200px;
+}
+#fr-request:hover, #fl-request:hover {
+  color: white;
+  background: gray;
+}
+#friends tr {
+  display: block;
+  margin: 10px auto;
+  height: 80px;
+  width: 100%;
+}
+.username {
+  width: 180px;
+}
+.username a {
+  font-size: 16px;
+}
+.unfriend a {
+  font-size: 12px;
+  color: black;
+  border: 1px dashed lightgray;
+  padding: 3px;
+}
+.unfriend a:hover {
+  background: rgb(190,190,190);
+}
+#friends a {
+  margin: 0 10px;
+  color: gray;
+  text-decoration: none;
+}
+#friends a:hover {
+  color: white;
+}
+#friend-image {
+  display: inline-block;
+  width: 33%;
+  float: left;
+}
+#friend-username {
+  display: inline-block;
+  float: left;
+  width: 33%;
+}
+#unfriend {
+  display: inline-block;
+  float: left;
+  width: 33%;
+}
+#select-flight {
+  margin: 30px auto 0;
+  font-size: 14px;
+  color: black;
+}
+select {
+  outline: none;
+  font-size: 20px;
+}
+.flight {
+  display: block;
+  height: 180px;
+  width: 350px;
+  margin: 10px auto;
+}
+.flight a {
+  text-decoration: none;
+}
+.callsign {
+  font-size: 22px;
+  color: #D1DBDD;
+  font-family: 'Armata', sans-serif;
+}

@@ -1,44 +1,62 @@
-.profile_user.col-1-4
-  .username
-    %h1= "#{@user.username}"
-  #avatar{:style => "background-image: url('#{image_path @user.avatar_url}')"}
-    .edit= link_to "Edit Photo", edit_user_path(@user)
-  #avatar_form
-    = render :partial => 'users/edit', :locals => { :user => @user }
-
-.profile_friends.col-1-3
-  %h2="#{@user.username}'s friends"
-  %br
-  %table#friends
-    -@user.approved_friends.each do |friend|
-      %tr{id: "#{Friendship.find_id(@user, friend)}", class: "remove-#{Friendship.find_id(@user, friend)}"}
-        %td= link_to image_tag(friend.avatar_url(:avatar_thumb)), user_path(friend)
-        %td.username= link_to friend.username, user_path(friend)
-        %td.unfriend
-          -if current_user == @user
-            %a{href: "#", value: "/friendships/#{Friendship.find_id(@user, friend)}", } unfriend
-    -if current_user == @user
-      -@user.pending_friends.each do |friend|
-        %tr
-          %td= link_to image_tag(friend.avatar_url(:avatar_thumb)), user_path(friend)
-          %td.username= link_to friend.username, user_path(friend)
-          %td.pending= "pending"
-
-.profile_flights.col-1-3
-  %h2="#{@user.username}'s flights"
-  %br
-  -@user.flights.each do |flight|
-    .flight{:style => "background-image: url(#{image_path flight.album_cover})"}
-      %a{:href => "#{flight_path(flight)}"}
-        .callsign="#{flight.callsign}"
--if current_user == @user
-  .profile_forms
-    .col-1-4
-    .col-1-3.friendship_form
-      %h3 Add a friend
-      = render :partial => 'friendships/new', :locals => { :friendship => @friendship}
-    .col-1-3.add_friend_to_flight_form
-      %h3 Add a flight collaborator
-      = render :partial => 'users/add_to_flight', :locals => { :user => @user }
-
-
+#profile-container
+  #avatar-side
+    %header#profile
+      %h1= "#{@user.username}"
+    #avatar{:style => "background-image: url('#{image_path @user.avatar_url}')"}
+      #edit
+        %i.fa.fa-camera.fa-2x
+        %p= link_to "Edit Photo", edit_user_path(@user)
+    #avatar_form
+      = render :partial => 'users/edit', :locals => { :user => @user }
+  #tabbed-interface
+    %ul
+      %li#friend-toggle.active2
+        %p
+          %i.fa.fa-users.fa-2x
+      %li#flight-toggle
+        %p
+          %i.fa.fa-space-shuttle.fa-2x
+    #tabs-1.active1
+      #find-friends
+        %p Add Friend
+        = render :partial => 'friendships/new'
+      %table#friends
+        -@user.approved_friends.each do |friend|
+          %tr{id: "#{Friendship.find_id(@user, friend)}", class: "remove-#{Friendship.find_id(@user, friend)}"}
+            %td= link_to image_tag(friend.avatar_url(:avatar_thumb)), user_path(friend)
+            %td.username= link_to friend.username, user_path(friend)
+            %td.unfriend
+              -if current_user == @user
+                %a{href: "#", value: "/friendships/#{Friendship.find_id(@user, friend)}", } unfriend
+        -if current_user == @user
+          -@user.pending_friends.each do |friend|
+            %tr
+              %td= link_to image_tag(friend.avatar_url(:avatar_thumb)), user_path(friend)
+              %td.username= link_to friend.username, user_path(friend)
+              %td.pending= "pending"
+    #tabs-2
+      #tag-friends
+        -if current_user == @user
+          %p Add Flight Collaborator
+          = render :partial => 'users/add_to_flight', :locals => { :user => @user }
+      #flights
+        -@user.flights.each do |flight|
+          .flight{:style => "background: url(#{image_path flight.album_cover}) no-repeat; background-size: cover;"}
+            %a{:href => "#{flight_path(flight)}"}
+              .callsign="#{flight.callsign}"
+/ .profile_flights.col-1-3
+/   %h2="#{@user.username}'s flights"
+/   %br
+/   -@user.flights.each do |flight|
+/     .flight{:style => "background-image: url(#{image_path flight.album_cover})"}
+/       %a{:href => "#{flight_path(flight)}"}
+/         .callsign="#{flight.callsign}"
+/ -if current_user == @user
+/   .profile_forms
+/     .col-1-4
+/     .col-1-3.friendship_form
+/       %h3 Add a friend
+/       = render :partial => 'friendships/new', :locals => { :friendship => @friendship}
+/     .col-1-3.add_friend_to_flight_form
+/       %h3 Add a flight collaborator
+/       = render :partial => 'users/add_to_flight', :locals => { :user => @user }

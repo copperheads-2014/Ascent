@@ -312,10 +312,24 @@ var ready = function() {
   $("#notification").hover(function(){}, function() {
     $('#notification').removeClass("active");
   });
-  $("#notification, .menu-login, .menu").hover(function(){
+  $("#notification, .menu-login, .menu, #tabs-1, #tabs-2").hover(function(){
     $('body').css("overflow", "hidden");
   }, function() {
     $('body').css("overflow", "auto");
+  });
+
+  $('#friend-toggle').click(function(){
+    $('#tabs-1').addClass("active1");
+    $('#tabs-2').removeClass("active1");
+    $(this).addClass("active2");
+    $('#flight-toggle').removeClass("active2");
+  });
+
+  $('#flight-toggle').click(function(){
+    $('#tabs-2').addClass("active1");
+    $('#tabs-1').removeClass("active1");
+    $(this).addClass("active2");
+    $('#friend-toggle').removeClass("active2");
   });
 
   $(".flights-row-body").smoothDivScroll({
