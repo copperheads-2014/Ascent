@@ -424,8 +424,6 @@ var ready = function() {
   $(".friend-list form").on('submit', function(e) {
     e.preventDefault();
     var form = $(this);
-    console.log(this);
-    console.log(form.attr('action'));
     $.ajax({
       method: "delete",
       url: form.attr('action'),

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   resources :users do
     get :autocomplete_username, :on => :collection
+    get :autocomplete_username2, :on => :collection
   end
   resources :sessions
 

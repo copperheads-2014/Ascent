@@ -36,6 +36,17 @@ class UsersController < ApplicationController
       }
     end
   end
+
+  def autocomplete_username2
+    term = params[:q].downcase
+    @users = User.where("lower(username) LIKE '%#{term}%'")
+    respond_to do |format|
+      format.json {
+        render json: @users.map(&:username)
+      }
+    end
+  end
+
   def edit
     @user = User.find(params[:id])
   end
