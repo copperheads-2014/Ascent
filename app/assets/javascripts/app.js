@@ -125,6 +125,12 @@ var resizeContainer = function(){
   $('.container').css('height', (window_height - 50))
 }
 
+var resizeMainContainer = function(){
+  var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  var window_height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  $('#main-container').css('height', (window_height - 50))
+}
+
 var resetPlayButton = function(){
   $('#button-play').html("<i class='fa fa-play'></i>");
   playSpeed = 0;
@@ -176,6 +182,7 @@ var togglePlay = function(){
 
 var ready = function() {
   resizeContainer();
+  resizeMainContainer();
    $(".flight-save").on('click', function() {
     NProgress.inc(0.25);
     NProgress.start();
@@ -265,6 +272,7 @@ var ready = function() {
 
   $(window).on('resize', function(){
     resizeContainer();
+    resizeMainContainer();
   })
 
   $("#button-play").click(function(){

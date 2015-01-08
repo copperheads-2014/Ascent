@@ -101,6 +101,7 @@
 }*/
 #main-container {
   overflow: hidden;
+  height: 1064px;
 }
 #photos-div {
   width: 65%;
