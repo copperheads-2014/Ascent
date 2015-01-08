@@ -101,6 +101,7 @@
 }*/
 #main-container {
   overflow: hidden;
+  height: 1030px;
 }
 #photos-div {
   width: 65%;
@@ -214,6 +215,16 @@
   height: 400px;
   display: block;
 }
+
+#bat-info, #asc-info{
+  padding: 0;
+  display: inline-block;
+  font-family: 'Unica One';
+  font-size: 22px;
+  color: white;
+  margin: 10px 30px 0 20px
+}
+
 #gauge_6, #gauge_7 {
   margin: 0;
   padding: 0;
@@ -228,11 +239,5 @@
   margin: 0 auto;
 }
 #gauge_6_info, #gauge_7_info {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  font-family: 'Unica One';
-  font-size: 22px;
-  color: white;
-  width: 48%;
+
 }
