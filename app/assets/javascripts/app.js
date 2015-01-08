@@ -40,17 +40,22 @@ var updateAscentInfo = function(point){
   $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
 }
 
+var ascentFormatAndSendPoint = function(point, rate){
+  var ratePoint = jQuery.extend({}, point);
+  ratePoint.x = point.x;
+  ratePoint.y = rate;
+  playAscent(ratePoint);
+}
+
 
 var ascentOnClick = function(pointClicked){
   var i = findWithAttr(flight_data, 'x', pointClicked.x );
   var point = flight_data[i];
   var previousPoint = flight_data[(i - 1)];
   var rate = Math.round(rateOfAscent(point, previousPoint) * 100) / 100;
-  var ratePoint = jQuery.extend({}, point);
-  ratePoint.x = point.x;
-  ratePoint.y = rate;
-  playAscent(ratePoint);
+  ascentFormatAndSendPoint(point, rate)
   $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
+
 }
 
 var findWithAttr = function(array, attr, value) {
@@ -93,7 +98,7 @@ var play = function(interval) {
     playBarometer(point);
     playMap();
     playClock(reversePoint);
-    playAscent(rateOfAscent(point, previousPoint));
+    ascentFormatAndSendPoint(point, (rateOfAscent(point, previousPoint)));
     updateAscentInfo(point);
     playBattery(point.battery);
     updateBatteryInfo(point);
