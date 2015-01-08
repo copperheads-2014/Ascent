@@ -8,6 +8,11 @@ var playSpeed = 0;
 var currentView = 'chart';
 var reverseIndex;
 
+var invertIndex = function(point){
+  var currentIndex = findWithAttr(flight_data, 'x', point.x);
+  return flight_data.length - 1 - currentIndex
+}
+
 var rateOfAscent = function(currentPoint, lastPoint){
   meters = (currentPoint.y - lastPoint.y)
   seconds = ((currentPoint.x - lastPoint.x) / 1000)
@@ -17,15 +22,30 @@ var rateOfAscent = function(currentPoint, lastPoint){
 var updateBatteryInfo = function(point){
   var batLevel = (point.battery);
   var pct = calculatePct(batLevel);
+  pct > 100 ? pct = 100 : pct
   $("#gauge_7_info").html('<p>' + pct + '%</p>');
 }
 
 var updateAscentInfo = function(point){
-  var i = 1;
+  var i = findWithAttr(flight_data, 'x', point.x );
   var point = flight_data[i];
-  var previousPoint = flight_data[(i - 1)];
+  var previousPoint;
+  if(i === 0){
+    previousPoint = flight_data[i];
+    point = flight_data[i+1]
+  }
+  else{
+    previousPoint = flight_data[(i - 1)];
+  };
   var rate = Math.round(rateOfAscent(point, previousPoint) * 100) / 100;
-  $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>')
+  $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
+}
+
+var ascentFormatAndSendPoint = function(point, rate){
+  var ratePoint = jQuery.extend({}, point);
+  ratePoint.x = point.x;
+  ratePoint.y = rate;
+  playAscent(ratePoint);
 }
 
 
@@ -34,8 +54,9 @@ var ascentOnClick = function(pointClicked){
   var point = flight_data[i];
   var previousPoint = flight_data[(i - 1)];
   var rate = Math.round(rateOfAscent(point, previousPoint) * 100) / 100;
-  loadAscent(rate);
+  ascentFormatAndSendPoint(point, rate)
   $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
+
 }
 
 var findWithAttr = function(array, attr, value) {
@@ -78,8 +99,10 @@ var play = function(interval) {
     playBarometer(point);
     playMap();
     playClock(reversePoint);
-    playAscent(rateOfAscent(point, previousPoint));
+    ascentFormatAndSendPoint(point, (rateOfAscent(point, previousPoint)));
+    updateAscentInfo(point);
     playBattery(point.battery);
+    updateBatteryInfo(point);
     // console.log('iterating')
   }, interval);
 }
@@ -105,6 +128,7 @@ var resizeContainer = function(){
 var resetPlayButton = function(){
   $('#button-play').html("<i class='fa fa-play'></i>");
   playSpeed = 0;
+  seriesIndex = 0;
 }
 
 var advanceIndex = function(resolution) {
@@ -139,14 +163,14 @@ var displayDataComment = function(data_point) {
 };
 
 var togglePlay = function(){
-  if (playSpeed === 0 || playSpeed === 5){
+  if (playSpeed === 0 || playSpeed === 2){
     $('#button-play').html('Faster');
     playSpeed = 1;
   }
   // (playSpeed === 1)
   else {
     $('#button-play').html('Slower');
-    playSpeed = 5;
+    playSpeed = 2;
   };
 };
 

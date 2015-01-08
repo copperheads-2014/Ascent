@@ -61,7 +61,7 @@ var loadChart = function(seriesData, duration) {
               playAltimeter(this);
               playThermometer2(this);
               playBarometer(this);
-              playClock(this);
+              playClock(flight_data[invertIndex(this)]);
               playAscent(this);
               ascentOnClick(this);
               displayDataComment(this);

@@ -15,7 +15,7 @@ var loadAscent = function(seriesData){
              text: null
          },
          labels: {
-             y: 5
+             enabled: false
          },
          min: -19.9,
          max: 19.9,
@@ -63,8 +63,8 @@ var loadAscent = function(seriesData){
   })
 }
 
-var playAscent = function(rate) {
-  ascent.series[0].points[0].update(rate);
+var playAscent = function(point) {
+  ascent.series[0].points[0].update(point.y);
 };
 
 

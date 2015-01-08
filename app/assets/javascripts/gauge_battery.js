@@ -76,7 +76,6 @@ var calculatePct = function(currentValue){
 }
 
 var playBattery = function(point) {
-  console.log(point)
   battery.series[0].points[0].update(point.battery);
 };
 
