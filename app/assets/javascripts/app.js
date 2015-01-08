@@ -322,9 +322,8 @@ var ready = function() {
     manualContinuousScrolling: true
   });
 
-  $("#picture-carousel").smoothDivScroll({
-    manualContinuousScrolling: true,
-    visibleHotSpotBackgrounds: "always"
+  $("#photo-carousel").smoothDivScroll({
+    manualContinuousScrolling: true
   });
 
   $('.img-container').hover(function(){
@@ -347,14 +346,29 @@ var ready = function() {
     });
   });
 
-  $('#add-comment-button').click(function(){
+  $('#comment-add').click(function(){
     $('#comment-input-box').slideToggle("slow", function() {
     });
   });
-
-  $('#show-comments-button').click(function(){
-    $('#comment_roll').slideToggle("slow", function() {
+  $('#comment-submit').click(function(){
+    $('#comment-input-box').slideToggle("slow", function() {
     });
+  });
+  $('#photo-add').click(function(){
+    var flightId = window.location.pathname.split("/")[2];
+    window.location.replace("/flights/" + flightId + "/pictures/new");
+  });
+
+  $('#photo-view').click(function(){
+    var nav_height = $('nav').height();
+    var container_height = $('#main-container').height();
+    $('body').animate({ scrollTop: nav_height + container_height }, 200);
+  });
+  $('#comment-view').click(function(){
+    var nav_height = $('nav').height();
+    var container_height = $('#main-container').height();
+    var photo_height = $('#photo-container').height();
+    $('body').animate({ scrollTop: nav_height + container_height + photo_height }, 200);
   });
 
   $('#comment-submit').click(function(e){
