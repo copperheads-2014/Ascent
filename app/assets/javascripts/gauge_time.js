@@ -16,18 +16,22 @@ var loadClock = function(seriesData, maxValue){
         text: null
       },
       pane: {
-        size: '100%',
+        size: '90%',
         startAngle: 0,
         endAngle: 360,
         background: {
           backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
           innerRadius: '60%',
           outerRadius: '100%',
-          shape: 'arc'
+          shape: 'arc',
+          center: ['50%', '50%']
         }
       },
       tooltip: {
         enabled: false
+      },
+      title: {
+        text: 'Countdown'
       },
       yAxis: {
         stops: [

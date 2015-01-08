@@ -93,9 +93,10 @@ tr input[type="submit"]:hover {
   background: lightgray;
 }
 #comment_display {
+  border: 3px solid white;
   text-align: left;
   height: 30px;
-  width: 100%;
+  width: 90%;
   color: white;
   margin-left: 5%;
 }
@@ -128,7 +129,5 @@ tr input[type="submit"]:hover {
   font-size: 0.8em;
   height: 35px;
 }
-#chart_map_button, #button_play {
-  margin-top: 38px;
-}
+
 

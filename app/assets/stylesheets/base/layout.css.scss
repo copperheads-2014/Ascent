@@ -19,6 +19,23 @@ h3 {
   text-align: center;
 }
 
+.flash {
+  color: white;
+}
+
+.notice {
+  color: white
+}
+
+.error {
+  color: #EE6A50;
+}
+
+.success {
+  color: palegreen;
+}
+
+
 html,body {
   height: 1400px;
   width: 100%;
@@ -51,6 +68,10 @@ html,body {
 .button-area1 {
   right: 0;
   width: 24%;
+}
+
+#under-chart {
+  margin: 0 auto;
 }
 
 #main {
@@ -104,18 +125,23 @@ table {
 
 #gauge_5 {
   position: absolute;
-  width: 200px;
-  margin: 0;
-  height: 200px;
-  left: -90px;
-  bottom: 250px;
+  width: 320px;
+  height: 320px;
 }
 
-#gauge_1, #gauge_3, #gauge_4 {
+#gauge_3, #gauge_4 {
+  margin-top: 20px;
   display: inline-block;
   width: 300px;
-  max-width: 300px;
+  height: 400px;
   }
+
+
+#gauge_1 {
+  display: block;
+  margin: auto;
+  margin-right: -30px;
+}
 
 @media (max-width: 1300px) {
   #above_chart {

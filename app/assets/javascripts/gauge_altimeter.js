@@ -23,9 +23,9 @@ var loadAltimeter = function(seriesData){
 
 
     pane: {
+      size: '100%',
       startAngle: 0,
       endAngle: 360,
-      size: '100%',
       center: ['50%', '50%'],
       background: {
         backgroundColor: '#191919',
