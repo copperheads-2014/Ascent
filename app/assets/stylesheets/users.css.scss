@@ -1,7 +1,12 @@
+.profile_friends, .profile_flights {
+  height: 500px;
+}
 
 .profile_user {
-  height: 600px;
+  height: 450px;
+  margin-top: 40px;
   #avatar {
+    margin-top: 10px;
     width: 200px;
     height: 200px;
     display: inline-block;
@@ -37,7 +42,6 @@
 
 
 .profile_friends {
-  height: 600px;
   overflow: scroll;
   table#friends {
     color: #ccc;
@@ -60,7 +64,6 @@
 
 
 .profile_flights {
-  height: 600px;
   overflow: scroll;
   .flight {
     height: 200px;
@@ -77,11 +80,57 @@
     }
   }
 }
+.profile_forms {
+  width: 100%;
+  .col-1-4 {
+    height: 10px;
+  }
+  .friendship_form {
+    margin-top: 50px;
+    color: white;
+    .button {
+      border: 1px solid white;
+    }
+    .button:hover {
+      color: black;
+    }
+    #autocomplete_username:focus {
+      border: 2px solid grey;
+    }
+    #autocomplete_username {
+      color: black;
+    }
+  }
+}
+
+#avatar-cancel {
+  color: white;
+  border: 2px solid white;
+}
+#avatar-cancel:hover {
+  color: black;
+}
+.add_friend_to_flight_form {
+  margin-top: 50px;
+  #autocomplete_username {
+    border: 1px solid black;
+    height: 40px;
+  }
+  select {
+    margin-left: 10px;
+  }
+  input {
+    color: white;
+    border: 1px solid white;
+  }
+  input:hover {
+    color: black;
+  }
+}
 
 #add_users_to_flight {
   clear: all;
-  width: 35%;
-  margin-left: 20%;
+  width: 100%;
   p {
     display: inline-block;
   }
