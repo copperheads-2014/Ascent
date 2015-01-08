@@ -347,6 +347,40 @@ var ready = function() {
     });
   });
 
+  $('#add-comment-button').click(function(){
+    $('#comment-input-box').slideToggle("slow", function() {
+    });
+  });
+
+  $('#show-comments-button').click(function(){
+    $('#comment_roll').slideToggle("slow", function() {
+    });
+  });
+
+  $('#comment-submit').click(function(e){
+    e.preventDefault();
+
+    var info = {};
+    if ($('#data_point').val() !== "") {
+      info[data_point_id] = $('#data_point').val();
+    }
+    info["body"] = $('#comment_body').val();
+    info["flight_id"] = window.location.pathname.split('/')[2];
+
+    var request = $.ajax({
+      url: "/comments",
+      method: "POST",
+      data: {attributes: info}
+    });
+    request.done(function(response){
+      $('#comment_roll').prepend('<div class="comment_body"><p class="head"><a>thomas</a></p><p class="body"></p></div>');
+      var commentBody = $('.comment_body').first();
+      commentBody.find('a').attr("href", "/user/" + response["user_id"])
+      commentBody.find('a').text(response["author"]);
+      commentBody.find('.body').text(response["body"]);
+    });
+  });
+
   $('.signup').click(function(){
     var container_height = $('.container').height();
     if (full_path == '/'){
