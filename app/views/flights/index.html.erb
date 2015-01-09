@@ -5,7 +5,7 @@
   <div class="flights-row-header">Friends' Flights</div>
   <div id="friends-flights" class="flights-row-body">
     <% @friends_flights.each do |flight| %>
-    <div class="each-flight" <% if flight.cover_photo.present? %> style="background: url(<%= flight.cover_photo %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
+    <div class="each-flight" <% if flight.cover_photo.present? %> style="background: url(<%= image_path(flight.cover_photo) %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
     <% end %>
   </div>
   <% end %>
@@ -13,28 +13,28 @@
   <div class="flights-row-header">Most Liked</div>
   <div id="most-liked" class="flights-row-body option">
     <% @most_liked.each do |flight| %>
-    <div class="each-flight" <% if flight.cover_photo.present? %> style="background: url(<%= flight.cover_photo %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
+    <div class="each-flight" <% if flight.cover_photo.present? %> style="background: url(<%= image_path(flight.cover_photo) %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
     <% end %>
   </div>
 
   <div class="flights-row-header">Latest</div>
   <div id="latest" class="flights-row-body">
     <% @latest.each do |flight| %>
-    <div class="each-flight" <% if flight.cover_photo.present? %> style="background: url(<%= flight.cover_photo %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
+    <div class="each-flight" <% if flight.cover_photo.present? %> style="background: url(<%= image_path(flight.cover_photo) %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
     <% end %>
   </div>
 
   <div class="flights-row-header">Highest Altitude</div>
   <div id="highest-altitude" class="flights-row-body">
     <% @highest_altitude.each do |flight| %>
-    <div class="each-flight" <% if flight.cover_photo.present? %> style="background: url(<%= flight.cover_photo %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
+    <div class="each-flight" <% if flight.cover_photo.present? %> style="background: url(<%= image_path(flight.cover_photo) %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
     <% end %>
   </div>
 
   <div class="flights-row-header">Longest Duration</div>
   <div id="longest-duration" class="flights-row-body option">
     <% @longest_duration.each do |flight| %>
-    <div class="each-flight" <% if flight.cover_photo.present? %> style="background: url(<%= flight.cover_photo %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
+    <div class="each-flight" <% if flight.cover_photo.present? %> style="background: url(<%= image_path(flight.cover_photo) %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
     <% end %>
   </div>
 </div>
@@ -42,7 +42,7 @@
 <div class="flights-row-header">Greatest Distance Traveled</div>
 <div id="distance-traveled" class="flights-row-body">
   <% @greatest_distance.each do |flight| %>
-  <div class="each-flight" <% if flight.cover_photo.present? %> style="background: url(<%= flight.cover_photo %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
+  <div class="each-flight" <% if flight.cover_photo.present? %> style="background: url(<%= image_path(flight.cover_photo) %>) no-repeat; background-size: cover" <% else %> style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA3LzI5LzU1L2dydW1weWNhdC5kZmM3MC5wbmcKcAl0aHVtYgkxMjAweDYyNyMKZQlqcGc/f780e423/c84/grumpycat.jpg) no-repeat; background-size: cover" <% end %> ><%= link_to flight.callsign, flight_path(flight) %></div>
   <% end %>
 </div>
 
