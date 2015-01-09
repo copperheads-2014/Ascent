@@ -131,9 +131,23 @@ end
 #     counter += 1
 #   end
 # end
+alma = Flight.find(1)
+alma.cover_photo = THING_OF_PICTURES.pop
+10.times do
+  Picture.create(remote_image_url: THING_OF_PICTURES.pop, flight_id: 1)
+end
 
 steve = Flight.all
 steve.each do |flight|
   flight.cover_photo = THING_OF_PICTURES.pop
   flight.save
 end
+
+
+Comment.create(user_id: 1, flight_id: 1, status: 1, data_point_id: 5, body: "Ready to launch...")
+Comment.create(user_id: 2, flight_id: 1, status: 1, data_point_id: 56, body: "Here we go!")
+Comment.create(user_id: 9, flight_id: 1, status: 1, data_point_id: 247, body: "@cody this is when it did that thing with the pressure")
+Comment.create(user_id: 21, flight_id: 1, status: 1, data_point_id: 588, body: "Here comes the drop!!!!!")
+Comment.create(user_id: 13, flight_id: 1, status: 1, data_point_id: 670, body: "That's dropping so fast omg!")
+Comment.create(user_id: 4, flight_id: 1, status: 1, data_point_id: 770, body: "aw man it's over :(")
+
