@@ -5,7 +5,6 @@ class CreateFlights < ActiveRecord::Migration
       t.string     :duration
       t.integer    :max_altitude
       t.float 	   :distance_traveled
-      t.string     :cover_photo
 
       t.timestamps
     end
