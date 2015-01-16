@@ -23,7 +23,7 @@ var loadAltimeter = function(seriesData){
 
 
     pane: {
-      size: '100%',
+      size: '120%',
       startAngle: 0,
       endAngle: 360,
       center: ['50%', '50%'],
@@ -43,7 +43,8 @@ var loadAltimeter = function(seriesData){
       minorTickColor: '#878787',
       offset: -25,
       labels: {
-        distance: -23,
+        style: {fontSize: '22px'},
+        distance: -35,
         rotation: 'auto',
         formatter: function() {
           return this.value / 1000;
@@ -62,7 +63,7 @@ var loadAltimeter = function(seriesData){
           },
       dataLabels: {
         style: {
-            fontSize: '18px'
+            fontSize: '22px'
         },
         y: 5,
         formatter: function () {
