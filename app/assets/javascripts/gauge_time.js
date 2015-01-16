@@ -16,7 +16,7 @@ var loadClock = function(seriesData, maxValue){
         text: null
       },
       pane: {
-        size: '90%',
+        size: '100%',
         startAngle: 0,
         endAngle: 360,
         background: {
