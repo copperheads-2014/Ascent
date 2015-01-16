@@ -6,6 +6,32 @@ var playSpeed = 0;
 var currentView = 'chart';
 var reverseIndex;
 
+var advanceIndex = function(resolution) {
+  if(seriesIndex < flight_data.length - resolution - 1) {
+    seriesIndex = seriesIndex + resolution;
+  }
+  else {
+    seriesIndex = flight_data.length - 1;
+    resetPlayButton();
+    playSpeed = 0;
+    clearInterval(currentInterval);
+    }
+}
+
+var decrementIndex = function(resolution){
+  if(reverseIndex > 1){
+    reverseIndex = reverseIndex - resolution;
+  }
+  else {
+    reverseIndex = 0;
+  }
+}
+
+var invertIndex = function(point){
+  var currentIndex = findWithAttr(flight_data, 'x', point.x);
+  return flight_data.length - 1 - currentIndex
+}
+
 var toggleMapChart = function (){
   if (currentView === 'map'){
     $('#chart_map_button').html('MAP');
@@ -80,31 +106,6 @@ var resetPlayButton = function(){
   seriesIndex = 0;
 }
 
-var advanceIndex = function(resolution) {
-  if(seriesIndex < flight_data.length - resolution - 1) {
-    seriesIndex = seriesIndex + resolution;
-  }
-  else {
-    seriesIndex = flight_data.length - 1;
-    resetPlayButton();
-    playSpeed = 0;
-    clearInterval(currentInterval);
-    }
-}
-
-var decrementIndex = function(resolution){
-  if(reverseIndex > 1){
-    reverseIndex = reverseIndex - resolution;
-  }
-  else {
-    reverseIndex = 0;
-  }
-}
-
-var invertIndex = function(point){
-  var currentIndex = findWithAttr(flight_data, 'x', point.x);
-  return flight_data.length - 1 - currentIndex
-}
 
 var displayDataSubmit = function() {
   $("#data_submit").delay(500).show('slide', {direction:'left'}, 1000)
@@ -173,16 +174,6 @@ var ready = function() {
       updateBatteryInfo(point)
     });
   };
-
-  // var appendResult = function(entry){
-  //   var divForComment = "<div class = 'comment_body'>"
-  //   var commentBody = entry.body
-  //   var br = "</br>"
-  //   var commentAuthor = entry.author
-  //   var endOfDiv = "</div>"
-  //   var fullComment = divForComment + commentBody + br + commentAuthor + endOfDiv
-  //   $("#comment_roll").prepend(fullComment)
-  // }
 
   $('#chart_map_button').click(toggleMapChart);
 
