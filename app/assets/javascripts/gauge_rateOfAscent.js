@@ -67,4 +67,40 @@ var playAscent = function(point) {
   ascent.series[0].points[0].update(point.y);
 };
 
+var rateOfAscent = function(currentPoint, lastPoint){
+  meters = (currentPoint.y - lastPoint.y)
+  seconds = ((currentPoint.x - lastPoint.x) / 1000)
+  return (meters / seconds)
+}
 
+var updateAscentInfo = function(point){
+  var i = findWithAttr(flight_data, 'x', point.x );
+  var point = flight_data[i];
+  var previousPoint;
+  if(i === 0){
+    previousPoint = flight_data[i];
+    point = flight_data[i+1]
+  }
+  else{
+    previousPoint = flight_data[(i - 1)];
+  };
+  var rate = Math.round(rateOfAscent(point, previousPoint) * 10) / 10;
+  $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
+}
+
+var ascentFormatAndSendPoint = function(point, rate){
+  var ratePoint = jQuery.extend({}, point);
+  ratePoint.x = point.x;
+  ratePoint.y = rate;
+  playAscent(ratePoint);
+}
+
+var ascentOnClick = function(pointClicked){
+  var i = findWithAttr(flight_data, 'x', pointClicked.x );
+  var point = flight_data[i];
+  var previousPoint = flight_data[(i - 1)];
+  var rate = Math.round(rateOfAscent(point, previousPoint) * 10) / 10;
+  ascentFormatAndSendPoint(point, rate)
+  $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
+
+}

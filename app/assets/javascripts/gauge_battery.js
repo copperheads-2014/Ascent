@@ -79,5 +79,12 @@ var playBattery = function(point) {
   battery.series[0].points[0].update(point.battery);
 };
 
+var updateBatteryInfo = function(point){
+  var batLevel = (point.battery);
+  var pct = calculatePct(batLevel);
+  pct > 100 ? pct = 100 : pct
+  $("#gauge_7_info").html('<p>' + pct + '%</p>');
+}
+
 
 
