@@ -1,90 +1,91 @@
 #main-container
-  %br
-  %h1.chart_header
-    %a
-      #star
-        %i.fa.fa-star{:id => @flight.liked?(current_user) ? 'liked' : 'not_liked'}
-    ="#{@flight.callsign}"
-  %br
-  %div#map-tweet
-    %button#chart_map_button MAP
+  .dashboard
+    %br
+    %h1.chart_header
+      %a
+        #star
+          %i.fa.fa-star{:id => @flight.liked?(current_user) ? 'liked' : 'not_liked'}
+      ="#{@flight.callsign}"
+    %br
+    %div#map-tweet
+      %button#chart_map_button MAP
 
 
-  %grid{:class => 'grid-pad'}
-    %div{:class => 'col-1-3'}
-      %centered
-        %h2
-          Data
-        %table
-          %tr
-            %td.tdleft Burst Altitude
-            %td.tdright
-              ="#{@flight.max_altitude} m"
-          %tr
-            %td.tdleft Distance Traveled
-            %td.tdright
-              ="#{@flight.distance_traveled.round} km"
-          %tr
-            %td.tdleft Time to Burst
-            %td.tdright
-              ="#{@flight.time_to_burst}"
-          %tr
-            %td.tdleft Time of Descent
-            %td.tdright
-              ="#{@flight.time_of_descent}"
-          %tr
-            %td.tdleft Trip Duration
-            %td.tdright
-              ="#{@flight.duration}"
-          %tr
-            %td.tdleft
-              #tweeter
-                %br
-                =tweet_button(via: "Ascent", text: "Check out this flight! ##{@flight.callsign}", count: "horizontal")
-        #photos-div
-          %button#photo-add Add
-          %i.fa.fa-picture-o.fa-2x
-          %button#photo-view View
-        #write-comments
-          %button#comment-add Add
-          %i.fa.fa-comment-o.fa-2x
-          %button#comment-view View
-        #comment-input-box
-          =form_for :comment, method: 'POST', url: "/comments" do |f|
-            =f.hidden_field :data_point_id, id: "data_point"
-            =f.hidden_field :flight_id, value: "#{params[:id]}"
-            =f.text_area :body, id: "comment_body"
-            =f.submit "Add", id: "comment-submit"
-        #vertical-gauges
-          #vg-top
-            #gauge_7
-            #gauge_6
-          #vg-bottom
-            #bat-info
-              #gauge_7_info
-            #asc-info
-              #gauge_6_info
+    %grid{:class => 'grid-pad'}
+      %div{:class => 'col-1-3'}
+        %centered
+          %h2
+            Data
+          %table
+            %tr
+              %td.tdleft Burst Altitude
+              %td.tdright
+                ="#{@flight.max_altitude} m"
+            %tr
+              %td.tdleft Distance Traveled
+              %td.tdright
+                ="#{@flight.distance_traveled.round} km"
+            %tr
+              %td.tdleft Time to Burst
+              %td.tdright
+                ="#{@flight.time_to_burst}"
+            %tr
+              %td.tdleft Time of Descent
+              %td.tdright
+                ="#{@flight.time_of_descent}"
+            %tr
+              %td.tdleft Trip Duration
+              %td.tdright
+                ="#{@flight.duration}"
+            %tr
+              %td.tdleft
+                #tweeter
+                  %br
+                  =tweet_button(via: "Ascent", text: "Check out this flight! ##{@flight.callsign}", count: "horizontal")
+          #photos-div
+            %button#photo-add Add
+            %i.fa.fa-picture-o.fa-2x
+            %button#photo-view View
+          #write-comments
+            %button#comment-add Add
+            %i.fa.fa-comment-o.fa-2x
+            %button#comment-view View
+          #comment-input-box
+            =form_for :comment, method: 'POST', url: "/comments" do |f|
+              =f.hidden_field :data_point_id, id: "data_point"
+              =f.hidden_field :flight_id, value: "#{params[:id]}"
+              =f.text_area :body, id: "comment_body"
+              =f.submit "Add", id: "comment-submit"
+          #vertical-gauges
+            #vg-top
+              #gauge_7
+              #gauge_6
+            #vg-bottom
+              #bat-info
+                #gauge_7_info
+              #asc-info
+                #gauge_6_info
 
-    %div{:class => 'col-2-3'}
-      %div{:class => 'col-3-4'}
-        %div.flight_chart
-          = render :partial => 'data_visualizations/index'
-        %br
-        #below_chart
-          %grid{:id => 'under-chart'}
-            %div{:class => 'col-3-4'}
-              #comment_display
-                %p
-            %div{:class => 'col-1-4'}
-              %button#button-play
-                %i.fa.fa-play
-            %div{:class => 'col-1-2'}
-              #gauge_3
-            %div{:class => 'col-1-2'}
-              #gauge_4
-      %div{:class => 'col-1-4'}
-        #gauge_1
-        #gauge_5
+      %div{:class => 'col-2-3'}
+        %div{:class => 'col-3-4'}
+          %div.flight_chart
+            = render :partial => 'data_visualizations/index'
+          %br
+          #below_chart
+            %grid{:id => 'under-chart'}
+              %div{:class => 'col-3-4'}
+                #comment_display
+                  %p
+              %div{:class => 'col-1-4'}
+                %button#button-play
+                  %i.fa.fa-play
+              %div{:class => 'col-1-2'}
+                #gauge_3
+              %div{:class => 'col-1-2'}
+                #gauge_4
+        %div{:class => 'col-1-4'}
+          #gauge_1
+          #gauge_5
 
 #photo-container
   %header#photo-header
