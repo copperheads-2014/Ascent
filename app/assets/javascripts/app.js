@@ -1,5 +1,3 @@
-var $display;
-var index_of_digit;
 var flight_id;
 var flight_data;
 var seriesIndex = 0;
