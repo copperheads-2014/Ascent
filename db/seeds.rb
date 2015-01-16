@@ -1,6 +1,6 @@
 require 'json'
 
-THING_OF_PICTURES = ["assets/1.jpg", "assets/2.jpg", "assets/3.jpg", "assets/4.jpg", "assets/5.jpg", "assets/6.jpg", "assets/7.jpg", "assets/8.jpg", "assets/9.jpg", "assets/10.jpg", "assets/11.jpg", "assets/12.jpg", "assets/13.jpg", "assets/14.jpg", "assets/15.jpg", "assets/16.jpg", "assets/17.jpg", "assets/18.jpg", "assets/19.jpg", "assets/20.jpg", "assets/21.jpg", "assets/22.jpg", "assets/23.jpg", "assets/24.jpg", "assets/25.jpg", "assets/26.jpg", "assets/27.jpg", "assets/28.jpg", "assets/29.jpg", "assets/30.jpg", "assets/31.jpg", "assets/32.jpg", "assets/33.jpg", "assets/34.jpg", "assets/35.jpg", "assets/36.jpg", "assets/37.jpg", "assets/38.jpg", "assets/39.jpg", "assets/40.jpg", "assets/41.jpg", "assets/42.jpg", "assets/43.jpg",  "assets/44.png", "assets/45.png", "assets/46.png", "assets/47.png", "assets/48.png", "assets/49.png", "assets/50.png", "assets/51.png"]
+THING_OF_PICTURES = ["assets/images/1.jpg", "assets/images/2.jpg", "assets/images/3.jpg", "assets/images/4.jpg", "assets/images/5.jpg", "assets/images/6.jpg", "assets/images/7.jpg", "assets/images/8.jpg", "assets/images/9.jpg", "assets/images/10.jpg", "assets/images/11.jpg", "assets/images/12.jpg", "assets/images/13.jpg", "assets/images/14.jpg", "assets/images/15.jpg", "assets/images/16.jpg", "assets/images/17.jpg", "assets/images/18.jpg", "assets/images/19.jpg", "assets/images/20.jpg", "assets/images/21.jpg", "assets/images/22.jpg", "assets/images/23.jpg", "assets/images/24.jpg", "assets/images/25.jpg", "assets/images/26.jpg", "assets/images/27.jpg", "assets/images/28.jpg", "assets/images/29.jpg", "assets/images/30.jpg", "assets/images/31.jpg", "assets/images/32.jpg", "assets/images/33.jpg", "assets/images/34.jpg", "assets/images/35.jpg", "assets/images/36.jpg", "assets/images/37.jpg", "assets/images/38.jpg", "assets/images/39.jpg", "assets/images/40.jpg", "assets/images/41.jpg", "assets/images/42.jpg", "assets/images/43.jpg",  "assets/images/44.png", "assets/images/45.png", "assets/images/46.png", "assets/images/47.png", "assets/images/48.png", "assets/images/49.png", "assets/images/50.png", "assets/images/51.png"]
 
 # Seed Flights:
 files = [
@@ -132,16 +132,20 @@ end
 #   end
 # end
 alma = Flight.find(1)
-alma.cover_photo = THING_OF_PICTURES.pop
 10.times do
-  Picture.create(remote_image_url: THING_OF_PICTURES.pop, flight_id: 1)
+  picture = Picture.new(flight: alma)
+  picture.image = File.new("app/" + THING_OF_PICTURES.sample)
+  picture.save!
 end
+
 
 steve = Flight.all
 steve.each do |flight|
-  flight.cover_photo = THING_OF_PICTURES.pop
-  flight.save
+  picture = Picture.new(flight: flight)
+  picture.image = File.new("app/" + THING_OF_PICTURES.sample)
+  picture.save!
 end
+
 
 
 Comment.create(user_id: 1, flight_id: 1, status: 1, data_point_id: 5, body: "Ready to launch...")
