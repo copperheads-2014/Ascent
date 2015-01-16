@@ -1,5 +1,3 @@
-var $display;
-var index_of_digit;
 var flight_id;
 var flight_data;
 var seriesIndex = 0;
@@ -8,56 +6,21 @@ var playSpeed = 0;
 var currentView = 'chart';
 var reverseIndex;
 
-var invertIndex = function(point){
-  var currentIndex = findWithAttr(flight_data, 'x', point.x);
-  return flight_data.length - 1 - currentIndex
-}
-
-var rateOfAscent = function(currentPoint, lastPoint){
-  meters = (currentPoint.y - lastPoint.y)
-  seconds = ((currentPoint.x - lastPoint.x) / 1000)
-  return (meters / seconds)
-}
-
-var updateBatteryInfo = function(point){
-  var batLevel = (point.battery);
-  var pct = calculatePct(batLevel);
-  pct > 100 ? pct = 100 : pct
-  $("#gauge_7_info").html('<p>' + pct + '%</p>');
-}
-
-var updateAscentInfo = function(point){
-  var i = findWithAttr(flight_data, 'x', point.x );
-  var point = flight_data[i];
-  var previousPoint;
-  if(i === 0){
-    previousPoint = flight_data[i];
-    point = flight_data[i+1]
+var toggleMapChart = function (){
+  if (currentView === 'map'){
+    $('#chart_map_button').html('MAP');
+    currentView = 'chart';
+    $('#map').css('z-index', '-1');
+    $('#chart').css('z-index', '1');
   }
-  else{
-    previousPoint = flight_data[(i - 1)];
-  };
-  var rate = Math.round(rateOfAscent(point, previousPoint) * 10) / 10;
-  $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
-}
-
-var ascentFormatAndSendPoint = function(point, rate){
-  var ratePoint = jQuery.extend({}, point);
-  ratePoint.x = point.x;
-  ratePoint.y = rate;
-  playAscent(ratePoint);
-}
-
-
-var ascentOnClick = function(pointClicked){
-  var i = findWithAttr(flight_data, 'x', pointClicked.x );
-  var point = flight_data[i];
-  var previousPoint = flight_data[(i - 1)];
-  var rate = Math.round(rateOfAscent(point, previousPoint) * 10) / 10;
-  ascentFormatAndSendPoint(point, rate)
-  $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
-
-}
+  else {
+    $('#chart_map_button').html('CHART')
+    currentView = 'map'
+    $('#chart').css('z-index', '-1');
+    $('#map').css('z-index', '1');
+    $('#map').css('border', '2px solid white');
+  }
+};
 
 var findWithAttr = function(array, attr, value) {
     for(var i = 0; i < array.length; i += 1) {
@@ -85,7 +48,6 @@ var loadFinalPoint = function(finalPoint){
 }
 
 var play = function(interval) {
-
   loadChart(flight_data.slice(0, seriesIndex));
   currentInterval = setInterval(function() {
     advanceIndex(playSpeed);
@@ -103,28 +65,14 @@ var play = function(interval) {
     updateAscentInfo(point);
     playBattery(point.battery);
     updateBatteryInfo(point);
-    // console.log('iterating')
   }, interval);
 }
-
-// var convertPointClickObject = function(pointClicked){
-//   new_obj = {
-//     x: pointClicked.x,
-//     y: pointClicked.y,
-//     temp: pointClicked.temp,
-//     latitude: pointClicked.latitude,
-//     longitude: pointClicked.longitude
-//   };
-//   return new_obj
-// }
-
 
 var resizeContainer = function(){
   var window_width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
   var window_height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
   $('.container').css('height', (window_height - 50))
 }
-
 
 var resetPlayButton = function(){
   $('#button-play').html("<i class='fa fa-play'></i>");
@@ -153,6 +101,11 @@ var decrementIndex = function(resolution){
   }
 }
 
+var invertIndex = function(point){
+  var currentIndex = findWithAttr(flight_data, 'x', point.x);
+  return flight_data.length - 1 - currentIndex
+}
+
 var displayDataSubmit = function() {
   $("#data_submit").delay(500).show('slide', {direction:'left'}, 1000)
 }
@@ -160,7 +113,6 @@ var displayDataSubmit = function() {
 var displayDataComment = function(data_point) {
   $("#data_point").val(data_point.id)
   console.log(data_point.id)
-  // displayDataSubmit()
 };
 
 var togglePlay = function(){
@@ -220,15 +172,6 @@ var ready = function() {
       loadBattery(point.battery);
       updateBatteryInfo(point)
     });
-
-    // Check this out -matt
-    /* http://api.jquery.com/deferred.then/
-     * request
-     * .then(loadChart)
-     * .then(loadAltimeter)
-     * .then(loadThermometer2)
-     * ......
-     */
   };
 
   // var appendResult = function(entry){
@@ -241,28 +184,7 @@ var ready = function() {
   //   $("#comment_roll").prepend(fullComment)
   // }
 
-
-
-  var toggleMapChart = function (){
-    if (currentView === 'map'){
-      $('#chart_map_button').html('MAP');
-      currentView = 'chart';
-      $('#map').css('z-index', '-1');
-      $('#chart').css('z-index', '1');
-    }
-    else {
-      $('#chart_map_button').html('CHART')
-      currentView = 'map'
-      $('#chart').css('z-index', '-1');
-      $('#map').css('z-index', '1');
-      $('#map').css('border', '2px solid white');
-    }
-  };
-
   $('#chart_map_button').click(toggleMapChart);
-
-
-
 
   $(window).on('resize', function(){
     resizeContainer();
