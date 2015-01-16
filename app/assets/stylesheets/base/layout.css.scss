@@ -290,11 +290,8 @@ input[type="text"] {
 #star{
   display: inline-block;
   font-size: medium;
+  line-height: medium;
   width: 1%;
-  i {
-    position: absolute;
-    top: 40%;
-  }
 }
 
 // $primary: ;
