@@ -30,9 +30,6 @@ Rails.application.routes.draw do
   end
   resources :sessions
 
-  get "flights/:flight_id/pictures/newtoalbum" => "pictures#newtoalbum"
-  post "flights/:flight_id/picturestoalbum" => "pictures#createtoalbum"
-
   get "flights/feed" => "flights#feed"
 
   resources :flights do

@@ -3,10 +3,6 @@ class PicturesController < ApplicationController
     @flight = Flight.find(params[:flight_id])
   end
 
-  def newtoalbum
-    @flight = Flight.find(params[:flight_id])
-  end
-
   def index
     @flight = Flight.find(params[:flight_id])
   end
@@ -26,23 +22,6 @@ class PicturesController < ApplicationController
       picture.save!
     end
     redirect_to controller: "flights", action: "show", id: @flight
-  end
-
-  def createtoalbum
-    @flight = Flight.find(params[:flight_id])
-    files = params[:picture][:files]
-    if files
-      files.each do |file|
-        picture = Picture.new(flight_id: @flight.id, caption: params[:picture][:caption])
-        picture.image = file
-        picture.save!
-      end
-    else
-      picture = Picture.new(flight_id: @flight.id, caption: params[:picture][:caption])
-      picture.remote_image_url = params[:picture][:remote_image_url]
-      picture.save!
-    end
-    redirect_to controller: "pictures", action: "index", id: @flight
   end
 
   def destroy

@@ -11,8 +11,8 @@
   <% end %>
 </div>
 
-<div id="below-carousel">
-  <%= form_for :picture, method: 'get', url: "/flights/#{@flight.id}/pictures/newtoalbum", html: {class: "photo-submit"} do |f| %>
-  <%= f.submit "Add Photos"%>
-  <% end %>
+<div id="below-carousel" class="photo-submit">
+ <button class="photo-submit">
+    <%= link_to "Add Photos", "/flights/#{@flight.id}/pictures/new" %>
+ </button>
 </div>

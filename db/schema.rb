@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 20150104044628) do
     t.string   "duration"
     t.integer  "max_altitude"
     t.float    "distance_traveled"
-    t.string   "cover_photo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

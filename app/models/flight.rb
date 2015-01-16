@@ -121,7 +121,7 @@ class Flight < ActiveRecord::Base
     end
   end
 
-  def album_cover
+  def cover_photo
     if pictures.any?
       pictures.sample.image_url(:thumb)
     else

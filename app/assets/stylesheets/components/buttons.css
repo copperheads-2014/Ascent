@@ -4,6 +4,26 @@ button {
   color: black;
   background-color: #f3f3f3;
 }
+button.photo-submit {
+  height: 50px;
+  border: 2px solid #ffffff;
+  color: black;
+  background-color: #f3f3f3;
+}
+button.photo-submit a{
+  text-decoration: none;
+  color: black;
+}
+button.photo-submit:hover {
+  background-color: black;
+}
+button.photo-submit:hover a {
+  color: white;
+}
+button.photo-submit:active {
+  background-color: #400040;
+}
+
 button:hover {
   background-color: #CC00CC;
   color: #f3f3f3;
