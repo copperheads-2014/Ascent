@@ -112,9 +112,10 @@ html,body {
 
 #map {
   clear: both;
-  height: 400px;
+  height: 380px;
   width: 64%;
   margin: 0 auto;
+  margin-top: 15px;
   z-index: -1;
   position: absolute;
 }
