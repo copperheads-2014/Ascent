@@ -3,6 +3,18 @@
   margin: 0 auto;
 }
 
+@media only screen and (min-width:1920px){
+  .dashboard {
+    width: 1920px;
+  }
+}
+
+@media only screen and (max-width:1600px){
+  .dashboard {
+    width: 1600px;
+  }
+}
+
 #flash_notice {
   padding-top: 10px;
   color: white;
@@ -101,7 +113,7 @@ html,body {
 #map {
   clear: both;
   height: 400px;
-  width: 65%;
+  width: 64%;
   margin: 0 auto;
   z-index: -1;
   position: absolute;
@@ -136,10 +148,6 @@ table {
 }
 
 #gauge_5 {
-//  position: absolute;
-//  width: 320px;
-//  height: 320px;
-
   display: block;
   margin: auto;
   margin-right: -30px;
@@ -148,9 +156,7 @@ table {
 #gauge_3, #gauge_4 {
   margin-top: 20px;
   display: block;
-//  width: 300px;
-//  height: 400px;
-  }
+}
 
 
 #gauge_1 {
@@ -280,9 +286,7 @@ input[type="text"] {
   font-size: 10px;
   font-weight: lighter;
 }
-h1.chart_header{
-  position: relative;
-}
+
 #star{
   display: inline-block;
   font-size: medium;
