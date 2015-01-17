@@ -94,19 +94,28 @@ var loadChart = function(seriesData, duration) {
     });
 
 };
-var displayComment = function(comments, i) {
+var displayPointComment = function(comments, i) {
 
   if(comments.length > i) {
     console.log(comments[i])
     $('#comment_display p').text(comments[i].author + ": " + comments[i].body).fadeIn(3000/comments.length).fadeOut(3000/comments.length, function() {
-      displayComment(comments, i + 1);
+      displayPointComment(comments, i + 1);
     });
   }
 };
 
-var playChart = function(point) {
-  if (point.comments[0] !== undefined) {
-    displayComment(point.comments, 0);
+var pointComments = function(points) {
+  console.log(points);
+  for(var i = 0; i < points.length; i++) {
+    if(points[i].comments !== undefined) {
+      displayPointComment(points[i].comments, 0);
+    }
   }
+};
+
+var playChart = function(points) {
+  var point = points[points.length - 1];
+
+  pointComments(points);
   chart.series[0].addPoint(point);
 };
