@@ -97,7 +97,6 @@ var loadChart = function(seriesData, duration) {
 var displayPointComment = function(comments, i) {
 
   if(comments.length > i) {
-    console.log(comments[i])
     $('#comment_display p').text(comments[i].author + ": " + comments[i].body).fadeIn(3000/comments.length).fadeOut(3000/comments.length, function() {
       displayPointComment(comments, i + 1);
     });
