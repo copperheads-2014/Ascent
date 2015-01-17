@@ -149,6 +149,7 @@ end
 
 
 Comment.create(user_id: 1, flight_id: 1, status: 1, data_point_id: 5, body: "Ready to launch...")
+Comment.create(user_id: 3, flight_id: 1, status: 1, data_point_id: 5, body: "I was so excited right now!!!")
 Comment.create(user_id: 2, flight_id: 1, status: 1, data_point_id: 56, body: "Here we go!")
 Comment.create(user_id: 9, flight_id: 1, status: 1, data_point_id: 247, body: "@cody this is when it did that thing with the pressure")
 Comment.create(user_id: 21, flight_id: 1, status: 1, data_point_id: 588, body: "Here comes the drop!!!!!")
