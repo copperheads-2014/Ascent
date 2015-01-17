@@ -105,7 +105,6 @@ var displayPointComment = function(comments, i) {
 };
 
 var pointComments = function(points) {
-  console.log(points);
   for(var i = 0; i < points.length; i++) {
     if(points[i].comments !== undefined) {
       displayPointComment(points[i].comments, 0);
