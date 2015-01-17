@@ -85,7 +85,16 @@ var updateAscentInfo = function(point){
     previousPoint = flight_data[(i - 1)];
   };
   var rate = Math.round(rateOfAscent(point, previousPoint) * 10) / 10;
-  $('#gauge_6_info').html('<p>' +  rate + ' m / s</p>');
+  var spacer = function() {
+    if(rate < 0) {
+      return '';
+    }
+    else {
+      return '<span style="visibility:hidden">+</span>';
+    }
+  };
+
+  $('#gauge_6_info').html('<p>' + spacer() +  rate.toFixed(1) + ' m / s</p>');
 }
 
 var ascentFormatAndSendPoint = function(point, rate){
