@@ -3,6 +3,7 @@ var flight_data;
 var seriesIndex = 0;
 var currentInterval;
 var playSpeed = 0;
+var fastPlaySpeed = 2;
 var currentView = 'chart';
 var reverseIndex;
 
@@ -113,7 +114,6 @@ var displayDataSubmit = function() {
 
 var displayDataComment = function(data_point) {
   $("#data_point").val(data_point.id)
-  console.log(data_point.id)
 };
 
 var togglePlay = function(){
@@ -124,7 +124,7 @@ var togglePlay = function(){
   // (playSpeed === 1)
   else {
     $('#button-play').html('Slower');
-    playSpeed = 2;
+    playSpeed = fastPlaySpeed;
   };
 };
 
