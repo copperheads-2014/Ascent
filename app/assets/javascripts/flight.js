@@ -304,7 +304,7 @@ var ready = function() {
 
     var info = {};
     if ($('#data_point').val() !== "") {
-      info[data_point_id] = $('#data_point').val();
+      info["data_point_id"] = $('#data_point').val();
     }
     info["body"] = $('#comment_body').val();
     info["flight_id"] = window.location.pathname.split('/')[2];
