@@ -80,9 +80,10 @@ var play = function(interval) {
     advanceIndex(playSpeed);
     decrementIndex(playSpeed);
     var point = flight_data[seriesIndex];
+    var points = flight_data.slice(seriesIndex - playSpeed + 1, seriesIndex + 1);
     var previousPoint = flight_data[seriesIndex - 1];
     reversePoint = flight_data[reverseIndex];
-    playChart(point);
+    playChart(points);
     playAltimeter(point);
     playThermometer2(point);
     playBarometer(point);
