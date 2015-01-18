@@ -3,6 +3,7 @@ var flight_data;
 var seriesIndex = 0;
 var currentInterval;
 var playSpeed = 0;
+var fastPlaySpeed = 2;
 var currentView = 'chart';
 var reverseIndex;
 
@@ -79,9 +80,10 @@ var play = function(interval) {
     advanceIndex(playSpeed);
     decrementIndex(playSpeed);
     var point = flight_data[seriesIndex];
+    var points = flight_data.slice(seriesIndex - playSpeed + 1, seriesIndex + 1);
     var previousPoint = flight_data[seriesIndex - 1];
     reversePoint = flight_data[reverseIndex];
-    playChart(point);
+    playChart(points);
     playAltimeter(point);
     playThermometer2(point);
     playBarometer(point);
@@ -113,7 +115,6 @@ var displayDataSubmit = function() {
 
 var displayDataComment = function(data_point) {
   $("#data_point").val(data_point.id)
-  console.log(data_point.id)
 };
 
 var togglePlay = function(){
@@ -124,7 +125,7 @@ var togglePlay = function(){
   // (playSpeed === 1)
   else {
     $('#button-play').html('Slower');
-    playSpeed = 2;
+    playSpeed = fastPlaySpeed;
   };
 };
 
@@ -304,7 +305,7 @@ var ready = function() {
 
     var info = {};
     if ($('#data_point').val() !== "") {
-      info[data_point_id] = $('#data_point').val();
+      info["data_point_id"] = $('#data_point').val();
     }
     info["body"] = $('#comment_body').val();
     info["flight_id"] = window.location.pathname.split('/')[2];
