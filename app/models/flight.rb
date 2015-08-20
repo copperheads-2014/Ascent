@@ -1,7 +1,8 @@
 require 'habhub'
 
-
 class Flight < ActiveRecord::Base
+  include FlightsHelper
+
   has_many :data_points
   has_many :launches
   has_many :users, through: :launches
@@ -10,10 +11,7 @@ class Flight < ActiveRecord::Base
   has_many :likes
   has_many :likers, through: :likes, source: :user
 
-  SEA_LEVEL_PRESSURE = 1013.25 #mbars
-
-  include FlightsHelper
-# INSTANCE METHODS
+  SEA_LEVEL_PRESSURE = 1013.25 # m bars
 
   def self.with_complete_data(headers=nil)
     headers ||= ["altitude", "temperature", "pressure", "battery"]
@@ -29,7 +27,16 @@ class Flight < ActiveRecord::Base
   end
 
   def distance_traveled
-    Flight.travel_distance(starting_point, ending_point)
+    rad_per_deg = Math::PI/180.0
+    rkm = 6371.0                  # Earth radius in km
+    rm = rkm * 1000.0             # Radius in m
+    dlon_rad = (ending_point[1] - starting_point[1]) * rad_per_deg  # Delta, converted to rad
+    dlat_rad = (ending_point[0] - starting_point[0]) * rad_per_deg
+    lat1_rad, lon1_rad = starting_point.map! {|i| i * rad_per_deg }
+    lat2_rad, lon2_rad = ending_point.map! {|i| i * rad_per_deg }
+    starting_point = Math.sin(dlat_rad/2.0)**2.0 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2.0)**2.0
+    c = 2.0 * Math::atan2(Math::sqrt(starting_point), Math::sqrt(1.0-starting_point))
+    rm * c / 1000 # Delta in km
   end
 
   def start_time
@@ -73,23 +80,6 @@ class Flight < ActiveRecord::Base
     hours = total_seconds / (60 * 60)
 
     format("%02d:%02d:%02d", hours, minutes, seconds)
-  end
-
-  def self.travel_distance(starting_point, ending_point)
-    rad_per_deg = Math::PI/180.0  # PI / 180
-    rkm = 6371.0                  # Earth radius in kilometers
-    rm = rkm * 1000.0             # Radius in meters
-
-    dlon_rad = (ending_point[1] - starting_point[1]) * rad_per_deg  # Delta, converted to rad
-    dlat_rad = (ending_point[0] - starting_point[0]) * rad_per_deg
-
-    lat1_rad, lon1_rad = starting_point.map! {|i| i * rad_per_deg }
-    lat2_rad, lon2_rad = ending_point.map! {|i| i * rad_per_deg }
-
-    starting_point = Math.sin(dlat_rad/2.0)**2.0 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2.0)**2.0
-    c = 2.0 * Math::atan2(Math::sqrt(starting_point), Math::sqrt(1.0-starting_point))
-
-    rm * c / 1000 # Delta in km
   end
 
   def self.callsign(sentence)
