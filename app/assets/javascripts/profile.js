@@ -11,7 +11,7 @@ $(document).ready(function() {
     var previousBackgroundColor = button.css("background-color")
     button.css("background-color", "#5cb85c");
 
-    var woop = button.val(message);
+    var buttonVal = button.val(message);
     button.fadeOut(1000, function() {
       button.css("background-color", previousBackgroundColor);
       button.val(previousButtonValue);

@@ -19,6 +19,7 @@ files = [
   'joey_flight_data.csv',
   'laase_flight_data.csv',
   'max_flight_data.csv'
+  # THESE DATA SETS AREN'T VERY INTERESTING...
   # 'meurs_flight_data.csv',
   # 'mm2_flight_data.csv',
   # 'mod1_flight_data.csv',
@@ -139,8 +140,7 @@ alma = Flight.find(1)
 end
 
 
-steve = Flight.all
-steve.each do |flight|
+Flight.all.each do |flight|
   picture = Picture.new(flight: flight)
   picture.image = File.new("app/" + THING_OF_PICTURES.sample)
   picture.save!
