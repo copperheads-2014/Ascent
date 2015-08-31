@@ -12,3 +12,7 @@ brew install postgres
 brew install imagemagick
 ```
 - Gems can be installed by ``` bundle install ```
+
+#Setup
+
+Because life is short, we've included a 'yolo' rake task, which combines drop, create, migrate, and seed actions in one tast.  Simply run `bundle exec rake db:yolo` to execute.
