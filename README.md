@@ -1,5 +1,17 @@
 Ascent is a social network connecting high-altitude balloonists from around the world by displaying data-driven visualizations of the journey to near space.
 
+```
+ ________________________________________
+/ Ascent: Connecting Young Minds to Near \
+\ Space Adventures!                      /
+ ----------------------------------------
+        \   ^__^
+         \  (**)\_______
+            (__)\       )\/\
+             U  ||----w |
+                ||     ||
+```
+
 #Installation
 
 - We prefer using homebrew to install prerequisites.
@@ -7,11 +19,15 @@ Ascent is a social network connecting high-altitude balloonists from around the 
 ```
 brew install postgres
 ```
+- You can use brew services to start/halt postgres
+```
+brew services start postgres
+```
 - Imagemagick is required as a dependancy to the rmagick gem
 ```
 brew install imagemagick
 ```
-- Gems can be installed by ``` bundle install ```
+- After installing & starting the above dependencies, gems can be installed by ``` bundle install ```
 
 #Setup
 
