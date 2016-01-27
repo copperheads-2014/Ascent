@@ -4,15 +4,15 @@ class ChartsController < ApplicationController
 
   def show
   	@flight = Flight.find(params[:id])
-    @points = @flight.data_points.map{ |p| make_point(p, data_points) }
+    @points = @flight.data_points.map{ |p| normalized_point(p) }
   	respond_to { |format| format.json { render json: @points, status: :ok } }
   end
 
   protected
 
-  def make_point(p, data_points)
+  def normalized_point(p)
     {
-      x: (time_from_first_point(p, data_points.first)),
+      x: time_from_first_point(p),
       y: p[:data]['altitude'],
       temp: p[:data]['temperature'] || p[:data]['temperature_external'] || p[:data]['external_temperature'] || p[:data]['temperature_ext'] || p[:data]['ext_temperature'],
       latitude: p[:data]['latitude'],
@@ -30,7 +30,11 @@ class ChartsController < ApplicationController
     point.data['time'].to_datetime.strftime('%Q').to_i
   end
 
-  def time_from_first_point(point1, point2)
-    format_time(point1) - format_time(point2)
+  def time_from_first_point(point)
+    format_time(point) - format_time(starting_point)
+  end
+
+  def starting_point
+    @starting_point ||= @flight.data_points.first
   end
 end
