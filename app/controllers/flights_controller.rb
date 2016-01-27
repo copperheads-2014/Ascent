@@ -6,8 +6,8 @@ class FlightsController < ApplicationController
     @highest_altitude = @flights.order(max_altitude: :desc)
     @longest_duration = @flights.order(duration: :desc)
     @greatest_distance = @flights.order(distance_traveled: :desc)
-    if current_user.try(:all_friends)
-      @friends_flights = current_user.all_friends.map(&:flights).sort_by(&:created_at).reverse
+    if current_user.has_friends?
+      @friends_flights = current_user.approved_friends.map(&:flights).sort_by(&:created_at).reverse
     end
   end
 

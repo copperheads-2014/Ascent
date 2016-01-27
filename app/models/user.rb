@@ -33,4 +33,8 @@ class User < ActiveRecord::Base
   def friend_requests
     inverse_friendships.where("approved = false")
   end
+
+  def has_friends?
+    !!approved_friends.length
+  end
 end
