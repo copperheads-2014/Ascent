@@ -2,11 +2,6 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :launches
   has_many :flights, through: :launches
-  # has_many :friendships
-  # has_many :friends, through: :friendships
-  # has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
-  # has_many :inverse_friends, through: :inverse_friendships, source: :user
-
   has_many :friendships
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
@@ -37,5 +32,9 @@ class User < ActiveRecord::Base
 
   def friend_requests
     inverse_friendships.where("approved = false")
+  end
+
+  def has_friends?
+    !!approved_friends.length
   end
 end

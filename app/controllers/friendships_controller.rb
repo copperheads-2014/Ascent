@@ -1,34 +1,26 @@
 class FriendshipsController < ApplicationController
   def create
     @newfriendship = Friendship.new
-    if params[:friend_id]
-      friend = User.find(params[:friend_id])
-    else
-      friend = User.find_by(username: params[:friendship][:username])
-    end
+    friend = params[:friend_id] ? User.find(params[:friend_id]) : User.find_by(username: params[:friendship][:username])
     @friendship = current_user.friendships.build(friend_id: friend.id)
     if @friendship.save
-
       flash[:notice] = "Friend Request Sent"
-
-      redirect_to root_url
-
     else
       flash[:error] = "Unable to add friend"
-      redirect_to root_url
     end
+    redirect_to root_url
   end
 
   def approve
-    @friendship = Friendship.find(params[:id])
-    @friendship.approve!
-    render json: @friendship
+    friendship = Friendship.find(params[:id])
+    friendship.approve!
+    render json: friendship
   end
 
   def destroy
-    @friendship = Friendship.find(params[:id])
-    @friendship.destroy
+    friendship = Friendship.find(params[:id])
+    friendship.destroy
     flash[:notice] = "Removed friend!"
-    render json: @friendship
+    render json: friendship
   end
 end
