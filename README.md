@@ -15,4 +15,4 @@ brew install imagemagick
 
 #Setup
 
-Because life is short, we've included a 'yolo' rake task, which combines drop, create, migrate, and seed actions in one tast.  Simply run `bundle exec rake db:yolo` to execute.
+Because life is short, we've included a 'yolo' rake task, which combines drop, create, migrate, and seed actions in one task.  Simply run `bundle exec rake db:yolo` to execute.
