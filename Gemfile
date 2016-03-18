@@ -15,7 +15,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'highcharts-rails'
 
-gem 'json'
+gem 'json', '~> 1.8.2'
 
 gem 'tweet-button'
 
